@@ -1,169 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-    
-        <meta name="description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只">
-    
-
-    <!--Author-->
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="利用fuse_dfs快速建立hdfs云存储"/>
-    
-
-    <!--Open Graph Description-->
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="怡田阁"/>
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="article" />
-    
-
-    <!--Page Cover-->
-    
-
-    <meta name="twitter:card" content="summary" />
-    
-
-    <!-- Title -->
-    
-    <title>利用fuse_dfs快速建立hdfs云存储 - 怡田阁</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Google Analytics -->
-    
-
-
+  <meta charset="utf-8">
+  
+  <title>利用fuse_dfs快速建立hdfs云存储 | 怡田阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用fuse_dfs快速建立hdfs云存储">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/fuse_hdfs/index.html">
+<meta property="og:site_name" content="怡田阁">
+<meta property="og:description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://nos.netease.com/knowledge/4bb30049-1f3b-40b2-b065-c57605ab708f">
+<meta property="og:image" content="http://nos.netease.com/knowledge/29f7fedd-7a00-4c51-bc38-a2615ce3d49c">
+<meta property="og:updated_time" content="2018-08-16T07:50:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用fuse_dfs快速建立hdfs云存储">
+<meta name="twitter:description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace">
+<meta name="twitter:image" content="http://nos.netease.com/knowledge/4bb30049-1f3b-40b2-b065-c57605ab708f">
+  
+  <link rel="stylesheet" href="/css/index.css">
 </head>
 
+<body style="
 
-<body>
 
-<div class="bg-gradient"></div>
-<div class="bg-pattern"></div>
+  background-color: #eff0f6
 
-<!-- Menu -->
-<!--Menu Links and Overlay-->
-<div class="menu-bg">
-    <div class="menu-container">
-        <ul>
-            
-            <li class="menu-item">
-                <a href="/">
-                    Home
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/archives">
-                    Archives
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/about.html">
-                    About
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/tags">
-                    Tags
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/categories">
-                    Categories
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/contact.html">
-                    Contact
-                </a>
-            </li>
-            
-        </ul>
+">
+  <div id="container">
+    <nav id="nav">
+  <header class="header">
+    <a href="/" class="title">Clover Tuan</a>
+  </header>
+  <div class="ctnWrap">
+    <div class="icons">
+      
+        
+          
+            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
+          
+        
+          
+            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
+          
+        
+          
+            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
+          
+        
+          
+            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
+          
+        
+          
+            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
+          
+        
+      
     </div>
-</div>
-
-<!--Hamburger Icon-->
-<nav>
-    <a href="#menu"></a>
+    <div class="menu">
+      
+        
+            <a href="/" class="nav-menu ">HOME</a>
+          
+        
+            <a href="/archives" class="nav-menu ">ARCHIVE</a>
+          
+        
+            <a href="/about" class="nav-menu ">ABOUT</a>
+          
+        
+      
+    </div>
+  </div>
 </nav>
-
-<div class="container">
-
-    <!-- Main Content -->
-    <div class="row">
-    <div class="col-sm-12">
-
-        <!--Title and Logo-->
-        <header>
-    <div class="logo">
-        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
-        
-    </div>
-</header>
-
-        <section class="main">
-            
-<div class="post">
-
-    <div class="post-header">
-        <h1 class="title">
-            <a href="/2018/08/16/fuse_hdfs/">
-                利用fuse_dfs快速建立hdfs云存储
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2018-08-16</span>
-            
-            
-            
-        </div>
-    </div>
-
-    <div class="content">
-
-        <!-- Gallery -->
-        
-
-        <!-- Post Content -->
-        <h3 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h3><p>将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。<br><br><br>用户空间文件系统（Filesystem in Userspace，简称FUSE）是一个面向类Unix计算机操作系统的软件接口，它使无特权的用户能够无需编辑内核代码而创建自己的文件系统。目前Linux通过内核模块对此进行支持。一些文件系统如ZFS、glusterfs和lustre使用FUSE实现。Linux用于支持用户空间文件系统的内核模块名叫FUSE，FUSE一词有时特指Linux下的用户空间文件系统。通过使用Hadoop的Fuse-DFS分类模块，任意一个Hadoop文件系统(不过一般为HDFS)都可以作为一个标准文件系统进行挂载。<br><br><br>Hadooop源码中自带了fuse-dfs模块，利用fuse_dfs将hdfs当一个网盘挂载到本地。</p>
+    <div id="main"><section class="article">
+  <h2 class="title">利用fuse_dfs快速建立hdfs云存储</h2>
+  <p class="sub">8月 16, 2018</p>
+  <article class="content">
+    <h3 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h3><p>将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。<br><br><br>用户空间文件系统（Filesystem in Userspace，简称FUSE）是一个面向类Unix计算机操作系统的软件接口，它使无特权的用户能够无需编辑内核代码而创建自己的文件系统。目前Linux通过内核模块对此进行支持。一些文件系统如ZFS、glusterfs和lustre使用FUSE实现。Linux用于支持用户空间文件系统的内核模块名叫FUSE，FUSE一词有时特指Linux下的用户空间文件系统。通过使用Hadoop的Fuse-DFS分类模块，任意一个Hadoop文件系统(不过一般为HDFS)都可以作为一个标准文件系统进行挂载。<br><br><br>Hadooop源码中自带了fuse-dfs模块，利用fuse_dfs将hdfs当一个网盘挂载到本地。</p>
 <h3 id="二、应用场景"><a href="#二、应用场景" class="headerlink" title="二、应用场景"></a>二、应用场景</h3><p>同步：实现用户对个人计算指定目录下的特定类型的文件自动与HDFS同步，实时监测用户文件变化情况。不需要用户干预就能及时自动备份文件。当用户新建、修改或删除文件（目录）时自动更新同步，保障用户重要文件的安全。当用户移动办公时，可直接从HDFS访问，省略了移动存储介质的拷贝过程，提高用户工作效率。更换新计算机时，用户登录后原计算机中的个人文件将自动从HDFS存储中同步到新计算机中。例如：适用数据仓库需要ETL进行Hadoop文件进行ftp或者rsync推送的场景。</p>
 <p>网盘：用户可将不常用的文件存储在HDFS存储中，从而节约本地存储空间，提高文件的物理安全性，也便于资源共享。</p>
 <p>共享：用户可以把网盘或同步盘的任意文件（目录）分享给群组或其他用户。只需要在云存储中存储一份文件，被分享的人不需要下载存储即可在线浏览，实现资源共享。若源文件被修改，所有分享人立即会得到更新文件。</p>
@@ -194,184 +111,41 @@
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kinit urs<span class="variable">.keytab</span> urs</span><br><span class="line">Ticket cache: FILE:/tmp/krb5cc_7765</span><br><span class="line">Default principal: urs@HADOOP<span class="variable">.HZ</span><span class="variable">.NETEASE</span><span class="variable">.COM</span></span><br><span class="line"></span><br><span class="line">Valid starting    Expires           Service principal</span><br><span class="line"><span class="number">10</span>/<span class="number">05</span>/<span class="number">2018</span> <span class="number">10</span>:<span class="number">52</span>  <span class="number">10</span>/<span class="number">05</span>/<span class="number">2018</span> <span class="number">20</span>:<span class="number">52</span>  krbtgt/HADOOP<span class="variable">.HZ</span><span class="variable">.NETEASE</span><span class="variable">.COM</span>@HADOOP<span class="variable">.HZ</span><span class="variable">.NETEASE</span><span class="variable">.COM</span></span><br><span class="line">  renew <span class="keyword">until</span> <span class="number">11</span>/<span class="number">05</span>/<span class="number">2018</span> <span class="number">10</span>:<span class="number">52</span></span><br></pre></td></tr></table></figure>
 <p>最后重新挂载，操作手法同上。<br><br><br> <img src="http://nos.netease.com/knowledge/4bb30049-1f3b-40b2-b065-c57605ab708f" style="height:100px;width:900px"><br> <img src="http://nos.netease.com/knowledge/29f7fedd-7a00-4c51-bc38-a2615ce3d49c" style="height:350px;width:530px"><br><br><br><strong>大功告成!</strong></p>
 
-    </div>
-
+  </article>
+  <footer class="f-cf">
     
-
+      <a href="/2018/12/29/data-modeling/" class="link f-fl">⟵数据仓库之数据建模</a>
     
-
-    <!-- Comments -->
     
-
-</div>
-        </section>
-
-    </div>
-</div>
-
-
-</div>
-
-<!-- Footer -->
-<div class="push"></div>
-
-<footer class="footer-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
-                <h2>About</h2>
-                <p>
-                    This theme was developed by <a href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
-                </p>
-            </div>
-            
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-            
-            <li>
-                <a class="footer-post" href="/2018/12/31/how-to-use-md/">如何使用MarkDown</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2018/12/29/data-modeling/">数据仓库之数据建模</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2018/08/16/fuse_hdfs/">利用fuse_dfs快速建立hdfs云存储</a>
-            </li>
-            
-        </ul>
-    </div>
-
-
-
-            
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <ul class="list-inline footer-social-icons">
-                    
-                    <li class="list-inline-item">
-                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://twitter.com/?lang=en">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-twitter"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-facebook"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://www.instagram.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-instagram"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://dribbble.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-dribbble"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://plus.google.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://www.behance.net/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-behance"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://500px.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-500px"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="mailto:test@example.com">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-envelope-o"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="\#">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-rss"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="footer-copyright">
-                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
-                </div>
-            </div>
-        </div>
-    </div>
+  </footer>
+</section></div>
+    <footer id="footer" class="f-cf">
+  d.guangying@foxmail.com
+  
+    
+      
+        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
+      
+    
+      
+        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
+      
+    
+      
+        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
+      
+    
+      
+        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
+      
+    
+      
+        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
+      
+    
+  
+  <span class="copyright">All rights reserved @Clover Tuan</span>
 </footer>
-
-<!-- After footer scripts -->
-
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-
-<!-- Tween Max -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
-
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Custom JavaScript -->
-<script src="/js/main.js"></script>
-
-<!-- Disqus Comments -->
-
-
-
+  </div>
 </body>
-
 </html>
