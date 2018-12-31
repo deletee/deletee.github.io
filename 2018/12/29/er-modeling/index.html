@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://deletee.github.io">
   <title>数据仓库之数据建模 | DeleteMe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、什么是ER建模？ 理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 ​      例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施 2、ER建模的三个">
+  <meta name="description" content="1、什么是ER建模？ 理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 ​      例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施">
 <meta name="keywords" content="建模,数据仓库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据仓库之数据建模">
 <meta property="og:url" content="https://deletee.github.io/2018/12/29/er-modeling/index.html">
 <meta property="og:site_name" content="DeleteMe">
-<meta property="og:description" content="1、什么是ER建模？ 理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 ​      例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施 2、ER建模的三个">
+<meta property="og:description" content="1、什么是ER建模？ 理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 ​      例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T13:33:44.076Z">
+<meta property="og:updated_time" content="2018-12-31T13:35:22.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据仓库之数据建模">
-<meta name="twitter:description" content="1、什么是ER建模？ 理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 ​      例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施 2、ER建模的三个">
+<meta name="twitter:description" content="1、什么是ER建模？ 理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 ​      例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施">
   
     <link rel="alternative" href="/atom.xml" title="DeleteMe" type="application/atom+xml">
   
@@ -200,7 +200,7 @@ var _hmt = _hmt || [];
       
         <h3 id="1、什么是ER建模？"><a href="#1、什么是ER建模？" class="headerlink" title="1、什么是ER建模？"></a>1、什么是ER建模？</h3><hr>
 <p><strong>理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控</strong></p>
-<p>​      <strong>例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施</strong></p>
+<p>​      <strong>例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施</strong><br><a id="more"></a></p>
 <h3 id="2、ER建模的三个阶段"><a href="#2、ER建模的三个阶段" class="headerlink" title="2、ER建模的三个阶段"></a><strong>2、ER建模的三个阶段</strong></h3><hr>
 <p><strong>理解关键字：ER模型是自上而下的建模方式，由此建模的需要先从企业的整体框架进行高度抽象</strong></p>
 <p><strong>（1）高层模型</strong></p>
