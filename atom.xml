@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>怡田阁</title>
+  <title>DeleteMe</title>
   
   <subtitle>长安的风何时才能吹到汴梁?</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://deletee.github.io/"/>
   <updated>2018-12-31T04:12:42.906Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://deletee.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>如何使用MarkDown</title>
-    <link href="http://yoursite.com/2018/12/31/how-to-use-md/"/>
-    <id>http://yoursite.com/2018/12/31/how-to-use-md/</id>
+    <link href="https://deletee.github.io/2018/12/31/how-to-use-md/"/>
+    <id>https://deletee.github.io/2018/12/31/how-to-use-md/</id>
     <published>2018-12-31T04:12:30.000Z</published>
     <updated>2018-12-31T04:12:42.906Z</updated>
     
@@ -33,14 +33,14 @@
     </summary>
     
     
-      <category term="建模" scheme="http://yoursite.com/tags/%E5%BB%BA%E6%A8%A1/"/>
+      <category term="建模" scheme="https://deletee.github.io/tags/%E5%BB%BA%E6%A8%A1/"/>
     
   </entry>
   
   <entry>
     <title>数据仓库之数据建模</title>
-    <link href="http://yoursite.com/2018/12/29/data-modeling/"/>
-    <id>http://yoursite.com/2018/12/29/data-modeling/</id>
+    <link href="https://deletee.github.io/2018/12/29/data-modeling/"/>
+    <id>https://deletee.github.io/2018/12/29/data-modeling/</id>
     <published>2018-12-29T07:46:30.000Z</published>
     <updated>2018-12-31T04:10:39.313Z</updated>
     
@@ -56,14 +56,14 @@
     </summary>
     
     
-      <category term="建模" scheme="http://yoursite.com/tags/%E5%BB%BA%E6%A8%A1/"/>
+      <category term="建模" scheme="https://deletee.github.io/tags/%E5%BB%BA%E6%A8%A1/"/>
     
   </entry>
   
   <entry>
     <title>利用fuse_dfs快速建立hdfs云存储</title>
-    <link href="http://yoursite.com/2018/08/16/fuse_hdfs/"/>
-    <id>http://yoursite.com/2018/08/16/fuse_hdfs/</id>
+    <link href="https://deletee.github.io/2018/08/16/fuse_hdfs/"/>
+    <id>https://deletee.github.io/2018/08/16/fuse_hdfs/</id>
     <published>2018-08-16T07:46:30.000Z</published>
     <updated>2018-08-16T07:50:39.000Z</updated>
     
