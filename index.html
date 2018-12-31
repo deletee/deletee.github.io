@@ -526,7 +526,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0x00-group-by-引起的倾斜"><a href="#0x00-group-by-引起的倾斜" class="headerlink" title="0x00 group by 引起的倾斜"></a><strong>0x00 group by 引起的倾斜</strong></h4><h5 id="1-优化措施"><a href="#1-优化措施" class="headerlink" title="1|优化措施"></a>1|优化措施</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">set</span><span class="string">` `</span>hive.map.aggr = <span class="string">``</span><span class="literal">true</span><span class="string">``</span><span class="keyword">set</span><span class="string">` `</span>hive.groupby.skewindata = <span class="string">``</span><span class="literal">true</span><span class="string">`</span></span><br></pre></td></tr></table></figure>
+        <h4 id="0x00-group-by-引起的倾斜"><a href="#0x00-group-by-引起的倾斜" class="headerlink" title="0x00 group by 引起的倾斜"></a><strong>0x00 group by 引起的倾斜</strong></h4><h5 id="1-优化措施"><a href="#1-优化措施" class="headerlink" title="1|优化措施"></a>1|优化措施</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> hive.map.aggr = <span class="literal">true</span></span><br><span class="line"><span class="keyword">set</span> hive.groupby.skewindata = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
         
       
 

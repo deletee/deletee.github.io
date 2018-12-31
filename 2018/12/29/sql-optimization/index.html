@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://deletee.github.io">
   <title>Hive SQL优化 | deletee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 group by 引起的倾斜1|优化措施1`set` `hive.map.aggr = ``true``set` `hive.groupby.skewindata = ``true`">
+  <meta name="description" content="0x00 group by 引起的倾斜1|优化措施12set hive.map.aggr = trueset hive.groupby.skewindata = true">
 <meta name="keywords" content="Hive,SQL,优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive SQL优化">
 <meta property="og:url" content="https://deletee.github.io/2018/12/29/sql-optimization/index.html">
 <meta property="og:site_name" content="deletee">
-<meta property="og:description" content="0x00 group by 引起的倾斜1|优化措施1`set` `hive.map.aggr = ``true``set` `hive.groupby.skewindata = ``true`">
+<meta property="og:description" content="0x00 group by 引起的倾斜1|优化措施12set hive.map.aggr = trueset hive.groupby.skewindata = true">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T14:16:01.993Z">
+<meta property="og:updated_time" content="2018-12-31T14:56:38.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive SQL优化">
-<meta name="twitter:description" content="0x00 group by 引起的倾斜1|优化措施1`set` `hive.map.aggr = ``true``set` `hive.groupby.skewindata = ``true`">
+<meta name="twitter:description" content="0x00 group by 引起的倾斜1|优化措施12set hive.map.aggr = trueset hive.groupby.skewindata = true">
   
     <link rel="alternative" href="/atom.xml" title="deletee" type="application/atom+xml">
   
@@ -198,7 +198,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0x00-group-by-引起的倾斜"><a href="#0x00-group-by-引起的倾斜" class="headerlink" title="0x00 group by 引起的倾斜"></a><strong>0x00 group by 引起的倾斜</strong></h4><h5 id="1-优化措施"><a href="#1-优化措施" class="headerlink" title="1|优化措施"></a>1|优化措施</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">set</span><span class="string">` `</span>hive.map.aggr = <span class="string">``</span><span class="literal">true</span><span class="string">``</span><span class="keyword">set</span><span class="string">` `</span>hive.groupby.skewindata = <span class="string">``</span><span class="literal">true</span><span class="string">`</span></span><br></pre></td></tr></table></figure>
+        <h4 id="0x00-group-by-引起的倾斜"><a href="#0x00-group-by-引起的倾斜" class="headerlink" title="0x00 group by 引起的倾斜"></a><strong>0x00 group by 引起的倾斜</strong></h4><h5 id="1-优化措施"><a href="#1-优化措施" class="headerlink" title="1|优化措施"></a>1|优化措施</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> hive.map.aggr = <span class="literal">true</span></span><br><span class="line"><span class="keyword">set</span> hive.groupby.skewindata = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
  <a id="more"></a>
 <h5 id="2-原理"><a href="#2-原理" class="headerlink" title="2|原理"></a>2|原理</h5><p>​    作业将生成两个MapReduce Job</p>
 <p>​    第一个MapReduce Job中 Map的输出结果会随机的分布到Reduce中，每个Reduce做部分聚合操作并输出结果，这样处理的结果 相同的group by key会分布到不同的reduce中</p>
