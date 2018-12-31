@@ -1,55 +1,282 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN" class="loading">
+<html lang="zh-CN">
+    
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>怡田阁 - 长安的风怕是再也吹不到汴梁</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="怡田阁">
+    <title>利用fuse_dfs快速建立hdfs云存储 - 怡田阁</title>
+    <meta name="author" content="">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":null,"sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace，简称FUSE）是一个面向类Unix计算机操作系统的软件接口，它使无特权的用户能够无需编辑内核代码而创建自己的文件系统。目前Linux通过内核模块对此进行支持。一些文件系统如ZFS、glusterfs和lustre使用FUSE实现。Linux用于支持用户空间文件系统的内核模块名叫FUSE，FUSE一词有时特指Linux下的用户空间文件系统。通过使用Hadoop的Fuse-DFS分类模块，任意一个Hadoop文件系统(不过一般为HDFS)都可以作为一个标准文件系统进行挂载。Hadooop源码中自带了fuse-dfs模块，利用fuse_dfs将hdfs当一个网盘挂载到本地。\n二、应用场景同步：实现用户对个人计算指定目录下的特定类型的文件自动与HDFS同步，实时监测用户文件变化情况。不需要用户干预就能及时自动备份文件。当用户新建、修改或删除文件（目录）时自动更新同步，保障用户重要文件的安全。当用户移动办公时，可直接从HDFS访问，省略了移动存储介质的拷贝过程，提高用户工作效率。更换新计算机时，用户登录后原计算机中的个人文件将自动从HDFS存储中同步到新计算机中。例如：适用数据仓库需要ETL进行Hadoop文件进行ftp或者rsync推送的场景。\n网盘：用户可将不常用的文件存储在HDFS存储中，从而节约本地存储空间，提高文件的物理安全性，也便于资源共享。\n共享：用户可以把网盘或同步盘的任意文件（目录）分享给群组或其他用户。只需要在云存储中存储一份文件，被分享的人不需要下载存储即可在线浏览，实现资源共享。若源文件被修改，所有分享人立即会得到更新文件。\n三、部署实现目前网络上关于利用fuse挂载hdfs较多基于较早版本的hadoop(0.x，1.x) ，并大多都基于无kerberos认证，本文以北京亦庄Hadoop 2.5.2为例，介绍通过fuse挂载hdfs到本地的方法。设定源码目录为$HADOOP_SRC_HOME​，那么Hadoop 2.x 的 fuse_dfs 源码位于1$HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs/src/main/native/\n那么怎么编译fuse_dfs？fuse_dfs是Hadoop自带模块，编译Hadoop时，增加编译参数require.fuse=true，即编译命令如下1mvn package -Drequire.fuse=true -DskipTests -Dmaven.javadoc.skip=true -Dtar\n编译环境123456789Linux: 3.16.0-0.bpo.4-amd64 (Debian7)JDK: 1.7.0_80 64bitApache Hadoop: 2.5.2 Ant: 1.8.2GCC: 4.7.2 (系统默认)Protocbuf 2.5.0Maven 3.0.4Cmake 2.8.9Make 3.8.1\n安装fuse等依赖1sudo apt-get -y install maven build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev libfuse-dev\n编译fuse_dfs(Hadoop)123456789101112# 下载mkdir package &amp;&amp; cd packagewget http://archive.apache.org/dist/hadoop/core/hadoop-2.5.2/hadoop-2.5.2-src.tar.gz#解压tar -zxvf hadoop-2.5.2-src.tar.gzln -s hadoop-2.5.2-src hadoop-srcecho \"export HADOOP_SRC_HOME=$HOME/package/hadoop-src/\" &gt;&gt; .bashrc &amp;&amp; source .bashrc# 编译cd hadoop-2.5.2-srcmvn package -Drequire.fuse=true -DskipTests -Dmaven.javadoc.skip=true -Dtar\nPS: 编译Hadoop之前需提前安装好fuse，否则fuse_dfs无法编译成功123456- [1] 编译后的fuse_dfs位于：  $HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs-native-client/target/main/native/fuse-dfs/fuse_dfs- [2] 完整的Hadoop包则位于：  $HADOOP_SRC_HOME/hadoop-dist/target/hadoop-2.5.2.tar.gz- [3] 一个用于挂载hdfs的脚本：  $HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs-native-client/src/main/native/fuse-dfs/fuse_dfs_wrapper.sh\n部署Hadoop（略）配置fuse_dfs_wrapper.shHDFS挂载主要依赖源码的两个模块，一个是hadoop-hdfs-project，另一个是hadoop-client，可将依赖的jar包单独提炼出来。\n123456789101112131415161718192021222324252627282930313233343536#!/usr/bin/env bashexport HADOOP_HOME=$&#123;HADOOP_HOME:-/usr/local/share/hadoop&#125;export HADOOP_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoopexport HADOOP_PREFIX=$HOME/package/hadoop-srcexport JAVA_HOME=$HOME/opt/jdkexport FUSEDFS_PATH=\"$HADOOP_PREFIX/hadoop-hdfs-project/hadoop-hdfs/target/native/main/native/fuse-dfs\"export LIBHDFS_PATH=\"$HADOOP_PREFIX/hadoop-hdfs-project/hadoop-hdfs/target/native/target/usr/local/lib\"if [ \"$OS_ARCH\" = \"\" ]; then    export OS_ARCH=amd64fiif [ \"$JAVA_HOME\" = \"\" ]; then    export  JAVA_HOME=/usr/local/javafiif [ \"$LD_LIBRARY_PATH\" = \"\" ]; thenexport LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/$OS_ARCH/server:/usr/local/libfiJARS=`find \"$HADOOP_PREFIX/hadoop-hdfs-project\" -name \"*.jar\" | xargs`for jar in $JARS; do  CLASSPATH=$jar:$CLASSPATHdoneJARS=`find \"$HADOOP_PREFIX/hadoop-client\" -name \"*.jar\" | xargs`for jar in $JARS; do  CLASSPATH=$jar:$CLASSPATHdoneexport CLASSPATH=$HADOOP_CONF_DIR:$CLASSPATHexport PATH=$FUSEDFS_PATH:$PATHexport LD_LIBRARY_PATH=$LIBHDFS_PATH:$JAVA_HOME/jre/lib/$OS_ARCH/server:$LD_LIBRARY_PATHfuse_dfs $@\n利用命令\n1234567891011121314 sudo bash ./fuse-dfs/fuse_dfs_wrapper.sh hdfs://$&#123;nn&#125;:$&#123;port&#125; /mnt/hdfsINFO /home/hzxijingjing/package/hadoop-2.5.2-src/hadoop-hdfs-project/hadoop-hdfs/src/main/native/fuse-dfs/fuse_options.c:164 Adding FUSE arg /mnt/hdfs# 挂载信息 df -hFilesystem      Size  Used Avail Use% Mounted onrootfs           50G  8.2G   39G  18% /udev             10M     0   10M   0% /devtmpfs           1.6G  216K  1.6G   1% /run/dev/vda1        50G  8.2G   39G  18% /tmpfs           5.0M  4.0K  5.0M   1% /run/locktmpfs           3.2G     0  3.2G   0% /run/shm/dev/vdb1        99G   75M   94G   1% /datafuse_dfs         49G     0   49G   0% /mnt/hdfs  # HDFS挂载成功\n​ 至此为止，已实现无简单认证的Hadoop挂载，然而对于配置了kerberos认证的Hadoop，实施挂载会出现如下情况：123cd /mnt &amp;&amp; ls -lhls: cannot access hdfs: Transport endpoint is not connectedd????????? ? ?      ?          ?            ? hdfs\n后置参数 -d，进入debug模式， 查看运行信息\n1sudo /bin/sh ./fuse-dfs/fuse_dfs_wrapper.sh hdfs://$&#123;nn&#125;:$&#123;port&#125; /mnt/dfs -d\n1234567891011121314151617181920212223242526272829............ # 省略一些无用日志 FUSE library version: 2.9.0nullpath_ok: 0nopath: 0utime_omit_ok: 0unique: 1, opcode: INIT (26), nodeid: 0, insize: 56, pid: 0INIT: 7.23flags=0x0003fffbmax_readahead=0x00020000INFO /home/hzxijingjing/package/hadoop-2.5.2-src/hadoop-hdfs-project/hadoop-hdfs/src/main/native/fuse-dfs/fuse_init.c:98 Mounting with options: [ protected=(NULL), nn_uri=hdfs://hadoop1232.hz.163.org:8020, nn_port=0, debug=0, read_only=0, initchecks=0, no_permissions=0, usetrash=1, entry_timeout=60, attribute_timeout=60, rdbuffer_size=10485760, direct_io=0 ]............ # 省略一些无用日志                                                                                                                                                                                                                                                                                          fuseConnectInit: initialized with timer period 5, expiry period 300   INIT: 7.18   flags=0x00000039   max_readahead=0x00020000   max_write=0x00020000   max_background=0   congestion_threshold=0   unique: 1, success, outsize: 40unique: 2, opcode: STATFS (17), nodeid: 1, insize: 40, pid: 13769statfs /   unique: 2, success, outsize: 96unique: 3, opcode: GETATTR (3), nodeid: 1, insize: 56, pid: 13815getattr /fuseNewConnect: failed to find Kerberos ticket cache file '/tmp/krb5cc_0'.  Did you remember to kinit for UID 0?fuseConnect(usrname=root): fuseNewConnect failed with error code -13fuseConnectAsThreadUid: failed to open a libhdfs connection!  error -13.   unique: 3, error: -5 (Input/output error), outsize: 16unique: 4, opcode: STATFS (17), nodeid: 1, insize: 40, pid: 13826\n从上可以看出，大概是无法通过kerberos的cache文件/tmp/krb5cc_0认证，早就意识到基于kerberos的hadoop是块难啃的骨头，用过kerberos认证的同学都知道，kerberos认证依赖本地Linux命令 kinit 实现认证，认证之后通常会有一个有效期，即在一段时间内，无需再次认证。然而利用fuse_dfs挂载kerberos认证的HDFS，无论是度娘还是谷爸在这方面资料也是极少，无奈只能看下fuse_dfs的源码。\nfuse-dfs实现​ fuse_dfs是由C语言开发，代码目录位于$HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs/src/main/native/（上文有提到）​ 如下是fuse_dfs连接hdfs及操作相关源码文件\n12./fuse-dfs/fuse_connect.c./libhdfs/hdfs.c\nvim fuse_connect.c利用libhdfs建立连接123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111 /**函数主体中一段代码表示如何通过libhdfs连接*//** * Create a new libhdfs connection. * * @param usrname       Username to use for the new connection * @param ctx           FUSE context to use for the new connection * @param out           (out param) the new libhdfs connection * * @return              0 on success; error code otherwise */static int fuseNewConnect(const char *usrname, struct fuse_context *ctx,        struct hdfsConn **out)  /**  * Find out what type of authentication the system administrator * has configured. * * @return     the type of authentication, or AUTH_CONF_UNKNOWN on error. */  //获取Hadoop认证方式  static enum authConf discoverAuthConf(void)&#123;  int ret;  char *val = NULL;  enum authConf authConf;  ret = hdfsConfGetStr(HADOOP_SECURITY_AUTHENTICATION, &amp;val);  if (ret)    authConf = AUTH_CONF_UNKNOWN;  else if (!val)    authConf = AUTH_CONF_OTHER;  else if (!strcmp(val, \"kerberos\"))    authConf = AUTH_CONF_KERBEROS;  else    authConf = AUTH_CONF_OTHER;  free(val);  return authConf;&#125;// 获取到Hadoop的认证方式之后，首先找kerberos认证后的cache文件if (gHdfsAuthConf == AUTH_CONF_KERBEROS) &#123;    findKerbTicketCachePath(ctx, kpath, sizeof(kpath));    if (stat(kpath, &amp;st) &lt; 0) &#123;      fprintf(stderr, \"fuseNewConnect: failed to find Kerberos ticket cache \"        \"file '%s'.  Did you remember to kinit for UID %d?\\n\",        kpath, ctx-&gt;uid);      ret = -EACCES;      goto error;    &#125;// 查找kerberos认证后的cache文件，从发现cache文件位于：/tmp/krb5cc_%d/** * Find the Kerberos ticket cache path. * * This function finds the Kerberos ticket cache path from the thread ID and * user ID of the process making the request. * * Normally, the ticket cache path is in a well-known location in /tmp. * However, it's possible that the calling process could set the KRB5CCNAME * environment variable, indicating that its Kerberos ticket cache is at a * non-default location.  We try to handle this possibility by reading the * process' environment here.  This will be allowed if we have root * capabilities, or if our UID is the same as the remote process' UID. * * Note that we don't check to see if the cache file actually exists or not. * We're just trying to find out where it would be if it did exist.  * * @param path          (out param) the path to the ticket cache file * @param pathLen       length of the path buffer */static void findKerbTicketCachePath(struct fuse_context *ctx,                                    char *path, size_t pathLen)&#123;  FILE *fp = NULL;  static const char * const KRB5CCNAME = \"\\0KRB5CCNAME=\";  int c = '\\0', pathIdx = 0, keyIdx = 0;  size_t KRB5CCNAME_LEN = strlen(KRB5CCNAME + 1) + 1;  // /proc/&lt;tid&gt;/environ contains the remote process' environment.  It is  // exposed to us as a series of KEY=VALUE pairs, separated by NULL bytes.  snprintf(path, pathLen, \"/proc/%d/environ\", ctx-&gt;pid);  fp = fopen(path, \"r\");  if (!fp)    goto done;  while (1) &#123;    if (c == EOF)      goto done;    if (keyIdx == KRB5CCNAME_LEN) &#123;      if (pathIdx &gt;= pathLen - 1)        goto done;      if (c == '\\0')        goto done;      path[pathIdx++] = c;    &#125; else if (KRB5CCNAME[keyIdx++] != c) &#123;      keyIdx = 0;    &#125;    c = fgetc(fp);  &#125;done:  if (fp)    fclose(fp);  if (pathIdx == 0) &#123;    snprintf(path, pathLen, \"/tmp/krb5cc_%d\", ctx-&gt;uid); // cache文件的目录  &#125; else &#123;    path[pathIdx] = '\\0';  &#125;&#125;\n​ 由上代码可以看出，函数findKerbTicketCachePath从上下文ctx中获取uid从而获取/tmp/krb5cc_${uid}，那么如何挂载hdfs时，识别到kerberos的cache文件呢？\nvim hdfs.c123456789101112131415161718192021struct hdfsBuilder &#123;    int forceNewInstance;    const char *nn;    tPort port;    const char *kerbTicketCachePath;    const char *userName;&#125;;  #define KERBEROS_TICKET_CACHE_PATH &quot;hadoop.security.kerberos.ticket.cache.path&quot;if (bld-&gt;kerbTicketCachePath) &#123;            jthr = hadoopConfSetStr(env, jConfiguration,                KERBEROS_TICKET_CACHE_PATH, bld-&gt;kerbTicketCachePath);            if (jthr) &#123;                ret = printExceptionAndFree(env, jthr, PRINT_EXC_ALL,                    &quot;hdfsBuilderConnect(%s)&quot;,                    hdfsBuilderToStr(bld, buf, sizeof(buf)));                goto done;            &#125;&#125;\n最终定位到：KERBEROS_TICKET_CACHE_PATH “hadoop.security.kerberos.ticket.cache.path” \n在core-site.xml添加如下属性：\n12345&lt;property&gt;  &lt;name&gt;hadoop.security.kerberos.ticket.cache.path&lt;/name&gt;  &lt;value&gt;/tmp/krb5cc_$&#123;uid&#125;&lt;/value&gt;  &lt;description&gt;Path to the Kerberos ticket cache. &lt;/description&gt;&lt;/property&gt;\n${uid}是什么？uid=7765\n1234567kinit urs.keytab ursTicket cache: FILE:/tmp/krb5cc_7765Default principal: urs@HADOOP.HZ.NETEASE.COMValid starting    Expires           Service principal10/05/2018 10:52  10/05/2018 20:52  krbtgt/HADOOP.HZ.NETEASE.COM@HADOOP.HZ.NETEASE.COM  renew until 11/05/2018 10:52\n最后重新挂载，操作手法同上。  大功告成!\n","dateCreated":"2018-08-16T15:46:30+08:00","dateModified":"2018-08-16T15:50:39+08:00","datePublished":"2018-08-16T15:46:30+08:00","description":"","headline":"利用fuse_dfs快速建立hdfs云存储","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/08/16/fuse_hdfs/"},"publisher":{"@type":"Organization","name":null,"sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2018/08/16/fuse_hdfs/"}</script>
+    <meta name="description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="利用fuse_dfs快速建立hdfs云存储">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/fuse_hdfs/index.html">
+<meta property="og:site_name" content="怡田阁">
+<meta property="og:description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://nos.netease.com/knowledge/4bb30049-1f3b-40b2-b065-c57605ab708f">
+<meta property="og:image" content="http://nos.netease.com/knowledge/29f7fedd-7a00-4c51-bc38-a2615ce3d49c">
+<meta property="og:updated_time" content="2018-08-16T07:50:39.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用fuse_dfs快速建立hdfs云存储">
+<meta name="twitter:description" content="一、介绍将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。用户空间文件系统（Filesystem in Userspace">
+<meta name="twitter:image" content="http://nos.netease.com/knowledge/4bb30049-1f3b-40b2-b065-c57605ab708f">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/all.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
     
-    
-    <link rel="alternative" href="atom.xml" title="怡田阁" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <link rel="stylesheet" href="/css/diaspora.css">
 </head>
 
-<body class="loading">
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="icon-home image-icon" href="javascript:;"></a>
-    <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">利用fuse_dfs快速建立hdfs云存储</h3>
-    <div class="social">
-        <!--<div class="like-icon">-->
-            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
-        <!--</div>-->
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
-</div>
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">利用fuse_dfs快速建立hdfs云存储</h1>
-        <div class="stuff">
-            <span>八月 16, 2018</span>
-            
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
-        </div>
-        <div class="content markdown">
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">怡田阁</a>
+    </div>
+    
+        
+            <a  class="header-right-picture "
+                href="#about">
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Kategorien"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Kategorien</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archiv"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archiv</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Suche"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Suche</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="Über"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Über</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google Plus">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="E-Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">E-Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            利用fuse_dfs快速建立hdfs云存储
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2018-08-16T15:46:30+08:00">
+	
+		    16 8月 2018
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
             <h3 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h3><p>将HDFS挂载到本地，允许用户像访问本地文件系统一样访问远程文件系统，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用，方法较为常用两种方法是：利用fuse_dfs或者利用NFSv3，因NFSv3需对Hadoop集群端进行操作，修改代价太大，本文介绍以fuse_dfs，只需在客户端进行配置即可挂载hdfs。<br><br><br>用户空间文件系统（Filesystem in Userspace，简称FUSE）是一个面向类Unix计算机操作系统的软件接口，它使无特权的用户能够无需编辑内核代码而创建自己的文件系统。目前Linux通过内核模块对此进行支持。一些文件系统如ZFS、glusterfs和lustre使用FUSE实现。Linux用于支持用户空间文件系统的内核模块名叫FUSE，FUSE一词有时特指Linux下的用户空间文件系统。通过使用Hadoop的Fuse-DFS分类模块，任意一个Hadoop文件系统(不过一般为HDFS)都可以作为一个标准文件系统进行挂载。<br><br><br>Hadooop源码中自带了fuse-dfs模块，利用fuse_dfs将hdfs当一个网盘挂载到本地。</p>
 <h3 id="二、应用场景"><a href="#二、应用场景" class="headerlink" title="二、应用场景"></a>二、应用场景</h3><p>同步：实现用户对个人计算指定目录下的特定类型的文件自动与HDFS同步，实时监测用户文件变化情况。不需要用户干预就能及时自动备份文件。当用户新建、修改或删除文件（目录）时自动更新同步，保障用户重要文件的安全。当用户移动办公时，可直接从HDFS访问，省略了移动存储介质的拷贝过程，提高用户工作效率。更换新计算机时，用户登录后原计算机中的个人文件将自动从HDFS存储中同步到新计算机中。例如：适用数据仓库需要ETL进行Hadoop文件进行ftp或者rsync推送的场景。</p>
 <p>网盘：用户可将不常用的文件存储在HDFS存储中，从而节约本地存储空间，提高文件的物理安全性，也便于资源共享。</p>
@@ -81,102 +308,240 @@
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kinit urs<span class="variable">.keytab</span> urs</span><br><span class="line">Ticket cache: FILE:/tmp/krb5cc_7765</span><br><span class="line">Default principal: urs@HADOOP<span class="variable">.HZ</span><span class="variable">.NETEASE</span><span class="variable">.COM</span></span><br><span class="line"></span><br><span class="line">Valid starting    Expires           Service principal</span><br><span class="line"><span class="number">10</span>/<span class="number">05</span>/<span class="number">2018</span> <span class="number">10</span>:<span class="number">52</span>  <span class="number">10</span>/<span class="number">05</span>/<span class="number">2018</span> <span class="number">20</span>:<span class="number">52</span>  krbtgt/HADOOP<span class="variable">.HZ</span><span class="variable">.NETEASE</span><span class="variable">.COM</span>@HADOOP<span class="variable">.HZ</span><span class="variable">.NETEASE</span><span class="variable">.COM</span></span><br><span class="line">  renew <span class="keyword">until</span> <span class="number">11</span>/<span class="number">05</span>/<span class="number">2018</span> <span class="number">10</span>:<span class="number">52</span></span><br></pre></td></tr></table></figure>
 <p>最后重新挂载，操作手法同上。<br><br><br> <img src="http://nos.netease.com/knowledge/4bb30049-1f3b-40b2-b065-c57605ab708f" style="height:100px;width:900px"><br> <img src="http://nos.netease.com/knowledge/29f7fedd-7a00-4c51-bc38-a2615ce3d49c" style="height:350px;width:530px"><br><br><br><strong>大功告成!</strong></p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
             
-                <ul id="audio-list" style="display:none">
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
                     
-                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/16/fuse-hdfs-test/" data-tooltip="基于HDFS网盘速度测试" aria-label="FRÜHER: 基于HDFS网盘速度测试">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/16/fuse_hdfs/" title="Teilen auf Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/08/16/fuse_hdfs/" title="Teilen auf Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/16/fuse_hdfs/" title="Teilen auf Google Plus">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 null. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
                     
-                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
-                    
-                </ul>
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/16/fuse-hdfs-test/" data-tooltip="基于HDFS网盘速度测试" aria-label="FRÜHER: 基于HDFS网盘速度测试">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/16/fuse_hdfs/" title="Teilen auf Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/08/16/fuse_hdfs/" title="Teilen auf Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/16/fuse_hdfs/" title="Teilen auf Google Plus">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/16/fuse_hdfs/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/08/16/fuse_hdfs/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/16/fuse_hdfs/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
             
         </div>
         
-    <div id='gitalk-container' class="comment link"
-        data-ae='false'
-        data-ci=''
-        data-cs=''
-        data-r=''
-        data-o=''
-        data-a=''
-        data-d='false'
-    >查看评论</div>
 
 
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name"></h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
     </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
     
-        <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、介绍"><span class="toc-number">1.</span> <span class="toc-text">一、介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、应用场景"><span class="toc-number">2.</span> <span class="toc-text">二、应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、部署实现"><span class="toc-number">3.</span> <span class="toc-text">三、部署实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编译环境"><span class="toc-number">3.1.</span> <span class="toc-text">编译环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装fuse等依赖"><span class="toc-number">3.2.</span> <span class="toc-text">安装fuse等依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译fuse-dfs-Hadoop"><span class="toc-number">3.3.</span> <span class="toc-text">编译fuse_dfs(Hadoop)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#PS-编译Hadoop之前需提前安装好fuse，否则fuse-dfs无法编译成功"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">PS: 编译Hadoop之前需提前安装好fuse，否则fuse_dfs无法编译成功</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部署Hadoop（略）"><span class="toc-number">3.4.</span> <span class="toc-text">部署Hadoop（略）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置fuse-dfs-wrapper-sh"><span class="toc-number">3.5.</span> <span class="toc-text">配置fuse_dfs_wrapper.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fuse-dfs实现"><span class="toc-number">3.6.</span> <span class="toc-text">fuse-dfs实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#vim-fuse-connect-c"><span class="toc-number">3.6.1.</span> <span class="toc-text">vim fuse_connect.c</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vim-hdfs-c"><span class="toc-number">3.6.2.</span> <span class="toc-text">vim hdfs.c</span></a></li></ol></li></ol></li></ol>
-        </div>
-    
-</div>
-
-
-    </div>
-</div>
-</body>
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/diaspora.js"></script>
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
-
+    </body>
 </html>
