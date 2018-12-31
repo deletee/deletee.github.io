@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://deletee.github.io">
-  <title>数据仓库之数据建模 | DeleteMe</title>
+  <title>Tag: SQL | DeleteMe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
-<meta name="keywords" content="建模,数据仓库">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数据仓库之数据建模">
-<meta property="og:url" content="https://deletee.github.io/2018/12/29/data-modeling/index.html">
+  <meta name="description" content="一名数据开发者，专注于数据仓库平台建设、数据产品开发及其应用">
+<meta name="keywords" content="数据仓库,机器学习,ETL,SQL,Linux">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DeleteMe">
+<meta property="og:url" content="https://deletee.github.io/tags/SQL/index.html">
 <meta property="og:site_name" content="DeleteMe">
-<meta property="og:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
+<meta property="og:description" content="一名数据开发者，专注于数据仓库平台建设、数据产品开发及其应用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T12:33:55.284Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据仓库之数据建模">
-<meta name="twitter:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
+<meta name="twitter:title" content="DeleteMe">
+<meta name="twitter:description" content="一名数据开发者，专注于数据仓库平台建设、数据产品开发及其应用">
   
     <link rel="alternative" href="/atom.xml" title="DeleteMe" type="application/atom+xml">
   
@@ -178,177 +177,68 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-data-modeling" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      数据仓库之数据建模
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/12/29/sql-optimization/" class="archive-article-date">
+  	<time datetime="2018-12-29T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/12/29/sql-optimization/">Hive SQL优化</a>
     </h1>
   
 
-        
-        <a href="/2018/12/29/data-modeling/" class="archive-article-date">
-  	<time datetime="2018-12-29T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、为什么需要数据建模？"><a href="#1、为什么需要数据建模？" class="headerlink" title="1、为什么需要数据建模？"></a>1、为什么需要数据建模？</h2><p>理解关键字：数据建模就是数据组织和存储的方法<br>数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。<br>数据模型强调从业务、数据存取和使用角度合理规划数据</p>
-<p>那么为什么需要数据建模呢？我们可以从建模有哪些好处理解</p>
-<a id="more"></a>
-<p>（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O<br>（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复用，极大地降低大数据系统中的存储和计算成本<br>（3）效率 良好的数据模型能够极大地提高用户体验，用户可通过业务沉淀后的模型尽可能减少不必要的查询，从而提高效率<br>（4）质量 良好的数据模型将遵循一定的数据规范（例如：口径约束，字段约束等）从而减少数据计算的失误，保障数据质量</p>
-<h2 id="2、OLTP与OLAP的区别"><a href="#2、OLTP与OLAP的区别" class="headerlink" title="2、OLTP与OLAP的区别"></a>2、OLTP与OLAP的区别</h2><p>理解关键字：</p>
-<p> OLTP 是讲究事务，在OLAP中事务不是所关注的，主要是批量的读写，致力于联机分析<br> 一个是讲究快速响应，一个是讲究大吞吐<br>OLTP通常使用ER模型，采用三范式消除数据中的冗余，而OLAP采用的模型则比较丰富</p>
-<h2 id="3、有哪些建模方法论？"><a href="#3、有哪些建模方法论？" class="headerlink" title="3、有哪些建模方法论？"></a>3、有哪些建模方法论？</h2><p>（1）ER建模<br>（2）维度建模<br>（3）Data vault建模<br>（4）Anchor建模</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建模</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/29/data-modeling/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/2018/12/29/er-modeling/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据仓库之ER建模</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -371,9 +261,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
