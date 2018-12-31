@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://deletee.github.io">
   <title>数据仓库之维度建模 | DeleteMe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、什么是维度建模？ 理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模 2、维度建模一般过程（摘自《大数据之路》 &amp;amp; 《离线和实时大数据之战》） Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度">
+  <meta name="description" content="1、什么是维度建模？ 理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
 <meta name="keywords" content="建模,数据仓库,维度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据仓库之维度建模">
 <meta property="og:url" content="https://deletee.github.io/2018/12/29/dim-modeling/index.html">
 <meta property="og:site_name" content="DeleteMe">
-<meta property="og:description" content="1、什么是维度建模？ 理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模 2、维度建模一般过程（摘自《大数据之路》 &amp;amp; 《离线和实时大数据之战》） Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度">
+<meta property="og:description" content="1、什么是维度建模？ 理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T13:55:36.789Z">
+<meta property="og:updated_time" content="2018-12-31T13:59:27.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据仓库之维度建模">
-<meta name="twitter:description" content="1、什么是维度建模？ 理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模 2、维度建模一般过程（摘自《大数据之路》 &amp;amp; 《离线和实时大数据之战》） Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度">
+<meta name="twitter:description" content="1、什么是维度建模？ 理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
   
     <link rel="alternative" href="/atom.xml" title="DeleteMe" type="application/atom+xml">
   
@@ -200,7 +200,7 @@ var _hmt = _hmt || [];
       
         <h3 id="1、什么是维度建模？"><a href="#1、什么是维度建模？" class="headerlink" title="1、什么是维度建模？"></a>1、什么是维度建模？</h3><hr>
 <p><strong>理解关键字：</strong>维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解</p>
-<p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模</p>
+<p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模<br><a id="more"></a></p>
 <h3 id="2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）"><a href="#2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）" class="headerlink" title="2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）"></a>2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）</h3><hr>
 <p>Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度设计和事实表设计问题。</p>
 <p>（1）选择业务过程</p>
@@ -349,8 +349,8 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2018/08/16/fuse_hdfs/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">利用fuse_dfs快速建立hdfs云存储</div>
+    <a href="/2018/12/29/dim-design/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据仓库之数据建模</div>
       <i class="icon-circle-right"></i>
     </a>
   
