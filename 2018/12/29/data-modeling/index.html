@@ -1,531 +1,159 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN">
-    
+<html lang="zh-CN" class="loading">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="怡田阁">
-    <title>数据仓库之数据建模 - 怡田阁</title>
-    <meta name="author" content="">
-    
-    
-    
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":null,"sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据\n那么为什么需要数据建模呢？我们可以从建模有哪些好处理解（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复用，极大地降低大数据系统中的存储和计算成本（3）效率 良好的数据模型能够极大地提高用户体验，用户可通过业务沉淀后的模型尽可能减少不必要的查询，从而提高效率（4）质量 良好的数据模型将遵循一定的数据规范（例如：口径约束，字段约束等）从而减少数据计算的失误，保障数据质量\n2、OLTP与OLAP的区别理解关键字：\n OLTP 是讲究事务，在OLAP中事务不是所关注的，主要是批量的读写，致力于联机分析 一个是讲究快速响应，一个是讲究大吞吐OLTP通常使用ER模型，采用三范式消除数据中的冗余，而OLAP采用的模型则比较丰富\n3、有哪些建模方法论？（1）ER建模（2）维度建模（3）Data vault建模（4）Anchor建模\n","dateCreated":"2018-12-29T15:46:30+08:00","dateModified":"2018-12-31T12:10:39+08:00","datePublished":"2018-12-29T15:46:30+08:00","description":"","headline":"数据仓库之数据建模","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2018/12/29/data-modeling/"},"publisher":{"@type":"Organization","name":null,"sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2018/12/29/data-modeling/","keywords":"建模"}</script>
-    <meta name="description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复">
-<meta name="keywords" content="建模">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="数据仓库之数据建模">
-<meta property="og:url" content="http://yoursite.com/2018/12/29/data-modeling/index.html">
-<meta property="og:site_name" content="怡田阁">
-<meta property="og:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T04:10:39.313Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据仓库之数据建模">
-<meta name="twitter:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复">
-    
-    
-        
-    
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/all.css">
-    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
-    <link rel="stylesheet" href="/assets/css/thumbs.css">
-    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
-    <!--STYLES END-->
-    
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>怡田阁 - 长安的风怕是再也吹不到汴梁</title>
 
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
     
+    
+    <link rel="alternative" href="atom.xml" title="怡田阁" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
 </head>
 
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">怡田阁</a>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">数据仓库之数据建模</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
     </div>
-    
-        
-            <a  class="header-right-picture "
-                href="#about">
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="4">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/ "
-                            
-                            title="Home"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/all-categories"
-                            
-                            title="Kategorien"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Kategorien</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/all-tags"
-                            
-                            title="Tags"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/all-archives"
-                            
-                            title="Archiv"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archiv</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link open-algolia-search"
-                             href="#search"
-                            
-                            title="Suche"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Suche</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="#about"
-                            
-                            title="Über"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Über</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google Plus">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google Plus</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="E-Mail"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">E-Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-    </div>
-</nav>
-
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                
-<article class="post">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title">
-            数据仓库之数据建模
-        </h1>
-    
-    
-        <div class="post-meta">
-    <time datetime="2018-12-29T15:46:30+08:00">
-	
-		    29 12月 2018
-    	
-    </time>
-    
+    <div class="scrollbar"></div>
 </div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">数据仓库之数据建模</h1>
+        <div class="stuff">
+            <span>十二月 29, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/建模/">建模</a></li></ul>
 
-    
-</div>
 
-    
-    <div class="post-content markdown">
-        <div class="main-content-wrap">
+        </div>
+        <div class="content markdown">
             <h2 id="1、为什么需要数据建模？"><a href="#1、为什么需要数据建模？" class="headerlink" title="1、为什么需要数据建模？"></a>1、为什么需要数据建模？</h2><p>理解关键字：数据建模就是数据组织和存储的方法<br>数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。<br>数据模型强调从业务、数据存取和使用角度合理规划数据</p>
 <p>那么为什么需要数据建模呢？我们可以从建模有哪些好处理解<br>（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O<br>（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复用，极大地降低大数据系统中的存储和计算成本<br>（3）效率 良好的数据模型能够极大地提高用户体验，用户可通过业务沉淀后的模型尽可能减少不必要的查询，从而提高效率<br>（4）质量 良好的数据模型将遵循一定的数据规范（例如：口径约束，字段约束等）从而减少数据计算的失误，保障数据质量</p>
 <h2 id="2、OLTP与OLAP的区别"><a href="#2、OLTP与OLAP的区别" class="headerlink" title="2、OLTP与OLAP的区别"></a>2、OLTP与OLAP的区别</h2><p>理解关键字：</p>
 <p> OLTP 是讲究事务，在OLAP中事务不是所关注的，主要是批量的读写，致力于联机分析<br> 一个是讲究快速响应，一个是讲究大吞吐<br>OLTP通常使用ER模型，采用三范式消除数据中的冗余，而OLAP采用的模型则比较丰富</p>
 <h2 id="3、有哪些建模方法论？"><a href="#3、有哪些建模方法论？" class="headerlink" title="3、有哪些建模方法论？"></a>3、有哪些建模方法论？</h2><p>（1）ER建模<br>（2）维度建模<br>（3）Data vault建模<br>（4）Anchor建模</p>
 
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
             
-
-        </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">GETAGGT IN</span><br/>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/建模/">建模</a>
-
-            </div>
-        
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
+                <ul id="audio-list" style="display:none">
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/12/31/how-to-use-md/" data-tooltip="如何使用MarkDown" aria-label="FRÜHER: 如何使用MarkDown">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/16/fuse-hdfs-test/" data-tooltip="基于HDFS网盘速度测试" aria-label="NÄCHSTER: 基于HDFS网盘速度测试">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/29/data-modeling/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/12/29/data-modeling/" title="Teilen auf Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/29/data-modeling/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-        
-        
-            
-        
-    </div>
-</article>
-
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2018 null. All Rights Reserved.
-    </span>
-</footer>
-
-            </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/12/31/how-to-use-md/" data-tooltip="如何使用MarkDown" aria-label="FRÜHER: 如何使用MarkDown">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/16/fuse-hdfs-test/" data-tooltip="基于HDFS网盘速度测试" aria-label="NÄCHSTER: 基于HDFS网盘速度测试">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/29/data-modeling/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/12/29/data-modeling/" title="Teilen auf Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/29/data-modeling/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                
-    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-        <i id="btn-close-shareoptions" class="fa fa-times"></i>
-        <ul class="share-options">
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/29/data-modeling/">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                    </a>
-                </li>
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/12/29/data-modeling/">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
-                    </a>
-                </li>
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/29/data-modeling/">
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
-                    </a>
-                </li>
-            
-        </ul>
-    </div>
-
-
+                </ul>
             
         </div>
         
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
 
 
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name"></h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
-</div>
-        
-        
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br/>
-                <p>author.job</p>
-
-            </div>
-        
-        
     </div>
-</div>
-
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/jquery.js"></script>
-<script src="/assets/js/jquery.fancybox.js"></script>
-<script src="/assets/js/thumbs.js"></script>
-<script src="/assets/js/tranquilpeak.js"></script>
-<!--SCRIPTS END-->
-
     
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、为什么需要数据建模？"><span class="toc-number">1.</span> <span class="toc-text">1、为什么需要数据建模？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、OLTP与OLAP的区别"><span class="toc-number">2.</span> <span class="toc-text">2、OLTP与OLAP的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、有哪些建模方法论？"><span class="toc-number">3.</span> <span class="toc-text">3、有哪些建模方法论？</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-    </body>
+
 </html>
