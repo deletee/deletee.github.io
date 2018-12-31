@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="deletee">
 <meta property="og:description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T15:01:25.454Z">
+<meta property="og:updated_time" content="2018-12-31T15:01:53.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据仓库之维度建模">
 <meta name="twitter:description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
@@ -219,8 +219,7 @@ var _hmt = _hmt || [];
 <p>3、如何确定事实？</p>
 <p>​             标识事实其实是在确定业务过程的度量指标，指标何来？哪些指标必须保留，那些指标必须删除，待定指标如何处理？<strong>必须综合考虑业务用户需求和现实数据的实际情况</strong>。事实表的设计完全依赖于物理活动，不受可能产生的最终报表的影响，报表只是事实表设计的参考视角。</p>
 <p>​            <strong>指标必需要考虑业务的需求和数据的实际情况</strong></p>
-<h3 id="3、雪花模型-与-星形模型"><a href="#3、雪花模型-与-星形模型" class="headerlink" title="3、雪花模型 与 星形模型"></a>3、雪花模型 与 星形模型</h3><hr>
-<p><strong>理解关键字：时间与空间交换</strong></p>
+<h3 id="3、雪花模型-与-星形模型"><a href="#3、雪花模型-与-星形模型" class="headerlink" title="3、雪花模型 与 星形模型"></a>3、雪花模型 与 星形模型</h3><p><strong>理解关键字：时间与空间交换</strong></p>
 <p><strong>（1）雪花模型是充分展开维度，当出现维度层次时，例如：某商品分大类、种类、小类，使用雪花模型建模时，通常将维度表中记录小类的ID，额外设计一张类别的维度表</strong></p>
 <p><strong>雪花模型去除了数据冗余，节省了部分存储，但也带来了一定的不变，使得业务人员分析查询时需要关联多张维度表。</strong></p>
 <p><strong>（2）星系模型则是允许一定的冗余，将维度层次扁平化，通过牺牲一小部分空间换取查询时快捷</strong></p>
