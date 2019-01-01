@@ -31,7 +31,7 @@
     
     </summary>
     
-      <category term="Shell" scheme="https://deletee.github.io/categories/Shell/"/>
+      <category term="Shell" scheme="https://deletee.github.io/categories/shell/"/>
     
     
       <category term="shell" scheme="https://deletee.github.io/tags/shell/"/>
@@ -56,7 +56,7 @@
     
     </summary>
     
-      <category term="数据仓库" scheme="https://deletee.github.io/categories/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
+      <category term="数据仓库" scheme="https://deletee.github.io/categories/edw/"/>
     
     
       <category term="建模" scheme="https://deletee.github.io/tags/%E5%BB%BA%E6%A8%A1/"/>
@@ -81,7 +81,7 @@
     
     </summary>
     
-      <category term="数据仓库" scheme="https://deletee.github.io/categories/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
+      <category term="数据仓库" scheme="https://deletee.github.io/categories/edw/"/>
     
     
       <category term="建模" scheme="https://deletee.github.io/tags/%E5%BB%BA%E6%A8%A1/"/>
@@ -108,7 +108,7 @@
     
     </summary>
     
-      <category term="数据仓库" scheme="https://deletee.github.io/categories/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
+      <category term="数据仓库" scheme="https://deletee.github.io/categories/edw/"/>
     
     
       <category term="建模" scheme="https://deletee.github.io/tags/%E5%BB%BA%E6%A8%A1/"/>
@@ -134,7 +134,7 @@
     
     </summary>
     
-      <category term="SQL" scheme="https://deletee.github.io/categories/SQL/"/>
+      <category term="SQL" scheme="https://deletee.github.io/categories/sql/"/>
     
     
       <category term="Hive" scheme="https://deletee.github.io/tags/Hive/"/>
@@ -162,7 +162,7 @@
     
     </summary>
     
-      <category term="数据仓库" scheme="https://deletee.github.io/categories/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
+      <category term="数据仓库" scheme="https://deletee.github.io/categories/edw/"/>
     
     
       <category term="建模" scheme="https://deletee.github.io/tags/%E5%BB%BA%E6%A8%A1/"/>
