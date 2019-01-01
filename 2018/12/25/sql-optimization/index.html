@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://deletee.github.io">
-  <title>维度设计 | deletee</title>
+  <title>Hive SQL优化 | deletee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言都说维度设计是维度建模的灵魂，在维度建模中，我们将度量成为「事实」，将环境描述为「维度」 但是如何设计一个好的维度模型，我们需要遵循一定的技巧和方法。 如何标识维度？">
-<meta name="keywords" content="建模,数据仓库">
+  <meta name="description" content="0x00 group by 引起的倾斜1|优化措施12set hive.map.aggr = trueset hive.groupby.skewindata = true">
+<meta name="keywords" content="Hive,SQL,优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="维度设计">
-<meta property="og:url" content="https://deletee.github.io/2018/12/29/dim-design/index.html">
+<meta property="og:title" content="Hive SQL优化">
+<meta property="og:url" content="https://deletee.github.io/2018/12/25/sql-optimization/index.html">
 <meta property="og:site_name" content="deletee">
-<meta property="og:description" content="前言都说维度设计是维度建模的灵魂，在维度建模中，我们将度量成为「事实」，将环境描述为「维度」 但是如何设计一个好的维度模型，我们需要遵循一定的技巧和方法。 如何标识维度？">
+<meta property="og:description" content="0x00 group by 引起的倾斜1|优化措施12set hive.map.aggr = trueset hive.groupby.skewindata = true">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-31T15:33:48.742Z">
+<meta property="og:updated_time" content="2019-01-01T07:41:52.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="维度设计">
-<meta name="twitter:description" content="前言都说维度设计是维度建模的灵魂，在维度建模中，我们将度量成为「事实」，将环境描述为「维度」 但是如何设计一个好的维度模型，我们需要遵循一定的技巧和方法。 如何标识维度？">
+<meta name="twitter:title" content="Hive SQL优化">
+<meta name="twitter:description" content="0x00 group by 引起的倾斜1|优化措施12set hive.map.aggr = trueset hive.groupby.skewindata = true">
   
     <link rel="alternative" href="/atom.xml" title="deletee" type="application/atom+xml">
   
@@ -184,115 +184,48 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dim-design" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-sql-optimization" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      维度设计
+      Hive SQL优化
     </h1>
   
 
         
-        <a href="/2018/12/29/dim-design/" class="archive-article-date">
-  	<time datetime="2018-12-29T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
+        <a href="/2018/12/25/sql-optimization/" class="archive-article-date">
+  	<time datetime="2018-12-25T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都说维度设计是维度建模的灵魂，在维度建模中，我们将度量成为「事实」，将环境描述为「维度」</p>
-<p>但是如何设计一个好的维度模型，我们需要遵循一定的技巧和方法。</p>
-<h3 id="如何标识维度？"><a href="#如何标识维度？" class="headerlink" title="如何标识维度？"></a>如何标识维度？</h3><a id="more"></a>
-<p>通常我们都会问「谁、何时、何地、为何、如何」来描述一个事件过程，同样维度可以理解为一个事件或者业务过程的角度，比如商品购买</p>
-<p>购买人、购买事件、购买产品、购买使用的设备、购买使用的IP等均为维度范畴</p>
-<h3 id="围绕业务流程来构建维度"><a href="#围绕业务流程来构建维度" class="headerlink" title="围绕业务流程来构建维度"></a>围绕业务流程来构建维度</h3><p>考虑到需求总是变换多端，但是有一点不变：需求总是围绕着业务流程，那么当我们设计维度的时候，就需要充分生成丰富的维度及属性</p>
-<h3 id="维度的基本设计方法？"><a href="#维度的基本设计方法？" class="headerlink" title="维度的基本设计方法？"></a>维度的基本设计方法？</h3><p>（1）根据业务流程确定主维度</p>
-<p>​         即在业务过程中找出关键维度作为主维度，在企业级数据仓库中，必需维度的统一口径，以商品为例，有且仅有一个维度定义</p>
-<p>（2）确定相关维度</p>
-<p>（3）确定维度属性</p>
-<ul>
-<li>尽可能生成丰富的维度属性</li>
-<li>尽可能多地给出包括一些富有意义的文字性描述<br>​         维度建模中较多维度以ID形态存在，例如：商品ID，但是单一的ID在业务描述非常欠缺，通常ID的含义描述也随ID作为维度设计中的一部分</li>
-<li>区分数值型属性和事实<br>​       在一些业务数据中，一些数值型字段是作为维度还是作为度量（事实）</li>
-<li>尽量沉淀出通用的维度属性<br>​        有些维度属性值获取是经过了复杂的逻辑处理，或者是通过解析某个字段得到，或是多张表关联得到，当设计出负责的维度时，若不保留原生维度，将难以覆盖业务的变化<br>​        并且属性值格式做到统一，比如某模型A时间格式为 yyyy-MM-dd HH:mm:ss，而模型B中的时间格式 则是 Unix Timestamp，同样也将造成口径不一致</li>
-</ul>
-<p><strong>理解关键字：维度设计需要严格遵循开发规范，对字段命名、含义、口径、属性值格式的规范，需严格遵循。</strong></p>
-<h3 id="常见维度设计方法"><a href="#常见维度设计方法" class="headerlink" title="常见维度设计方法"></a>常见维度设计方法</h3><hr>
-<p><strong>（1）缓慢变化或快速变化</strong></p>
-<p>​         维度缓慢变化</p>
-<ul>
-<li>修改维度属性值      不保留历史操作，适用于无需关心历史维度值的情形。</li>
-<li>插入一行                 保留历史操作，由于多了新记录，使得维度关联时，会产生冗余记录，增加额外学习成本</li>
-<li>插入一列                 预留一列作为上一次维度值的保留，适用于只需要查看上一次的维度值情形</li>
-<li>快照维度                 即将每天的变更存储为一个快照，在维度表较小时，可以忽略存储</li>
-<li>极限存储                 通过拉链表的形式，记录维度的缓慢变化，但是注意，维度表中有频繁变化的字段。</li>
-</ul>
-<p>​         维度快速变化</p>
-<p>​         <strong>此类问题又称微型维度，</strong>主要是为了解决快变超大维度（rapidly changing monster dimension）,顾名思义，在某些维度表中，大量维度进行缓慢变化甚至没有变化，但是有少量的维度频繁的发生变化，此种情形下，若使用缓慢变化的方式进行处理的话，将消耗大量资源。由此解决办法是：</p>
-<p>​         将维度属性值频率变化比较高的字段提取出来，建立一个单独的维度表，只需维度这一张快速变化的维度表即可。</p>
-<p><strong>（2）维度的层次结构</strong></p>
-<p>​           <strong>也是通常所说的 规范化和反规范化</strong></p>
-<p>​          在维度设计的过程中，我们经常遇到维度的层次问题，比如：商品通常会有一级分类、二级分类、三级分类此种情形，对于这样的维度处理方式，通常有两种做法：</p>
-<ul>
-<li>星系模型   将维度层次问题扁平化，将层次的维度项进行扁平处理，例如有如下维度：sku_id，category_lv1, category_lv2, category_lv3 …</li>
-<li>雪花模型   将层级维度提炼出来单独作为一张新的维度表</li>
-</ul>
-<p>上文已经阐述过，两种模型的利弊，在新互联网的大数据平台基础上，存储也变的非常廉价，通常是选用星系模型解决维度层次的问题</p>
-<p>（3）维度一致性</p>
-<p>In data warehousing, a conformed dimension is a dimension that has the same meaning to every fact with which it relates. Conformed dimensions allow facts and measures to be categorized and described in the same way across multiple facts and/or data marts, ensuring consistent reporting across the enterprise.</p>
-<p>​         维度一致性是如此解释的，在数据仓库中，一致的维度是与其相关的每个事实具有相同含义的维度。 一致的维度允许在多个事实和/或数据集市中以相同的方式对事实和度量进行分类和描述，从而确保整个企业的一致报告。</p>
-<p>​         通常在数据仓库开发过程中如何保证维度的一致性呢？</p>
-<ul>
-<li><p>维度的定义需要遵循命名、取值等规范</p>
-</li>
-<li><p>维度需通过元数据进行管理  采用维度建模，意味着建仓过程是自下而上的，各个数据集市各自开发，那么如何保证企业级数据仓库维度一致性，则需要统一的元数据进行管理</p>
-</li>
-</ul>
-<p>维度建模的数据仓库中，有一个概念叫Conformed Dimension，中文一般翻译为“一致性维度”。一致性维度是Kimball的多维体系结构（MD）中的三个关键性概念之一，另两个是总线架构（Bus Architecture）和一致性事实（Conformed Fact）。</p>
-<p>在多维体系结构中，没有物理上的数据仓库，由物理上的数据集市组合成逻辑上的数据仓库。而且数据集市的建立是可以逐步完成的，最终组合在一起，成为一个数据仓库。如果分步建立数据集市的过程出现了问题，数据集市就会变成孤立的集市，不能组合成数据仓库，而一致性维度的提出正式为了解决这个问题。</p>
-<p>一致性维度的范围是总线架构中的维度，即可能会在多个数据集市中都存在的维度，这个范围的选取需要架构师来决定。一致性维度的内容和普通维度并没有本质上区别，都是经过数据清洗和整合后的结果。</p>
-<p>一致性维度建立的地点是多维体系结构的后台（Back Room），即数据准备区。在多维体系结构的数据仓库项目组内需要有专门的维度设计师，他的职责就是建立维度和维护维度的一致性。在后台建立好的维度同步复制到各个数据集市。这样所有数据集市的这部分维度都是完全相同的。建立新的数据集市时，需要在后台进行一致性维度处理，根据情况来决定是否新增和修改一致性维度，然后同步复制到各个数据集市。这是不同数据集市维度保持一致的要点。</p>
-<p>在同一个集市内，一致性维度的意思是两个维度如果有关系，要么就是完全一样的，要么就是一个维度在数学意义上是另一个维度的子集。例如，如果建立月维度话，月维度的各种描述必须与日期维度中的完全一致，最常用的做法就是在日期维度上建立视图生成月维度。这样月维度就可以是日期维度的子集，在后续钻取等操作时可以保持一致。如果维度表中的数据量较大，出于效率的考虑，应该建立物化视图或者实际的物理表。</p>
-<p>这样，维度保持一致后，事实就可以保存在各个数据集市中。虽然在物理上是独立的，但在逻辑上由一致性维度使所有的数据集市是联系在一起，随时可以进行交叉探察等操作，也就组成了数据仓库。</p>
-<p>（4）维度整合和拆分</p>
-<p>​         因为数据仓库的数据源自各个系统，有从移动端，web端，PC端，每个段的数据结构差异较大，即便是同一端，可能因为业务拆分，字段的属性值也不完全一致。</p>
-<p>​         例如：A系统 某字段值用 1/0表示 token是否有效，B系统则使用F/T表示是否有效</p>
-<p>​         那么，在此种情形下，需要进行维度整合。维度整合需要遵循如下规范：</p>
-<ul>
-<li>命名规范统一</li>
-<li>字段类型统一</li>
-<li>属性值编码和含义统一</li>
-</ul>
-<p>​      另外有一种场景，因为系统差异太大，而无法进行维度整合，此时需要进行维度的拆分</p>
-<p>​      例如：加油站主要的商品是则是油，加油站内同样也有零售店，售卖一些日常百货，油 有 92，95，98等维度属性，日常百货的通常 涉及的 进销存，单价等</p>
-<p>​                 两种商品在维度差异过大，通常的做法，加油站的主营业务是售卖油品，从而建立主要的商品维度表，另外建立一个零售商品维度记录表</p>
-<p>​      <strong>理解关键词：各个业务差异独特性较大的业务各自建立独立的两个维度表</strong></p>
-<p>（5）杂项维度的处理方法</p>
-<ul>
-<li><strong>退化维度</strong><br>​       所谓退化维度（degenerate dimension），是指在实施表中那些看起来像是一个事实表的一个维度关键字，但实际上没有对应的维度字段。退化维度一般都是事务的编号，如购物小票编号，发票编号</li>
-<li><strong>行为维度</strong><br>​       行为维度是基于过去维度成员的行为进行分组或者过滤事实的办法。行为维度即将事实转化为维度，以确保获得更多的分析能力<br>​       例如：购买次数超过30次，30次至100次，超过100次 作为维度值</li>
-<li><strong>角色维度</strong><br>​       角色维度通常是一个业务活动有多个角色参与，例如：办理银行业务，有客户经理，审批人等参与两个及以上角色，而这些角色均属于员工维度表，对于此种情形，没有必要根据角色建立多个维度表，而是可以通过建立视图的方式达到目的。</li>
-<li><strong>多值维度</strong><br>​       <strong>多值维度一般会出现多对多的关系中，例如：购买房产，会有夫妻两人共同持有，一次下单，多个子订单</strong></li>
-</ul>
-<p>​       有如下三种方法：</p>
-<p>​                1）降低事实表的粒度      每一个事实都标注最小粒度，例如：前台业务与商业智能关注交易子订单，每一个子订单一个事实，只会有一个商品与之对应，很多时候，事实表的粒度是不能降低的，当强行降低之后，那么订单事实则发生改变，对于统计每日订单量计算，则复杂度变高，增加学习和计算成本</p>
-<p>​                2）采用多字段   例如：在买房合同中，标注第一买受人，第二买受人，可顺位增加冗余的字段位</p>
-<p>​               3）使用常用的桥接表      例如：订单中，确定父订单为粒度，建立父订单与子订单的桥接表，另建立子订单与商品的维度关系表，桥接表包含事实表关联的分组KEY，以及作为买受方的维度表外键ID，有多个买受方，则有在相同的KEY下有多条记录，桥接表需要更多的计算，也可能会造成双重计算，例如，买受人1籍贯为山东，买受人2籍贯为浙江，那么当分别统计外地山东的购房数，和浙江的购房数，则产生了多重计算。双重计算不一定是错误，对于一些业务需求是合理的，但对于另一些业务需求，则需要规避。</p>
-<p>​         <strong>理解关键字：</strong>当前大数据平台支持复杂的数据结构，将多个买受人可以作为数据组结构存入一个字段中，使用key:value的形式，当然此种方法需增加一定的计算成本，属于非规范化操作。</p>
-<ul>
-<li><strong>杂项维度（junk dimension）</strong><br>​      <strong>杂项维度就是一种包含的数据具有很少可能值的维度</strong><br>​      <strong>当定义好各种维度后，会发现一些小范围维度取离散值或者标志位的字段，但是这样的维度又很难退化存储在事实表中，可能会造成事实表过大，若果单独建立维度表进行关联，通过外键关联，会出现维度过多的情况，如果将这些字段删除，则业务方不同意。</strong><br> 这时，我们通常的解决方案就是建立杂项维度，将这些字段建立到一个维度表中，在事实表中只需保存一个外键。<strong>几个字段的不同取值组成一条记录，生成代理键，存入维度表</strong>，并将该代理键保存入相应的事实表字段。建议不要直接使用所有的组合生成完整的杂项维度表，在抽取时遇到新的组合时生成相应记录即可。杂项维度的ETL过程比一般的维度略为复杂。</li>
-</ul>
-<p><strong>几个字段的不同取值组成一条记录，生成代理键，存入维度表： 即将几个杂项维度的组合建立杂项维度表，生成一个代理键，植入事实表中</strong>            </p>
-<ul>
-<li><strong>微型维度</strong></li>
-</ul>
-<p><strong>理解关键字2：</strong></p>
-<p>​         <strong>第一：避免维度过度增长     某些维度值变化过高，如果维度表使用了拉链极限存储，那边过度增长或者变化的维度，将使得极限存储效率差</strong></p>
-<p>​         <strong>第二：避免耦合度过高        例如：卖家的主营项目，加工逻辑异常复杂，如果融合进现有的卖家维表中，那么过多的业务耦合将会导致卖家维度难以维护，应适当做维度拆分</strong></p>
+        <h4 id="0x00-group-by-引起的倾斜"><a href="#0x00-group-by-引起的倾斜" class="headerlink" title="0x00 group by 引起的倾斜"></a><strong>0x00 group by 引起的倾斜</strong></h4><h5 id="1-优化措施"><a href="#1-优化措施" class="headerlink" title="1|优化措施"></a>1|优化措施</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> hive.map.aggr = <span class="literal">true</span></span><br><span class="line"><span class="keyword">set</span> hive.groupby.skewindata = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+ <a id="more"></a>
+<h5 id="2-原理"><a href="#2-原理" class="headerlink" title="2|原理"></a>2|原理</h5><p>​    作业将生成两个MapReduce Job</p>
+<p>​    第一个MapReduce Job中 Map的输出结果会随机的分布到Reduce中，每个Reduce做部分聚合操作并输出结果，这样处理的结果 相同的group by key会分布到不同的reduce中</p>
+<p>​    第二个MapReduce Job中 再根据 相同group by key分布到reduce中</p>
+<h4 id="0x01-count-distinct-优化"><a href="#0x01-count-distinct-优化" class="headerlink" title="0x01 count distinct 优化"></a><strong>0x01 count distinct 优化</strong></h4><h5 id="1-例子"><a href="#1-例子" class="headerlink" title="1|例子"></a>1|例子</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> ssn) <span class="keyword">from</span> <span class="keyword">table</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-说明"><a href="#2-说明" class="headerlink" title="2|说明"></a>2|说明</h5><p>​    由于如上SQL，Hive会将Map阶段的输出全部分布到一个Reduce中，很容易引起性能问题</p>
+<h5 id="3-正确的操作方法"><a href="#3-正确的操作方法" class="headerlink" title="3|正确的操作方法"></a>3|正确的操作方法</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="number">1</span>) </span><br><span class="line"> <span class="keyword">from</span> (</span><br><span class="line">        <span class="keyword">select</span> ssn <span class="keyword">from</span> <span class="keyword">table</span> </span><br><span class="line">        <span class="keyword">group</span> <span class="keyword">by</span> ssn</span><br><span class="line">) t</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 原理</span><br><span class="line">-- 利用group by 先进行数据去重，然后再进行计数，计数是不可避免的，目的是为了大量减少重复计数</span><br></pre></td></tr></table></figure>
+<h4 id="0x02-大表join小表"><a href="#0x02-大表join小表" class="headerlink" title="0x02 大表join小表"></a><strong>0x02 大表join小表</strong></h4><h5 id="1-方法"><a href="#1-方法" class="headerlink" title="1|方法"></a>1|方法</h5><p>​    一般都是采用 map join的方法，默认Hive是开启 mapjoin，其Hive设置参数如下： </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> hive.auto.convert.join = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>​    或者是使用Hint的方式进行小表指定</p>
+<h5 id="2-案例"><a href="#2-案例" class="headerlink" title="2|案例"></a>2|案例</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="comment">/*+mapjoin(t1)*/</span></span><br><span class="line">       t0.ssn</span><br><span class="line">       ,t1.name</span><br><span class="line"><span class="keyword">from</span> big_table0 t0</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span></span><br><span class="line">     small_table1 t1</span><br><span class="line"><span class="keyword">on</span> t0.ssn = t1.ssn;</span><br><span class="line"><span class="comment">-- /*+mapjoin(t1)*/ 即 map join hint，如果需要mapjoin多个表，则格式为 /*+mapjoin(t1,t2,t3)*/</span></span><br></pre></td></tr></table></figure>
+<h4 id="0x03-大表join大表-待补充"><a href="#0x03-大表join大表-待补充" class="headerlink" title="0x03 大表join大表(待补充)"></a><strong>0x03 大表join大表(待补充)</strong></h4><p>​    1|问题场景</p>
+<p>​    2|解决方法1</p>
+<p>​    3|解决方法2</p>
+<h4 id="0x04-优化案例"><a href="#0x04-优化案例" class="headerlink" title="0x04 优化案例"></a>0x04 优化案例</h4><h5 id="1-业务背景："><a href="#1-业务背景：" class="headerlink" title="1|业务背景："></a>1|业务背景：</h5><p>​       筛选出 当日 注册产品、注册IP为维度下超过30个帐号的 帐号清单</p>
+<h5 id="2-常规做法"><a href="#2-常规做法" class="headerlink" title="2|常规做法"></a>2|常规做法</h5><p>​      先筛选出满足 注册产品、注册IP 数量超过30个的 注册产品及注册IP的维度清单，然后再关联源表进行筛选出帐号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tmp.tmp_algorithm1 <span class="keyword">as</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  t1.ssn,</span><br><span class="line">  <span class="number">1</span> <span class="keyword">AS</span> rubbish_rate</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">SELECT</span></span><br><span class="line">      dt,</span><br><span class="line">      ssn,</span><br><span class="line">      reg_ip,</span><br><span class="line">      reg_product</span><br><span class="line">    <span class="keyword">FROM</span></span><br><span class="line">      dw.dw_user_static_reg_info_dd</span><br><span class="line">    <span class="keyword">WHERE</span> dt = <span class="string">'2018-11-22'</span></span><br><span class="line">          <span class="keyword">AND</span> (</span><br><span class="line">            <span class="keyword">split</span>(ssn, <span class="string">'@'</span>) [<span class="number">1</span>] <span class="keyword">IN</span> (<span class="string">'126.com'</span>, <span class="string">'yeah.net'</span>, <span class="string">'vip.126.com'</span>, <span class="string">'vip.163.com'</span>)</span><br><span class="line">            <span class="keyword">OR</span></span><br><span class="line">            <span class="keyword">split</span>(ssn, <span class="string">'@'</span>) [<span class="number">1</span>] <span class="keyword">IS</span> <span class="literal">NULL</span></span><br><span class="line">          )</span><br><span class="line">  ) t1</span><br><span class="line">  <span class="keyword">JOIN</span></span><br><span class="line">  (</span><br><span class="line">         <span class="keyword">SELECT</span></span><br><span class="line">           dt,</span><br><span class="line">           reg_ip,</span><br><span class="line">           reg_product,</span><br><span class="line">           <span class="keyword">count</span>(*) <span class="keyword">AS</span> cnt</span><br><span class="line">         <span class="keyword">FROM</span></span><br><span class="line">           dw.dw_user_static_reg_info_dd</span><br><span class="line">         <span class="keyword">WHERE</span> dt = <span class="string">'2018-11-22'</span></span><br><span class="line">               <span class="keyword">AND</span> (</span><br><span class="line">                 <span class="keyword">split</span>(ssn, <span class="string">'@'</span>) [<span class="number">1</span>] <span class="keyword">IN</span> (<span class="string">'126.com'</span>, <span class="string">'yeah.net'</span>, <span class="string">'vip.126.com'</span>, <span class="string">'vip.163.com'</span>)</span><br><span class="line">                 <span class="keyword">OR</span></span><br><span class="line">                 <span class="keyword">split</span>(ssn, <span class="string">'@'</span>) [<span class="number">1</span>] <span class="keyword">IS</span> <span class="literal">NULL</span></span><br><span class="line">               )</span><br><span class="line">         <span class="keyword">GROUP</span> <span class="keyword">BY</span> dt,reg_ip, reg_product</span><br><span class="line">         <span class="keyword">HAVING</span> cnt &gt;= <span class="number">30</span></span><br><span class="line">       ) t2</span><br><span class="line">    <span class="keyword">ON</span> t1.dt=t2.dt <span class="keyword">and</span> t1.reg_ip = t2.reg_ip <span class="keyword">AND</span> t1.reg_product = t2.reg_product</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> t1.ssn</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h5 id="3-优化做法"><a href="#3-优化做法" class="headerlink" title="3|优化做法"></a>3|优化做法</h5><p>​     使用窗口函数进行维度内计数，如下通过窗口函数计算在  维度 注册产品、注册IP下的数量，通过子查询进行筛选出目标帐号清单</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tmp.tmp_algorithm2 <span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> ssn,<span class="number">1</span> <span class="keyword">as</span> rubbish_rate</span><br><span class="line"><span class="keyword">from</span>(</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">       ssn</span><br><span class="line">      ,reg_ip</span><br><span class="line">      ,reg_product</span><br><span class="line">      ,<span class="keyword">count</span>(<span class="number">1</span>) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> reg_ip,reg_product) <span class="keyword">as</span> cnt</span><br><span class="line"> <span class="keyword">from</span> dw.dw_user_static_reg_info_dd</span><br><span class="line"><span class="keyword">where</span> dt = <span class="string">'2018-11-22'</span></span><br><span class="line"> <span class="keyword">and</span> ( </span><br><span class="line">        <span class="keyword">split</span>(ssn, <span class="string">'@'</span>) [<span class="number">1</span>] <span class="keyword">in</span> (<span class="string">'126.com'</span>, <span class="string">'yeah.net'</span>, <span class="string">'vip.126.com'</span>, <span class="string">'vip.163.com'</span>) </span><br><span class="line">      <span class="keyword">or</span> <span class="keyword">split</span>(ssn, <span class="string">'@'</span>) [<span class="number">1</span>] <span class="keyword">is</span> <span class="literal">null</span></span><br><span class="line">  )</span><br><span class="line">) t</span><br><span class="line"><span class="keyword">where</span> cnt &gt;= <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="4-优化思路"><a href="#4-优化思路" class="headerlink" title="4|优化思路"></a>4|优化思路</h5><p>​     由于HQL 是转换为MapReduce的形态进行数据计算，常规做法中会启用大量的MapReduce，并重复的抽取了源表数据，浪费了计算，优化做法是实现一份数据提取，复杂内存计算，从而减少使用计算资源</p>
 
       
 
@@ -327,11 +260,15 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建模</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
         		</li>
       		
 		</ul>
@@ -343,7 +280,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/edw//" class="article-tag-list-link color5">数据仓库</a>
+        			<a href="/categories/sql//" class="article-tag-list-link color4">SQL</a>
         		</li>
       		
 		</ul>
@@ -398,7 +335,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/29/dim-design/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/25/sql-optimization/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -412,11 +349,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/12/29/sql-optimization/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/12/29/er-modeling/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hive SQL优化
+          数据仓库之ER建模
         
       </div>
     </a>
@@ -450,7 +387,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何标识维度？"><span class="toc-number">2.</span> <span class="toc-text">如何标识维度？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#围绕业务流程来构建维度"><span class="toc-number">3.</span> <span class="toc-text">围绕业务流程来构建维度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#维度的基本设计方法？"><span class="toc-number">4.</span> <span class="toc-text">维度的基本设计方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见维度设计方法"><span class="toc-number">5.</span> <span class="toc-text">常见维度设计方法</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-group-by-引起的倾斜"><span class="toc-number">1.</span> <span class="toc-text">0x00 group by 引起的倾斜</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-优化措施"><span class="toc-number">1.1.</span> <span class="toc-text">1|优化措施</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-原理"><span class="toc-number">1.2.</span> <span class="toc-text">2|原理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-count-distinct-优化"><span class="toc-number">2.</span> <span class="toc-text">0x01 count distinct 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-例子"><span class="toc-number">2.1.</span> <span class="toc-text">1|例子</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-说明"><span class="toc-number">2.2.</span> <span class="toc-text">2|说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-正确的操作方法"><span class="toc-number">2.3.</span> <span class="toc-text">3|正确的操作方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-大表join小表"><span class="toc-number">3.</span> <span class="toc-text">0x02 大表join小表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-方法"><span class="toc-number">3.1.</span> <span class="toc-text">1|方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-案例"><span class="toc-number">3.2.</span> <span class="toc-text">2|案例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-大表join大表-待补充"><span class="toc-number">4.</span> <span class="toc-text">0x03 大表join大表(待补充)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-优化案例"><span class="toc-number">5.</span> <span class="toc-text">0x04 优化案例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-业务背景："><span class="toc-number">5.1.</span> <span class="toc-text">1|业务背景：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-常规做法"><span class="toc-number">5.2.</span> <span class="toc-text">2|常规做法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-优化做法"><span class="toc-number">5.3.</span> <span class="toc-text">3|优化做法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-优化思路"><span class="toc-number">5.4.</span> <span class="toc-text">4|优化思路</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -467,8 +404,8 @@ var _hmt = _hmt || [];
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://deletee.github.io/2018/12/29/dim-design/", 
-    sourceId: "dim-design",
+    url: "https://deletee.github.io/2018/12/25/sql-optimization/", 
+    sourceId: "sql-optimization",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
