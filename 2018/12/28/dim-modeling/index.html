@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://deletee.github.io">
-  <title>awk的高级应用-多目录输出 | deletee</title>
+  <title>数据仓库专题(4)-维度建模 | deletee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="awk是Shell中三剑客之一，功能十分强大，本文分享的通过一份管道输入，实现多目录输出，废话不多说，直接上代码">
-<meta name="keywords" content="shell,awk">
+  <meta name="description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
+<meta name="keywords" content="建模,数据仓库,维度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="awk的高级应用-多目录输出">
-<meta property="og:url" content="https://deletee.github.io/2018/12/31/awk-application/index.html">
+<meta property="og:title" content="数据仓库专题(4)-维度建模">
+<meta property="og:url" content="https://deletee.github.io/2018/12/28/dim-modeling/index.html">
 <meta property="og:site_name" content="deletee">
-<meta property="og:description" content="awk是Shell中三剑客之一，功能十分强大，本文分享的通过一份管道输入，实现多目录输出，废话不多说，直接上代码">
+<meta property="og:description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-01T07:40:55.014Z">
+<meta property="og:updated_time" content="2019-01-01T07:59:12.629Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="awk的高级应用-多目录输出">
-<meta name="twitter:description" content="awk是Shell中三剑客之一，功能十分强大，本文分享的通过一份管道输入，实现多目录输出，废话不多说，直接上代码">
+<meta name="twitter:title" content="数据仓库专题(4)-维度建模">
+<meta name="twitter:description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
   
     <link rel="alternative" href="/atom.xml" title="deletee" type="application/atom+xml">
   
@@ -184,29 +184,52 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-awk-application" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-dim-modeling" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      awk的高级应用-多目录输出
+      数据仓库专题(4)-维度建模
     </h1>
   
 
         
-        <a href="/2018/12/31/awk-application/" class="archive-article-date">
-  	<time datetime="2018-12-31T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
+        <a href="/2018/12/28/dim-modeling/" class="archive-article-date">
+  	<time datetime="2018-12-28T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>awk是Shell中三剑客之一，功能十分强大，本文分享的通过一份管道输入，实现多目录输出，废话不多说，直接上代码</p>
-<a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment">#***********************************************************************</span></span><br><span class="line"><span class="comment">#脚本功能: 追补历史推送数据</span></span><br><span class="line"><span class="comment">#创建日期: 2016-05-16</span></span><br><span class="line"><span class="comment">#修改纪录：      修改人            修改日期          修改描述</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#----+-----------------+--------------------+--------------------------+</span></span><br><span class="line"><span class="comment">#  1          deletee       2017-10-12	            创建</span></span><br><span class="line"><span class="comment">#***********************************************************************</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量设置</span></span><br><span class="line"><span class="comment">#-------------------------------------------------------</span></span><br><span class="line"><span class="comment"># JOB_HOME：作业目录</span></span><br><span class="line"><span class="comment"># HDFS_PATH :HDFS目录</span></span><br><span class="line"><span class="comment">#-------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Local</span></span><br><span class="line">JOB_HOME=$(<span class="built_in">cd</span> <span class="string">"<span class="variable">$(dirname "$0")</span>"</span>; <span class="built_in">pwd</span>)</span><br><span class="line">JOB_DATA_PATH=<span class="variable">$&#123;JOB_HOME&#125;</span>/data</span><br><span class="line">PROCESSED_FILE_PATH=<span class="variable">$&#123;JOB_HOME&#125;</span>/pro</span><br><span class="line">SECRETS_CONF_PATH=/home/urs/data/rsync/conf</span><br><span class="line">mkdir -p <span class="variable">$&#123;JOB_HOME&#125;</span>/&#123;data,pro&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># HDFS</span></span><br><span class="line">HADOOP_HOME=/home/<span class="variable">$&#123;USER&#125;</span>/software/hadoop</span><br><span class="line">HDFS_PATH=/hdfs/*/some_log/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------------</span></span><br><span class="line"><span class="comment"># 函数名:genTargetFileModel</span></span><br><span class="line"><span class="comment"># 功能:生成目标文件模式,遍历HDFS目录，生成日、时、分</span></span><br><span class="line"><span class="comment"># 参数: $1 日期，格式 yyyy-MM-dd</span></span><br><span class="line"><span class="comment"># 返回:无</span></span><br><span class="line"><span class="comment">#---------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">genTargetFileModel</span></span>() &#123;</span><br><span class="line">      <span class="comment"># 遍历日期</span></span><br><span class="line">      ETL_DT=<span class="variable">$1</span></span><br><span class="line">      CUR_HDFS_PATH=`<span class="built_in">echo</span> <span class="variable">$&#123;HDFS_PATH&#125;</span>|sed <span class="string">"s:*:<span class="variable">$&#123;ETL_DT&#125;</span>:"</span>`</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (( i = 0; i &lt; 24; i++ )); <span class="keyword">do</span></span><br><span class="line">          <span class="keyword">for</span> (( j = 0; j &lt; 12; j++ )); <span class="keyword">do</span></span><br><span class="line">              hour=`<span class="built_in">printf</span> <span class="string">"%02d"</span> <span class="variable">$i</span>`</span><br><span class="line">              minutes=$((j*5))</span><br><span class="line">              minutes=`<span class="built_in">printf</span> <span class="string">"%02d"</span> <span class="variable">$minutes</span>`</span><br><span class="line">              mkdir -p <span class="variable">$&#123;JOB_DATA_PATH&#125;</span>/<span class="variable">$&#123;ETL_DT&#125;</span>/<span class="variable">$&#123;hour&#125;</span>/<span class="variable">$&#123;minutes&#125;</span></span><br><span class="line">          <span class="keyword">done</span></span><br><span class="line">      <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> path <span class="keyword">in</span> `<span class="variable">$&#123;HADOOP_HOME&#125;</span>/bin/hadoop fs -ls <span class="variable">$&#123;CUR_HDFS_PATH&#125;</span>|awk <span class="string">'&#123;print $8&#125;'</span>`;<span class="keyword">do</span></span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;ETL_DT&#125;</span>:<span class="variable">$&#123;path&#125;</span>"</span> &gt;&gt; <span class="variable">$&#123;PROCESSED_FILE_PATH&#125;</span>/pro_<span class="variable">$&#123;ETL_DT&#125;</span>.txt</span><br><span class="line">          <span class="variable">$&#123;HADOOP_HOME&#125;</span>/bin/hadoop fs -text <span class="variable">$&#123;path&#125;</span> |awk <span class="string">'&#123;</span></span><br><span class="line"><span class="string">              split($0,a," ");</span></span><br><span class="line"><span class="string">              datestr=substr(a[1],11,10);</span></span><br><span class="line"><span class="string">              hourstr=substr(a[2],1,2);</span></span><br><span class="line"><span class="string">              minutestr=substr(a[2],4,2);</span></span><br><span class="line"><span class="string">              minutestr=int(minutestr/5)*5;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">              if(minutestr&lt;10)&#123;</span></span><br><span class="line"><span class="string">                minutestr=("0"minutestr)</span></span><br><span class="line"><span class="string">              &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">              gsub("\"","",a[3])</span></span><br><span class="line"><span class="string">              split(a[3],b,",");</span></span><br><span class="line"><span class="string">              gsub("&#123;|&#125;","",b[3])</span></span><br><span class="line"><span class="string">              gsub("fields:HOSTNAME:","",b[3])</span></span><br><span class="line"><span class="string">              gsub("\\\\t","\t",b[1])</span></span><br><span class="line"><span class="string">              gsub(";","\t",b[1])</span></span><br><span class="line"><span class="string">              lens=split(b[1],tA,"\t")</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">              if(lens==12)&#123;</span></span><br><span class="line"><span class="string">                re=(b[1]"\t\t\t\t\t\t\t\t\t\t\t\t"b[3])</span></span><br><span class="line"><span class="string">              &#125;</span></span><br><span class="line"><span class="string">              if(lens==15)&#123;</span></span><br><span class="line"><span class="string">                re=(b[1]"\t\t\t\t\t\t\t\t\t"b[3])</span></span><br><span class="line"><span class="string">              &#125;</span></span><br><span class="line"><span class="string">              path=(datestr"/"hourstr"/"minutestr"/log_"datestr"_"hourstr"_"minutestr".txt")</span></span><br><span class="line"><span class="string">              print re &gt;&gt; path</span></span><br><span class="line"><span class="string">          &#125;'</span></span><br><span class="line">      <span class="keyword">done</span></span><br><span class="line">      <span class="built_in">unset</span> ETL_DT</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------------</span></span><br><span class="line"><span class="comment"># 函数名:genTargetFileModel</span></span><br><span class="line"><span class="comment"># 功能:生成目标文件模式,遍历HDFS目录，生成日、时、分</span></span><br><span class="line"><span class="comment"># 参数: $1 日期，格式 yyyy-MM-dd</span></span><br><span class="line"><span class="comment"># 返回:无</span></span><br><span class="line"><span class="comment">#---------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">sendByRysnc</span></span>() &#123;</span><br><span class="line">  ETL_DT=<span class="variable">$1</span></span><br><span class="line">  nohup /usr/bin/rsync -avz \</span><br><span class="line">        --bwlimit=30720 \</span><br><span class="line">        --port=873 \</span><br><span class="line">        --progress \</span><br><span class="line">        --password-file=<span class="variable">$&#123;SECRETS_CONF_PATH&#125;</span>/secret.conf <span class="variable">$&#123;JOB_DATA_PATH&#125;</span>/<span class="variable">$&#123;ETL_DT&#125;</span> <span class="variable">$&#123;user&#125;</span>@<span class="variable">$&#123;ip&#125;</span>::<span class="variable">$&#123;module&#125;</span>/<span class="variable">$&#123;path&#125;</span>/ &gt;&gt; rysnc_send_$(date +%Y%m%d).<span class="built_in">log</span> 2&gt;&amp;1 &amp;</span><br><span class="line">  <span class="built_in">unset</span> ETL_DT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">mainStart</span></span>() &#123;</span><br><span class="line">    ETL_DT=<span class="variable">$1</span></span><br><span class="line">    genTargetFileModel <span class="variable">$&#123;ETL_DT&#125;</span></span><br><span class="line">    sendByRysnc <span class="variable">$&#123;ETL_DT&#125;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mainStart 2017-09-29</span><br></pre></td></tr></table></figure>
+        <h3 id="1、什么是维度建模？"><a href="#1、什么是维度建模？" class="headerlink" title="1、什么是维度建模？"></a>1、什么是维度建模？</h3><p><strong>理解关键字：</strong>维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解</p>
+<p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模<br><a id="more"></a></p>
+<h3 id="2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）"><a href="#2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）" class="headerlink" title="2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）"></a>2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）</h3><p>Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度设计和事实表设计问题。</p>
+<p>（1）选择业务过程</p>
+<p>​          业务过程描述的是企业的业务活动，例如电商系统用户下单，账号系统用户注册了一个账号</p>
+<p>（2）选择粒度</p>
+<p>​           那么什么是粒度呢？粒度是描述的是活动细节的每一个子项，例如，用户注册一个账号，包含了用户名、时间、IP、终端类型、手机号码，帐号类型等</p>
+<p>（3）确定维度</p>
+<p>​           确定维度之前，需要先明确什么是维度？维度是表示业务活动在不同角度的表现方式，例如：注册账号的活动中，从时间、IP、终端类型等角度进行描述</p>
+<p>​           比如：用户名、注册时间、注册IP、注册终端、注册手机号码、注册账号类型（手机账号、邮箱账号、三方账号）</p>
+<p>（4）确定事实</p>
+<p>​          确定维度之后，事实则变的清晰，比如：我们需要计算某终端、某天的注册量</p>
+<p>那么问题来了？</p>
+<hr>
+<p>1、如何确定粒度？</p>
+<p>​             最细粒度和聚合粒度之争？ 到底是选择最细粒度，还是聚合粒度？</p>
+<p>2、如何确定维度？</p>
+<p>​             标识维度解决的是业务人员如何描述来自业务过程的数据，维度用来表示“谁、什么、何时、何处、为何、如何”的问题。以竞价广告检索流程而言就是客户通过什么渠道、什么样的客户端（OS、IP）、检索了什么样的内容、请求最终有谁受理等。</p>
+<p>3、如何确定事实？</p>
+<p>​             标识事实其实是在确定业务过程的度量指标，指标何来？哪些指标必须保留，那些指标必须删除，待定指标如何处理？<strong>必须综合考虑业务用户需求和现实数据的实际情况</strong>。事实表的设计完全依赖于物理活动，不受可能产生的最终报表的影响，报表只是事实表设计的参考视角。</p>
+<p>​            <strong>指标必需要考虑业务的需求和数据的实际情况</strong></p>
+<h3 id="3、雪花模型-与-星形模型"><a href="#3、雪花模型-与-星形模型" class="headerlink" title="3、雪花模型 与 星形模型"></a>3、雪花模型 与 星形模型</h3><p><strong>理解关键字：时间与空间交换</strong></p>
+<p><strong>（1）雪花模型是充分展开维度，当出现维度层次时，例如：某商品分大类、种类、小类，使用雪花模型建模时，通常将维度表中记录小类的ID，额外设计一张类别的维度表</strong></p>
+<p><strong>雪花模型去除了数据冗余，节省了部分存储，但也带来了一定的不变，使得业务人员分析查询时需要关联多张维度表。</strong></p>
+<p><strong>（2）星系模型则是允许一定的冗余，将维度层次扁平化，通过牺牲一小部分空间换取查询时快捷</strong></p>
+<p>PS:某些情况下可以需要用到雪花模型</p>
 
       
 
@@ -241,11 +264,15 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建模</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">awk</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">维度</a>
         		</li>
       		
 		</ul>
@@ -257,7 +284,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Shell//" class="article-tag-list-link color1">Shell</a>
+        			<a href="/categories/edw//" class="article-tag-list-link color5">数据仓库</a>
         		</li>
       		
 		</ul>
@@ -312,7 +339,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/31/awk-application/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/28/dim-modeling/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,9 +353,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2018/12/29/dim-design/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据仓库专题(5)-维度设计
+        
+      </div>
+    </a>
   
-    <a href="/2018/12/29/dim-design/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据仓库专题(5)-维度设计</div>
+  
+    <a href="/2018/12/27/er-modeling/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据仓库专题(3)-ER建模</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -355,7 +391,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、什么是维度建模？"><span class="toc-number">1.</span> <span class="toc-text">1、什么是维度建模？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）"><span class="toc-number">2.</span> <span class="toc-text">2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、雪花模型-与-星形模型"><span class="toc-number">3.</span> <span class="toc-text">3、雪花模型 与 星形模型</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -372,8 +408,8 @@ var _hmt = _hmt || [];
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://deletee.github.io/2018/12/31/awk-application/", 
-    sourceId: "awk-application",
+    url: "https://deletee.github.io/2018/12/28/dim-modeling/", 
+    sourceId: "dim-modeling",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };

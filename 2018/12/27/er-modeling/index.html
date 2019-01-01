@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://deletee.github.io">
-  <title>数据仓库专题(2)-数据建模 | deletee</title>
+  <title>数据仓库专题(3)-ER建模 | deletee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
-<meta name="keywords" content="建模,数据仓库">
+  <meta name="description" content="1、什么是ER建模？理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施">
+<meta name="keywords" content="建模,数据仓库,ER">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据仓库专题(2)-数据建模">
-<meta property="og:url" content="https://deletee.github.io/2018/12/29/data-modeling/index.html">
+<meta property="og:title" content="数据仓库专题(3)-ER建模">
+<meta property="og:url" content="https://deletee.github.io/2018/12/27/er-modeling/index.html">
 <meta property="og:site_name" content="deletee">
-<meta property="og:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
+<meta property="og:description" content="1、什么是ER建模？理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-01T07:56:18.078Z">
+<meta property="og:updated_time" content="2019-01-01T07:59:08.012Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据仓库专题(2)-数据建模">
-<meta name="twitter:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
+<meta name="twitter:title" content="数据仓库专题(3)-ER建模">
+<meta name="twitter:description" content="1、什么是ER建模？理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控 例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施">
   
     <link rel="alternative" href="/atom.xml" title="deletee" type="application/atom+xml">
   
@@ -184,33 +184,30 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-data-modeling" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-er-modeling" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据仓库专题(2)-数据建模
+      数据仓库专题(3)-ER建模
     </h1>
   
 
         
-        <a href="/2018/12/29/data-modeling/" class="archive-article-date">
-  	<time datetime="2018-12-29T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
+        <a href="/2018/12/27/er-modeling/" class="archive-article-date">
+  	<time datetime="2018-12-27T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、为什么需要数据建模？"><a href="#1、为什么需要数据建模？" class="headerlink" title="1、为什么需要数据建模？"></a>1、为什么需要数据建模？</h2><p>理解关键字：数据建模就是数据组织和存储的方法<br>数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。<br>数据模型强调从业务、数据存取和使用角度合理规划数据</p>
-<p>那么为什么需要数据建模呢？我们可以从建模有哪些好处理解</p>
-<a id="more"></a>
-<p>（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O<br>（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复用，极大地降低大数据系统中的存储和计算成本<br>（3）效率 良好的数据模型能够极大地提高用户体验，用户可通过业务沉淀后的模型尽可能减少不必要的查询，从而提高效率<br>（4）质量 良好的数据模型将遵循一定的数据规范（例如：口径约束，字段约束等）从而减少数据计算的失误，保障数据质量</p>
-<h2 id="2、OLTP与OLAP的区别"><a href="#2、OLTP与OLAP的区别" class="headerlink" title="2、OLTP与OLAP的区别"></a>2、OLTP与OLAP的区别</h2><p>理解关键字：</p>
-<p> OLTP 是讲究事务，在OLAP中事务不是所关注的，主要是批量的读写，致力于联机分析<br> 一个是讲究快速响应，一个是讲究大吞吐<br>OLTP通常使用ER模型，采用三范式消除数据中的冗余，而OLAP采用的模型则比较丰富</p>
-<h2 id="3、有哪些建模方法论？"><a href="#3、有哪些建模方法论？" class="headerlink" title="3、有哪些建模方法论？"></a>3、有哪些建模方法论？</h2><p>（1）ER建模<br>（2）维度建模<br>（3）Data vault建模<br>（4）Anchor建模</p>
+        <h3 id="1、什么是ER建模？"><a href="#1、什么是ER建模？" class="headerlink" title="1、什么是ER建模？"></a>1、什么是ER建模？</h3><p><strong>理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控</strong></p>
+<p><strong>例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施</strong><br><a id="more"></a></p>
+<h3 id="2、ER建模的三个阶段"><a href="#2、ER建模的三个阶段" class="headerlink" title="2、ER建模的三个阶段"></a><strong>2、ER建模的三个阶段</strong></h3><p><strong>理解关键字：ER模型是自上而下的建模方式，由此建模的需要先从企业的整体框架进行高度抽象</strong></p>
+<p><strong>（1）高层模型</strong><br>​         一个高度抽象的模型，描述主要的主题及主体间的关系，用于描述企业的总体情况<br><strong>（2）中层模型</strong><br>​         在高层模型的基础上，细化主题域的实体、关系等数据项<br><strong>（3）物理模型</strong><br>​        在中层模型的基础上，通常会根据平台的特性进行物理属性设计，例如：分表、分区、分区索引等设计<br><strong>理解关键字2：先通过整合整个企业的业务关系，划分相应主题域及对应的主题之间的关系，再细化每个主题域中的内容，最后是根据平台的特点进行物理设计</strong></p>
 
       
 
@@ -250,6 +247,10 @@ var _hmt = _hmt || [];
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ER</a>
         		</li>
       		
 		</ul>
@@ -316,7 +317,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/29/data-modeling/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/27/er-modeling/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,18 +331,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/12/31/dim-design/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/12/28/dim-modeling/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据仓库专题(5)-维度设计
+          数据仓库专题(4)-维度建模
         
       </div>
     </a>
   
   
-    <a href="/2018/12/29/dim-modeling/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据仓库专题(4)-维度建模</div>
+    <a href="/2018/12/26/data-modeling/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据仓库专题(2)-数据建模</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -368,7 +369,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、为什么需要数据建模？"><span class="toc-number">1.</span> <span class="toc-text">1、为什么需要数据建模？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、OLTP与OLAP的区别"><span class="toc-number">2.</span> <span class="toc-text">2、OLTP与OLAP的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、有哪些建模方法论？"><span class="toc-number">3.</span> <span class="toc-text">3、有哪些建模方法论？</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、什么是ER建模？"><span class="toc-number">1.</span> <span class="toc-text">1、什么是ER建模？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、ER建模的三个阶段"><span class="toc-number">2.</span> <span class="toc-text">2、ER建模的三个阶段</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -385,8 +386,8 @@ var _hmt = _hmt || [];
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://deletee.github.io/2018/12/29/data-modeling/", 
-    sourceId: "data-modeling",
+    url: "https://deletee.github.io/2018/12/27/er-modeling/", 
+    sourceId: "er-modeling",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };

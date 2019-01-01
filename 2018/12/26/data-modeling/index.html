@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://deletee.github.io">
-  <title>数据仓库专题(4)-维度建模 | deletee</title>
+  <title>数据仓库专题(2)-数据建模 | deletee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
-<meta name="keywords" content="建模,数据仓库,维度">
+  <meta name="description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
+<meta name="keywords" content="建模,数据仓库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据仓库专题(4)-维度建模">
-<meta property="og:url" content="https://deletee.github.io/2018/12/29/dim-modeling/index.html">
+<meta property="og:title" content="数据仓库专题(2)-数据建模">
+<meta property="og:url" content="https://deletee.github.io/2018/12/26/data-modeling/index.html">
 <meta property="og:site_name" content="deletee">
-<meta property="og:description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
+<meta property="og:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-01T07:56:34.284Z">
+<meta property="og:updated_time" content="2019-01-01T07:58:59.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据仓库专题(4)-维度建模">
-<meta name="twitter:description" content="1、什么是维度建模？理解关键字：维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解 维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模">
+<meta name="twitter:title" content="数据仓库专题(2)-数据建模">
+<meta name="twitter:description" content="1、为什么需要数据建模？理解关键字：数据建模就是数据组织和存储的方法数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。数据模型强调从业务、数据存取和使用角度合理规划数据 那么为什么需要数据建模呢？我们可以从建模有哪些好处理解">
   
     <link rel="alternative" href="/atom.xml" title="deletee" type="application/atom+xml">
   
@@ -184,52 +184,33 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dim-modeling" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-data-modeling" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据仓库专题(4)-维度建模
+      数据仓库专题(2)-数据建模
     </h1>
   
 
         
-        <a href="/2018/12/29/dim-modeling/" class="archive-article-date">
-  	<time datetime="2018-12-29T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
+        <a href="/2018/12/26/data-modeling/" class="archive-article-date">
+  	<time datetime="2018-12-26T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1、什么是维度建模？"><a href="#1、什么是维度建模？" class="headerlink" title="1、什么是维度建模？"></a>1、什么是维度建模？</h3><p><strong>理解关键字：</strong>维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解</p>
-<p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模<br><a id="more"></a></p>
-<h3 id="2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）"><a href="#2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）" class="headerlink" title="2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）"></a>2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）</h3><p>Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度设计和事实表设计问题。</p>
-<p>（1）选择业务过程</p>
-<p>​          业务过程描述的是企业的业务活动，例如电商系统用户下单，账号系统用户注册了一个账号</p>
-<p>（2）选择粒度</p>
-<p>​           那么什么是粒度呢？粒度是描述的是活动细节的每一个子项，例如，用户注册一个账号，包含了用户名、时间、IP、终端类型、手机号码，帐号类型等</p>
-<p>（3）确定维度</p>
-<p>​           确定维度之前，需要先明确什么是维度？维度是表示业务活动在不同角度的表现方式，例如：注册账号的活动中，从时间、IP、终端类型等角度进行描述</p>
-<p>​           比如：用户名、注册时间、注册IP、注册终端、注册手机号码、注册账号类型（手机账号、邮箱账号、三方账号）</p>
-<p>（4）确定事实</p>
-<p>​          确定维度之后，事实则变的清晰，比如：我们需要计算某终端、某天的注册量</p>
-<p>那么问题来了？</p>
-<hr>
-<p>1、如何确定粒度？</p>
-<p>​             最细粒度和聚合粒度之争？ 到底是选择最细粒度，还是聚合粒度？</p>
-<p>2、如何确定维度？</p>
-<p>​             标识维度解决的是业务人员如何描述来自业务过程的数据，维度用来表示“谁、什么、何时、何处、为何、如何”的问题。以竞价广告检索流程而言就是客户通过什么渠道、什么样的客户端（OS、IP）、检索了什么样的内容、请求最终有谁受理等。</p>
-<p>3、如何确定事实？</p>
-<p>​             标识事实其实是在确定业务过程的度量指标，指标何来？哪些指标必须保留，那些指标必须删除，待定指标如何处理？<strong>必须综合考虑业务用户需求和现实数据的实际情况</strong>。事实表的设计完全依赖于物理活动，不受可能产生的最终报表的影响，报表只是事实表设计的参考视角。</p>
-<p>​            <strong>指标必需要考虑业务的需求和数据的实际情况</strong></p>
-<h3 id="3、雪花模型-与-星形模型"><a href="#3、雪花模型-与-星形模型" class="headerlink" title="3、雪花模型 与 星形模型"></a>3、雪花模型 与 星形模型</h3><p><strong>理解关键字：时间与空间交换</strong></p>
-<p><strong>（1）雪花模型是充分展开维度，当出现维度层次时，例如：某商品分大类、种类、小类，使用雪花模型建模时，通常将维度表中记录小类的ID，额外设计一张类别的维度表</strong></p>
-<p><strong>雪花模型去除了数据冗余，节省了部分存储，但也带来了一定的不变，使得业务人员分析查询时需要关联多张维度表。</strong></p>
-<p><strong>（2）星系模型则是允许一定的冗余，将维度层次扁平化，通过牺牲一小部分空间换取查询时快捷</strong></p>
-<p>PS:某些情况下可以需要用到雪花模型</p>
+        <h2 id="1、为什么需要数据建模？"><a href="#1、为什么需要数据建模？" class="headerlink" title="1、为什么需要数据建模？"></a>1、为什么需要数据建模？</h2><p>理解关键字：数据建模就是数据组织和存储的方法<br>数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。<br>数据模型强调从业务、数据存取和使用角度合理规划数据</p>
+<p>那么为什么需要数据建模呢？我们可以从建模有哪些好处理解</p>
+<a id="more"></a>
+<p>（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O<br>（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复用，极大地降低大数据系统中的存储和计算成本<br>（3）效率 良好的数据模型能够极大地提高用户体验，用户可通过业务沉淀后的模型尽可能减少不必要的查询，从而提高效率<br>（4）质量 良好的数据模型将遵循一定的数据规范（例如：口径约束，字段约束等）从而减少数据计算的失误，保障数据质量</p>
+<h2 id="2、OLTP与OLAP的区别"><a href="#2、OLTP与OLAP的区别" class="headerlink" title="2、OLTP与OLAP的区别"></a>2、OLTP与OLAP的区别</h2><p>理解关键字：</p>
+<p> OLTP 是讲究事务，在OLAP中事务不是所关注的，主要是批量的读写，致力于联机分析<br> 一个是讲究快速响应，一个是讲究大吞吐<br>OLTP通常使用ER模型，采用三范式消除数据中的冗余，而OLAP采用的模型则比较丰富</p>
+<h2 id="3、有哪些建模方法论？"><a href="#3、有哪些建模方法论？" class="headerlink" title="3、有哪些建模方法论？"></a>3、有哪些建模方法论？</h2><p>（1）ER建模<br>（2）维度建模<br>（3）Data vault建模<br>（4）Anchor建模</p>
 
       
 
@@ -269,10 +250,6 @@ var _hmt = _hmt || [];
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">维度</a>
         		</li>
       		
 		</ul>
@@ -339,7 +316,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/29/dim-modeling/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/26/data-modeling/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +330,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/12/29/data-modeling/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/12/27/er-modeling/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据仓库专题(2)-数据建模
+          数据仓库专题(3)-ER建模
         
       </div>
     </a>
   
   
-    <a href="/2018/12/29/er-modeling/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据仓库专题(3)-ER建模</div>
+    <a href="/2018/12/25/sql-optimization/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hive SQL优化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +368,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、什么是维度建模？"><span class="toc-number">1.</span> <span class="toc-text">1、什么是维度建模？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）"><span class="toc-number">2.</span> <span class="toc-text">2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、雪花模型-与-星形模型"><span class="toc-number">3.</span> <span class="toc-text">3、雪花模型 与 星形模型</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、为什么需要数据建模？"><span class="toc-number">1.</span> <span class="toc-text">1、为什么需要数据建模？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、OLTP与OLAP的区别"><span class="toc-number">2.</span> <span class="toc-text">2、OLTP与OLAP的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、有哪些建模方法论？"><span class="toc-number">3.</span> <span class="toc-text">3、有哪些建模方法论？</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -408,8 +385,8 @@ var _hmt = _hmt || [];
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://deletee.github.io/2018/12/29/dim-modeling/", 
-    sourceId: "dim-modeling",
+    url: "https://deletee.github.io/2018/12/26/data-modeling/", 
+    sourceId: "data-modeling",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
