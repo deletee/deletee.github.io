@@ -742,6 +742,98 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-edw-brief-summary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/25/edw-brief-summary/">数据仓库ETL之数据交换</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/25/edw-brief-summary/" class="archive-article-date">
+  	<time datetime="2018-12-25T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。</p>
+<hr>
+<h3 id="0x00-ETL之定位"><a href="#0x00-ETL之定位" class="headerlink" title="0x00 ETL之定位"></a>0x00 ETL之定位</h3><p>业内多数知名数据仓库解决方案提供方利用公司的自我研发的ETL工具及数据平台从生产系统接入数据源，在库内进行数据转换工作，与其他三方厂家（乙方）一样，自顾一亩三分地，完成了端对端的数据支撑，然而对于甲方而言，各个厂家的端的数据采集无疑是对生产系统的增加多倍压力，另外厂家之间的数据交换也是常态。</p>
+<p>建设数据仓库的模式有由上而下以及由下而上两种模式，对于大企业而言，各个部门的运营模式、业务方向均有千差万别，部门大多建设自己的数据仓库，公司从各个部门建设的数据仓库之上建立总的数据仓库。在我们公司，部门之间数据ETL，一方面因业务模式，另一方面各部门数据平台产品多样化，ETL大多采用ftp、rsync这种文件数据传输方式，日志采集则使用DataStream或flume等。我们通常面临企业之间的数据交互，政府部门的数据推送，即便是一个部门内部数据的交换也是常态，数据共享有利于大数据生态发展，离线平台需要生产系统的数据进行计算，生产系统也需要离线平台的数据支撑。数据交换作为ETL一个升级模式成为企业级数据仓库建设的必然。</p>
+<h3 id="0x01-交换平台的产生"><a href="#0x01-交换平台的产生" class="headerlink" title="0x01 交换平台的产生"></a>0x01 交换平台的产生</h3><p>大多大数据从业人士也认识到数据交换，很多厂家也认识到了ETL模式的与时俱进，阿里的数据工场，亚信的云化交换平台，华为的云化交换平台以及我们的猛犸大数据平台应运而生，大数据交换平台服务于企业（部门、系统）数据交换，数据交换对于用户而言都是透明的，不仅满足传统的ETL功能，同时需要满足动态扩展。</p>
+<p>大数据形势下，互联网数据仓库较之传统的数据仓库平台有如下特点：</p>
+<p><img src="/Users/hzxijingjing/blog/themes/yilia/source/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png" alt="ea0c5fdb-950f-43ae-86f5-a6201eeaa97f"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/edw//" class="article-tag-list-link color5">数据仓库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/25/edw-brief-summary/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-fuse_hdfs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
