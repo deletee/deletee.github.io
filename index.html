@@ -836,7 +836,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/16/markdown-learning/">MarkDown 使用LaTeX写矩阵</a>
+      <a class="article-title" href="/2018/08/16/markdown-learning/">MarkDown 使用LaTeX写数学公式</a>
     </h1>
   
 
@@ -849,42 +849,27 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="LaTeX-写简单Matrix语法"><a href="#LaTeX-写简单Matrix语法" class="headerlink" title="LaTeX 写简单Matrix语法"></a>LaTeX 写简单Matrix语法</h3><blockquote>
+        <p>最近一直学习 线性代数，通过MarkDown来写数学公式是多么的好玩，先看一个数学公式：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+\frac{\partial^2 f}{\partial{x^2}} &= \frac{\partial(\Delta_x f(i,j))}{\partial x} = \frac{\partial(f(i+1,j)-f(i,j))}{\partial x} \\
+&= \frac{\partial f(i+1,j)}{\partial x} - \frac{\partial f(i,j)}{\partial x} \\
+&= f(i+2,j) -2f(f+1,j) + f(i,j)
+\end{split}
+\nonumber
+\end{equation}</script><h3 id="LaTeX-写简单Matrix语法"><a href="#LaTeX-写简单Matrix语法" class="headerlink" title="LaTeX 写简单Matrix语法"></a>LaTeX 写简单Matrix语法</h3><blockquote>
 <p>使用\$\$begin{matrix}…\end{matrix}$$来生成矩阵，其中… 表示的是LaTeX 的矩阵命令，矩阵命令中每一行以 \ 结束，矩阵的元素之间用&amp;来分隔开。</p>
 </blockquote>
 <p>例如: 写一个简单矩阵</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;matrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;matrix&#125; \tag&#123;1&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{matrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{matrix} \tag{1}<br>$$</p>
-<h3 id="带括号的Matrix"><a href="#带括号的Matrix" class="headerlink" title="带括号的Matrix"></a>带括号的Matrix</h3><hr>
-<p>感觉(1)中的矩阵不是很美观，可以给矩阵加上括号，加括号的方式有很多，大致可分为两种：使用\left … \right 或者把公式命令中的matrix 改成 pmatrix、bmatrix、Bmatrix、vmatrix、Vmatrix等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;pmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;pmatrix&#125; \tag&#123;2&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{pmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{pmatrix} \tag{2}<br>$$</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;bmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;bmatrix&#125; \tag&#123;3&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{bmatrix} \tag{3}<br>$$</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;Bmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;Bmatrix&#125; \tag&#123;4&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{Bmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{Bmatrix} \tag{4}<br>$$</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;vmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;vmatrix&#125; \tag&#123;5&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{vmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{vmatrix} \tag{5}<br>$$</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;Vmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;Vmatrix&#125; \tag&#123;6&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{Vmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{Vmatrix} \tag{6}<br>$$</p>
-<p>增广矩阵</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;array&#125;&#123;cc|c&#125;</span><br><span class="line">      1 &amp; 2 &amp; 3 \\</span><br><span class="line">      4 &amp; 5 &amp; 6</span><br><span class="line">    \end&#123;array&#125;</span><br><span class="line">\right] \tag&#123;7&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\left[<br>    \begin{array}{cc|c}<br>      1 &amp; 2 &amp; 3 \<br>      4 &amp; 5 &amp; 6<br>    \end{array}<br>\right] \tag{7}<br>$$</p>
-<p>组合矩阵</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;pmatrix&#125;</span><br><span class="line">      1 &amp; 2 &amp; 3 \\</span><br><span class="line">      4 &amp; 5 &amp; 6</span><br><span class="line">    \end&#123;pmatrix&#125;</span><br><span class="line">\right] \tag&#123;7&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\left[<br>\begin{pmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6<br>\end{pmatrix}<br>\right] \tag{8}<br>$$</p>
-<h3 id="带省略符号的Matrix"><a href="#带省略符号的Matrix" class="headerlink" title="带省略符号的Matrix"></a>带省略符号的Matrix</h3><hr>
-<p>\ddots 表示：    <strong>⋱</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;matrix&#125;</span><br><span class="line">      1 &amp; 2 &amp; 3 \\</span><br><span class="line">      4 &amp; \ddots &amp; 6 \\</span><br><span class="line">      7 &amp; 8 &amp; 9</span><br><span class="line">    \end&#123;matrix&#125;</span><br><span class="line">\right] \tag&#123;9&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\left[<br>    \begin{matrix}<br>      1 &amp; 2 &amp; 3 \<br>      4 &amp; \ddots &amp; 6 \<br>      7 &amp; 8 &amp; 9<br>    \end{matrix}<br>\right] \tag{9}<br>$$</p>
-<p>\vdots 表示： <strong>⋮</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;matrix&#125;</span><br><span class="line">      1 &amp; \vdots &amp; 3 \\</span><br><span class="line">      4 &amp; \vdots &amp; 6</span><br><span class="line">    \end&#123;matrix&#125;</span><br><span class="line">\right] \tag&#123;10&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\left[<br>\begin{matrix}<br>1 &amp; \vdots &amp; 3 \<br>4 &amp; \vdots &amp; 6<br>\end{matrix}<br>\right] \tag{10}<br>$$</p>
-<p>\cdots 表示： <strong>⋯</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;matrix&#125;</span><br><span class="line">      1 &amp; \cdots &amp; 3 \\</span><br><span class="line">      4 &amp; \cdots &amp; 6</span><br><span class="line">    \end&#123;matrix&#125;</span><br><span class="line">\right] \tag&#123;11&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\left[<br>\begin{matrix}<br>1 &amp; \cdots &amp; 3 \<br>4 &amp; \cdots &amp; 6<br>\end{matrix}<br>\right] \tag{11}<br>$$</p>
-<p>更多LaTeX语法<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">请点击这里</a></p>
-
+<script type="math/tex; mode=display">
+\begin{matrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{matrix} \tag{1}</script>
+        
       
 
       
@@ -914,6 +899,10 @@ var _hmt = _hmt || [];
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/writing-skills//" class="article-tag-list-link color5">写作技巧</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/writing-skills/math-formula//" class="article-tag-list-link color5">数学公式</a>
         		</li>
       		
 		</ul>
@@ -1267,11 +1256,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fuse</a>
+                <a href="javascript:void(0)" class="js-tag color3">ER</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hdfs</a>
+                <a href="javascript:void(0)" class="js-tag color3">md</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">LaTeX</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1287,15 +1280,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ER</a>
+                <a href="javascript:void(0)" class="js-tag color5">fuse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">md</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LaTeX</a>
+                <a href="javascript:void(0)" class="js-tag color5">hdfs</a>
               </li>
             
             <div class="clearfix"></div>
