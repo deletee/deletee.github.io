@@ -175,13 +175,13 @@
     <link href="https://deletee.github.io/2018/12/20/edw-brief-summary/"/>
     <id>https://deletee.github.io/2018/12/20/edw-brief-summary/</id>
     <published>2018-12-20T07:46:30.000Z</published>
-    <updated>2019-01-02T14:00:41.159Z</updated>
+    <updated>2019-01-02T14:12:44.367Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="0x0-数据仓库的官方定义"><a href="#0x0-数据仓库的官方定义" class="headerlink" title="0x0 数据仓库的官方定义"></a>0x0 数据仓库的官方定义</h3><blockquote><p>通常来讲，大家都知道数据仓库的官方概念<br>数据仓库概念创始人W.H.Inmon在《建立数据仓库》一书中对数据仓库的定义是：数据仓库就是面向主题的、集成的、相对稳定的、随时间不断变化（不同时间）的数据集合，用以支持经营管理中的决策制定过程、数据仓库中的数据面向主题，与传统数据库面向应用相对应。</p></blockquote><p><img src="/knowledge/edw-brainstorm.jpg" alt="edw-brainstorm"></p><a id="more"></a><h3 id="0x1-数据仓库有哪些点？能看到那些面"><a href="#0x1-数据仓库有哪些点？能看到那些面" class="headerlink" title="0x1 数据仓库有哪些点？能看到那些面"></a>0x1 数据仓库有哪些点？能看到那些面</h3><blockquote><p>很多数据开发人员，无法将数据仓库的点连成线，更别说由线织成面？这里我们进行一些头脑风暴，看看数据仓库都有哪些内容？</p></blockquote><p><img src="/knowledge/edw-brainstorm.jpg" alt="edw-brainstorm"></p><p>总的来说，数据仓库可以整理如下4块内容：</p><p>（1）数据建模方法论</p><p>（2）实施方法论（最佳实践）</p><p>（3）数据管理</p><p>（4）数据应用</p><p>每一块内容拿出来讲，都是无边界的，要想成为这一领域的专家，需要有数据仓库的全局观并且有某一领域的最佳实践。</p><p>数仓之路，任重而道远！！！</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>通常来讲，大家都知道数据仓库的官方概念<br>数据仓库概念创始人W.H.Inmon在《建立数据仓库》一书中对数据仓库的定义是：数据仓库就是面向主题的、集成的、相对稳定的、随时间不断变化（不同时间）的数据集合，用以支持经营管理中的决策制定过程、数据仓库中的数据面向主题，与传统数据库面向应用相对应。</p></blockquote><p><img src="/knowledge/edw-brainstorm.jpg" alt="edw-brainstorm"></p><a id="more"></a><h3 id="0x1-数据仓库有哪些点？能看到那些面"><a href="#0x1-数据仓库有哪些点？能看到那些面" class="headerlink" title="0x1 数据仓库有哪些点？能看到那些面?"></a>0x1 数据仓库有哪些点？能看到那些面?</h3><blockquote><p>很多数据开发人员，无法将数据仓库的点连成线，更别说由线织成面？这里我们进行一些头脑风暴，看看数据仓库都有哪些内容？</p></blockquote><p><img src="/knowledge/edw-brainstorm.jpg" alt="edw-brainstorm"></p><p>总的来说，数据仓库可以整理如下4块内容：<br>（1）数据建模方法论<br>（2）实施方法论（最佳实践）<br>（3）数据管理<br>（4）数据应用</p><p>每一块内容拿出来讲，都是无边界的，要想成为这一领域的专家，需要有数据仓库的全局观并且有某一领域的最佳实践。<br>数仓之路，任重而道远！！！</p>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;0x0-数据仓库的官方定义&quot;&gt;&lt;a href=&quot;#0x0-数据仓库的官方定义&quot; class=&quot;headerlink&quot; title=&quot;0x0 数据仓库的官方定义&quot;&gt;&lt;/a&gt;0x0 数据仓库的官方定义&lt;/h3&gt;&lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;通常来讲，大家都知道数据仓库的官方概念&lt;br&gt;数据仓库概念创始人W.H.Inmon在《建立数据仓库》一书中对数据仓库的定义是：数据仓库就是面向主题的、集成的、相对稳定的、随时间不断变化（不同时间）的数据集合，用以支持经营管理中的决策制定过程、数据仓库中的数据面向主题，与传统数据库面向应用相对应。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&quot;/knowledge/edw-brainstorm.jpg&quot; alt=&quot;edw-brainstorm&quot;&gt;&lt;/p&gt;
