@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://deletee.github.io">
-  <title>数据仓库ETL之数据交换 | deletee</title>
+  <title>MarkDown 使用LaTeX写矩阵 | deletee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。  0x00 ETL之定位业内多数知名数据仓库解决方案提供方利用公司的自我研发的ETL工具及数据平台从">
-<meta name="keywords" content="数据仓库">
+  <meta name="description" content="LaTeX 写简单Matrix语法  使用\$\$begin{matrix}…\end{matrix}$$来生成矩阵，其中… 表示的是LaTeX 的矩阵命令，矩阵命令中每一行以 \ 结束，矩阵的元素之间用&amp;amp;来分隔开。  例如: 写一个简单矩阵 1234567$$  \begin&amp;#123;matrix&amp;#125;   1 &amp;amp; 2 &amp;amp; 3 \\   4 &amp;amp; 5 &amp;am">
+<meta name="keywords" content="fuse,hdfs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据仓库ETL之数据交换">
-<meta property="og:url" content="https://deletee.github.io/2018/12/25/edw-brief-summary/index.html">
+<meta property="og:title" content="MarkDown 使用LaTeX写矩阵">
+<meta property="og:url" content="https://deletee.github.io/2018/08/16/markdown-learning/index.html">
 <meta property="og:site_name" content="deletee">
-<meta property="og:description" content="​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。  0x00 ETL之定位业内多数知名数据仓库解决方案提供方利用公司的自我研发的ETL工具及数据平台从">
+<meta property="og:description" content="LaTeX 写简单Matrix语法  使用\$\$begin{matrix}…\end{matrix}$$来生成矩阵，其中… 表示的是LaTeX 的矩阵命令，矩阵命令中每一行以 \ 结束，矩阵的元素之间用&amp;amp;来分隔开。  例如: 写一个简单矩阵 1234567$$  \begin&amp;#123;matrix&amp;#125;   1 &amp;amp; 2 &amp;amp; 3 \\   4 &amp;amp; 5 &amp;am">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://deletee.github.io/Users/hzxijingjing/blog/themes/yilia/source/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png">
-<meta property="og:updated_time" content="2019-01-02T05:58:06.777Z">
+<meta property="og:updated_time" content="2019-01-02T14:54:51.008Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据仓库ETL之数据交换">
-<meta name="twitter:description" content="​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。  0x00 ETL之定位业内多数知名数据仓库解决方案提供方利用公司的自我研发的ETL工具及数据平台从">
-<meta name="twitter:image" content="https://deletee.github.io/Users/hzxijingjing/blog/themes/yilia/source/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png">
+<meta name="twitter:title" content="MarkDown 使用LaTeX写矩阵">
+<meta name="twitter:description" content="LaTeX 写简单Matrix语法  使用\$\$begin{matrix}…\end{matrix}$$来生成矩阵，其中… 表示的是LaTeX 的矩阵命令，矩阵命令中每一行以 \ 结束，矩阵的元素之间用&amp;amp;来分隔开。  例如: 写一个简单矩阵 1234567$$  \begin&amp;#123;matrix&amp;#125;   1 &amp;amp; 2 &amp;amp; 3 \\   4 &amp;amp; 5 &amp;am">
   
     <link rel="alternative" href="/atom.xml" title="deletee" type="application/atom+xml">
   
@@ -59,13 +57,13 @@ var _hmt = _hmt || [];
 	var s = document.getElementsByTagName("script")[0]; 
 	s.parentNode.insertBefore(hm, s);
 })();
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 </head>
 
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -186,33 +184,62 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-edw-brief-summary" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-markdown-learning" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据仓库ETL之数据交换
+      MarkDown 使用LaTeX写矩阵
     </h1>
   
 
         
-        <a href="/2018/12/25/edw-brief-summary/" class="archive-article-date">
-  	<time datetime="2018-12-25T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-25</time>
+        <a href="/2018/08/16/markdown-learning/" class="archive-article-date">
+  	<time datetime="2018-08-16T07:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。</p>
-<hr>
-<h3 id="0x00-ETL之定位"><a href="#0x00-ETL之定位" class="headerlink" title="0x00 ETL之定位"></a>0x00 ETL之定位</h3><p>业内多数知名数据仓库解决方案提供方利用公司的自我研发的ETL工具及数据平台从生产系统接入数据源，在库内进行数据转换工作，与其他三方厂家（乙方）一样，自顾一亩三分地，完成了端对端的数据支撑，然而对于甲方而言，各个厂家的端的数据采集无疑是对生产系统的增加多倍压力，另外厂家之间的数据交换也是常态。</p>
-<p>建设数据仓库的模式有由上而下以及由下而上两种模式，对于大企业而言，各个部门的运营模式、业务方向均有千差万别，部门大多建设自己的数据仓库，公司从各个部门建设的数据仓库之上建立总的数据仓库。在我们公司，部门之间数据ETL，一方面因业务模式，另一方面各部门数据平台产品多样化，ETL大多采用ftp、rsync这种文件数据传输方式，日志采集则使用DataStream或flume等。我们通常面临企业之间的数据交互，政府部门的数据推送，即便是一个部门内部数据的交换也是常态，数据共享有利于大数据生态发展，离线平台需要生产系统的数据进行计算，生产系统也需要离线平台的数据支撑。数据交换作为ETL一个升级模式成为企业级数据仓库建设的必然。</p>
-<h3 id="0x01-交换平台的产生"><a href="#0x01-交换平台的产生" class="headerlink" title="0x01 交换平台的产生"></a>0x01 交换平台的产生</h3><p>大多大数据从业人士也认识到数据交换，很多厂家也认识到了ETL模式的与时俱进，阿里的数据工场，亚信的云化交换平台，华为的云化交换平台以及我们的猛犸大数据平台应运而生，大数据交换平台服务于企业（部门、系统）数据交换，数据交换对于用户而言都是透明的，不仅满足传统的ETL功能，同时需要满足动态扩展。</p>
-<p>大数据形势下，互联网数据仓库较之传统的数据仓库平台有如下特点：</p>
-<p><img src="/Users/hzxijingjing/blog/themes/yilia/source/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png" alt="ea0c5fdb-950f-43ae-86f5-a6201eeaa97f"></p>
+        <h3 id="LaTeX-写简单Matrix语法"><a href="#LaTeX-写简单Matrix语法" class="headerlink" title="LaTeX 写简单Matrix语法"></a>LaTeX 写简单Matrix语法</h3><hr>
+<blockquote>
+<p>使用\$\$begin{matrix}…\end{matrix}$$来生成矩阵，其中… 表示的是LaTeX 的矩阵命令，矩阵命令中每一行以 \ 结束，矩阵的元素之间用&amp;来分隔开。</p>
+</blockquote>
+<p>例如: 写一个简单矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;matrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;matrix&#125; \tag&#123;1&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{matrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{matrix} \tag{1}<br>$$</p>
+<h3 id="带括号的Matrix"><a href="#带括号的Matrix" class="headerlink" title="带括号的Matrix"></a>带括号的Matrix</h3><hr>
+<p>感觉(1)中的矩阵不是很美观，可以给矩阵加上括号，加括号的方式有很多，大致可分为两种：使用\left … \right 或者把公式命令中的matrix 改成 pmatrix、bmatrix、Bmatrix、vmatrix、Vmatrix等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;pmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;pmatrix&#125; \tag&#123;2&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{pmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{pmatrix} \tag{2}<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;bmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;bmatrix&#125; \tag&#123;3&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{bmatrix} \tag{3}<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;Bmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;Bmatrix&#125; \tag&#123;4&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{Bmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{Bmatrix} \tag{4}<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;vmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;vmatrix&#125; \tag&#123;5&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{vmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{vmatrix} \tag{5}<br>$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">  \begin&#123;Vmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;Vmatrix&#125; \tag&#123;6&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{Vmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6 \<br>7 &amp; 8 &amp; 9<br>\end{Vmatrix} \tag{6}<br>$$</p>
+<p>增广矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;array&#125;&#123;cc|c&#125;</span><br><span class="line">      1 &amp; 2 &amp; 3 \\</span><br><span class="line">      4 &amp; 5 &amp; 6</span><br><span class="line">    \end&#123;array&#125;</span><br><span class="line">\right] \tag&#123;7&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\left[<br>    \begin{array}{cc|c}<br>      1 &amp; 2 &amp; 3 \<br>      4 &amp; 5 &amp; 6<br>    \end{array}<br>\right] \tag{7}<br>$$</p>
+<p>组合矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;pmatrix&#125;</span><br><span class="line">      1 &amp; 2 &amp; 3 \\</span><br><span class="line">      4 &amp; 5 &amp; 6</span><br><span class="line">    \end&#123;pmatrix&#125;</span><br><span class="line">\right] \tag&#123;7&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\left[<br>\begin{pmatrix}<br>1 &amp; 2 &amp; 3 \<br>4 &amp; 5 &amp; 6<br>\end{pmatrix}<br>\right] \tag{8}<br>$$</p>
+<h3 id="带省略符号的Matrix"><a href="#带省略符号的Matrix" class="headerlink" title="带省略符号的Matrix"></a>带省略符号的Matrix</h3><hr>
+<p>\ddots 表示：    <strong>⋱</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;matrix&#125;</span><br><span class="line">      1 &amp; 2 &amp; 3 \\</span><br><span class="line">      4 &amp; \ddots &amp; 6 \\</span><br><span class="line">      7 &amp; 8 &amp; 9</span><br><span class="line">    \end&#123;matrix&#125;</span><br><span class="line">\right] \tag&#123;9&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\left[<br>    \begin{matrix}<br>      1 &amp; 2 &amp; 3 \<br>      4 &amp; \ddots &amp; 6 \<br>      7 &amp; 8 &amp; 9<br>    \end{matrix}<br>\right] \tag{9}<br>$$</p>
+<p>\vdots 表示： <strong>⋮</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;matrix&#125;</span><br><span class="line">      1 &amp; \vdots &amp; 3 \\</span><br><span class="line">      4 &amp; \vdots &amp; 6</span><br><span class="line">    \end&#123;matrix&#125;</span><br><span class="line">\right] \tag&#123;10&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\left[<br>\begin{matrix}<br>1 &amp; \vdots &amp; 3 \<br>4 &amp; \vdots &amp; 6<br>\end{matrix}<br>\right] \tag{10}<br>$$</p>
+<p>\cdots 表示： <strong>⋯</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$ </span><br><span class="line">\left[</span><br><span class="line">    \begin&#123;matrix&#125;</span><br><span class="line">      1 &amp; \cdots &amp; 3 \\</span><br><span class="line">      4 &amp; \cdots &amp; 6</span><br><span class="line">    \end&#123;matrix&#125;</span><br><span class="line">\right] \tag&#123;11&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\left[<br>\begin{matrix}<br>1 &amp; \cdots &amp; 3 \<br>4 &amp; \cdots &amp; 6<br>\end{matrix}<br>\right] \tag{11}<br>$$</p>
+<p>更多LaTeX语法<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">请点击这里</a></p>
 
       
 
@@ -247,7 +274,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">fuse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hdfs</a>
         		</li>
       		
 		</ul>
@@ -259,7 +290,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/edw//" class="article-tag-list-link color5">数据仓库</a>
+        			<a href="/categories/HDFS//" class="article-tag-list-link color5">HDFS</a>
         		</li>
       		
 		</ul>
@@ -314,7 +345,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/12/25/edw-brief-summary/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://deletee.github.io/2018/08/16/markdown-learning/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -328,11 +359,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/12/25/sql-optimization/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/12/20/edw-brief-summary/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hive SQL优化
+          数据仓库专题(1)-数据仓库之我见
         
       </div>
     </a>
@@ -366,7 +397,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-ETL之定位"><span class="toc-number">1.</span> <span class="toc-text">0x00 ETL之定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-交换平台的产生"><span class="toc-number">2.</span> <span class="toc-text">0x01 交换平台的产生</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LaTeX-写简单Matrix语法"><span class="toc-number">1.</span> <span class="toc-text">LaTeX 写简单Matrix语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#带括号的Matrix"><span class="toc-number">2.</span> <span class="toc-text">带括号的Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#带省略符号的Matrix"><span class="toc-number">3.</span> <span class="toc-text">带省略符号的Matrix</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -383,8 +414,8 @@ var _hmt = _hmt || [];
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://deletee.github.io/2018/12/25/edw-brief-summary/", 
-    sourceId: "edw-brief-summary",
+    url: "https://deletee.github.io/2018/08/16/markdown-learning/", 
+    sourceId: "markdown-learning",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -459,7 +490,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -535,7 +566,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ER</a>
+                <a href="javascript:void(0)" class="js-tag color5">fuse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hdfs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,11 +586,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fuse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hdfs</a>
+                <a href="javascript:void(0)" class="js-tag color3">ER</a>
               </li>
             
             <div class="clearfix"></div>
@@ -582,7 +613,7 @@ MathJax.Hub.Queue(function() {
       link: false
       permalink: false
       excerpt: false
-      categories: false
+      categories: true 
       tags: true
 </pre>
           </p>
@@ -708,6 +739,23 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
