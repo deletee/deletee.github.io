@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="deletee">
 <meta property="og:description" content="为什么要学Scala？Scala是大数据分析平台Spark、Flink 官方支持的语言，在学习Spark和Flink之前，需要学号Scala基础。Scala同样是一门当前热门的语言，Kafka、Spark均由Scala开发，由此学习Scala是学习这些平台比不可少的步骤。那么，我们就耐心的学习Scala语言。 0x0 Scala基本定义">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-07T14:39:30.873Z">
+<meta property="og:updated_time" content="2019-01-07T14:45:02.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起来学Scala(1)-基本概念">
 <meta name="twitter:description" content="为什么要学Scala？Scala是大数据分析平台Spark、Flink 官方支持的语言，在学习Spark和Flink之前，需要学号Scala基础。Scala同样是一门当前热门的语言，Kafka、Spark均由Scala开发，由此学习Scala是学习这些平台比不可少的步骤。那么，我们就耐心的学习Scala语言。 0x0 Scala基本定义">
@@ -212,10 +212,10 @@ var _hmt = _hmt || [];
 <p>如下是第一个 Scala程序:HelloWorld.scala</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args:<span class="type">Array</span>[<span class="type">String</span>])&#123;</span><br><span class="line">        println(<span class="string">"Hello World"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$:scala HelloWorld.scala</span><br><span class="line">Hello WorldHello World</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$:scala HelloWorld.scala</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
 <h4 id="0x11-编译执行"><a href="#0x11-编译执行" class="headerlink" title="0x11 编译执行"></a>0x11 编译执行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~$:scalac HelloWorld.scala</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将会得到如下两个 class文件，即为 Java字节码</span></span><br><span class="line">HewlloWorld$.class</span><br><span class="line">HewlloWorld.class</span><br></pre></td></tr></table></figure>
 <p>执行方式与执行javaclass类同</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$:scala HelloWorld</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$:scala HelloWorld</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
 <h3 id="0xF-总结"><a href="#0xF-总结" class="headerlink" title="0xF 总结"></a>0xF 总结</h3><p>Scala 的语法相对Python而言是比较晦涩，后续尽量以简单清晰的实例，从而达到更好的效果。</p>
 
       
@@ -724,22 +724,6 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
