@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://deletee.github.io/"/>
-  <updated>2019-01-08T15:40:11.090Z</updated>
+  <updated>2019-01-09T13:05:47.553Z</updated>
   <id>https://deletee.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常用的一些SQL语句</title>
+    <link href="https://deletee.github.io/2019/01/09/useful-sql/"/>
+    <id>https://deletee.github.io/2019/01/09/useful-sql/</id>
+    <published>2019-01-09T13:05:30.000Z</published>
+    <updated>2019-01-09T13:05:47.553Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际工作过程中，经常用的几个SQL，常常因为某些关键字忘记，从而经常需要找工具书或者之前做的工程，本文将自己工作中常常容易忘记的SQL整理出来，方便直接定位。</p><h4 id="0x0-建表DDL-指定分隔符、分区"><a href="#0x0-建表DDL-指定分隔符、分区" class="headerlink" title="0x0 建表DDL(指定分隔符、分区)"></a>0x0 建表DDL(指定分隔符、分区)</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> dim.dim_sms_rate_standard</span><br><span class="line">(</span><br><span class="line">     contry_code <span class="keyword">string</span> <span class="keyword">comment</span> <span class="string">'国家码'</span></span><br><span class="line">    ,contry_en_name <span class="keyword">string</span> <span class="keyword">comment</span> <span class="string">'国家英文名'</span></span><br><span class="line">    ,contry_brief_name <span class="keyword">string</span> <span class="keyword">comment</span> <span class="string">'国家简码'</span></span><br><span class="line">    ,sms_price <span class="built_in">float</span> <span class="keyword">comment</span> <span class="string">'短信单价'</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span> </span><br><span class="line"><span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'\t'</span></span><br><span class="line"><span class="keyword">partition</span>(dt <span class="keyword">string</span> <span class="keyword">comment</span> <span class="string">'日期'</span>);</span><br></pre></td></tr></table></figure><a id="more"></a><h4 id="0x1-设置压缩格式"><a href="#0x1-设置压缩格式" class="headerlink" title="0x1 设置压缩格式"></a>0x1 设置压缩格式</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> hive.exec.compress.output=<span class="literal">true</span>;</span><br><span class="line"><span class="keyword">set</span> mapred.output.compression.codec=com.hadoop.compression.lzo.LzopCodec;</span><br></pre></td></tr></table></figure><h4 id="0x2-查看外表分区路径"><a href="#0x2-查看外表分区路径" class="headerlink" title="0x2 查看外表分区路径"></a>0x2 查看外表分区路径</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc formatted dim.dim_sms_rate_standard partition(dt='2019-01-08');</span><br></pre></td></tr></table></figure><h4 id="0x3-动态分区"><a href="#0x3-动态分区" class="headerlink" title="0x3 动态分区"></a>0x3 动态分区</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> hive.exec.dynamic.partition=<span class="literal">true</span>;</span><br><span class="line"><span class="keyword">set</span> hive.exec.dynamic.partition.mode=nonstrict; </span><br><span class="line"><span class="keyword">SET</span> hive.exec.max.dynamic.partitions=<span class="number">100000</span>;</span><br><span class="line"><span class="keyword">SET</span> hive.exec.max.dynamic.partitions.pernode=<span class="number">100000</span>;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;实际工作过程中，经常用的几个SQL，常常因为某些关键字忘记，从而经常需要找工具书或者之前做的工程，本文将自己工作中常常容易忘记的SQL整理出来，方便直接定位。&lt;/p&gt;
+&lt;h4 id=&quot;0x0-建表DDL-指定分隔符、分区&quot;&gt;&lt;a href=&quot;#0x0-建表DDL-指定分隔符、分区&quot; class=&quot;headerlink&quot; title=&quot;0x0 建表DDL(指定分隔符、分区)&quot;&gt;&lt;/a&gt;0x0 建表DDL(指定分隔符、分区)&lt;/h4&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;table&lt;/span&gt; dim.dim_sms_rate_standard&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     contry_code &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;国家码&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ,contry_en_name &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;国家英文名&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ,contry_brief_name &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;国家简码&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ,sms_price &lt;span class=&quot;built_in&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;短信单价&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;row&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;format&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;delimited&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;fields&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;terminated&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;\t&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;partition&lt;/span&gt;(dt &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;日期&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="0x2 技术平台" scheme="https://deletee.github.io/categories/0x2-%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0/"/>
+    
+      <category term="0x21 Hive" scheme="https://deletee.github.io/categories/0x2-%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0/0x21-Hive/"/>
+    
+    
+      <category term="Hive" scheme="https://deletee.github.io/tags/Hive/"/>
+    
+      <category term="SQL" scheme="https://deletee.github.io/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>一起来学Scala(1)-基本概念</title>
