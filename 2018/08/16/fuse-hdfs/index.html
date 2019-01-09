@@ -89,11 +89,11 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      applicationID: '6ZL1TE1FHJ',
+      apiKey: '067d46804148abc96e3093bd81bfdf79',
+      indexName: 'deletee',
+      hits: {"per_page":8},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
     }
   };
 </script>
@@ -514,16 +514,16 @@
 <h3 id="二、应用场景"><a href="#二、应用场景" class="headerlink" title="二、应用场景"></a>二、应用场景</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同步：实现用户对个人计算指定目录下的特定类型的文件自动与HDFS同步，实时监测用户文件变化情况。不需要用户干预就能及时自动备份文件。当用户新建、修改或删除文件（目录）时自动更新同步，保障用户重要文件的安全。当用户移动办公时，可直接从HDFS访问，省略了移动存储介质的拷贝过程，提高用户工作效率。更换新计算机时，用户登录后原计算机中的个人文件将自动从HDFS存储中同步到新计算机中。例如：适用数据仓库需要ETL进行Hadoop文件进行ftp或者rsync推送的场景。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网盘：用户可将不常用的文件存储在HDFS存储中，从而节约本地存储空间，提高文件的物理安全性，也便于资源共享。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共享：用户可以把网盘或同步盘的任意文件（目录）分享给群组或其他用户。只需要在云存储中存储一份文件，被分享的人不需要下载存储即可在线浏览，实现资源共享。若源文件被修改，所有分享人立即会得到更新文件。</p>
-<h3 id="三、部署实现"><a href="#三、部署实现" class="headerlink" title="三、部署实现"></a>三、部署实现</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前网络上关于利用fuse挂载hdfs较多基于较早版本的hadoop(0.x，1.x) ，并大多都基于无kerberos认证，本文以北京亦庄Hadoop 2.5.2为例，介绍通过fuse挂载hdfs到本地的方法。设定源码目录为$HADOOP_SRC_HOME，那么Hadoop 2.x 的 fuse_dfs 源码位于<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs/src/main/native/</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、部署实现"><a href="#三、部署实现" class="headerlink" title="三、部署实现"></a>三、部署实现</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前网络上关于利用fuse挂载hdfs较多基于较早版本的hadoop(0.x，1.x) ，并大多都基于无kerberos认证，本文以北京亦庄Hadoop 2.5.2为例，介绍通过fuse挂载hdfs到本地的方法。设定源码目录为$HADOOP_SRC_HOME，那么Hadoop 2.x 的 fuse_dfs 源码位于<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs/src/main/native/</span></span><br></pre></td></tr></table></figure></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么怎么编译fuse_dfs？fuse_dfs是Hadoop自带模块，编译Hadoop时，增加编译参数require.fuse=true，即编译命令如下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package -Drequire.fuse=true -DskipTests -Dmaven.javadoc.skip=true -Dtar</span><br></pre></td></tr></table></figure></p>
 <h4 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Linux: 3.16.0-0.bpo.4-amd64 (Debian7)</span><br><span class="line">JDK: 1.7.0_80 64bit</span><br><span class="line">Apache Hadoop: 2.5.2 </span><br><span class="line">Ant: 1.8.2</span><br><span class="line">GCC: 4.7.2 (系统默认)</span><br><span class="line">Protocbuf 2.5.0</span><br><span class="line">Maven 3.0.4</span><br><span class="line">Cmake 2.8.9</span><br><span class="line">Make 3.8.1</span><br></pre></td></tr></table></figure>
 <h4 id="安装fuse等依赖"><a href="#安装fuse等依赖" class="headerlink" title="安装fuse等依赖"></a>安装fuse等依赖</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install maven build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev libfuse-dev</span><br></pre></td></tr></table></figure>
-<h4 id="编译fuse-dfs-Hadoop"><a href="#编译fuse-dfs-Hadoop" class="headerlink" title="编译fuse_dfs(Hadoop)"></a>编译fuse_dfs(Hadoop)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载</span><br><span class="line">mkdir package &amp;&amp; cd package</span><br><span class="line">wget http://archive.apache.org/dist/hadoop/core/hadoop-2.5.2/hadoop-2.5.2-src.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>解压</span><br><span class="line">tar -zxvf hadoop-2.5.2-src.tar.gz</span><br><span class="line">ln -s hadoop-2.5.2-src hadoop-src</span><br><span class="line">echo "export HADOOP_SRC_HOME=$HOME/package/hadoop-src/" &gt;&gt; .bashrc &amp;&amp; source .bashrc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 编译</span><br><span class="line">cd hadoop-2.5.2-src</span><br><span class="line">mvn package -Drequire.fuse=true -DskipTests -Dmaven.javadoc.skip=true -Dtar</span><br></pre></td></tr></table></figure>
-<h6 id="PS-编译Hadoop之前需提前安装好fuse，否则fuse-dfs无法编译成功"><a href="#PS-编译Hadoop之前需提前安装好fuse，否则fuse-dfs无法编译成功" class="headerlink" title="PS: 编译Hadoop之前需提前安装好fuse，否则fuse_dfs无法编译成功"></a>PS: 编译Hadoop之前需提前安装好fuse，否则fuse_dfs无法编译成功</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 编译后的fuse_dfs位于：</span><br><span class="line"><span class="meta">$</span>HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs-native-client/target/main/native/fuse-dfs/fuse_dfs</span><br><span class="line"><span class="meta">#</span> 完整的Hadoop包则位于：</span><br><span class="line"><span class="meta">$</span>HADOOP_SRC_HOME/hadoop-dist/target/hadoop-2.5.2.tar.gz</span><br><span class="line"><span class="meta">#</span> 一个用于挂载hdfs的脚本：</span><br><span class="line"><span class="meta">$</span>HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs-native-client/src/main/native/fuse-dfs/fuse_dfs_wrapper.sh</span><br></pre></td></tr></table></figure>
+<h4 id="编译fuse-dfs-Hadoop"><a href="#编译fuse-dfs-Hadoop" class="headerlink" title="编译fuse_dfs(Hadoop)"></a>编译fuse_dfs(Hadoop)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载</span></span><br><span class="line">mkdir package &amp;&amp; cd package</span><br><span class="line">wget http://archive.apache.org/dist/hadoop/core/hadoop-2.5.2/hadoop-2.5.2-src.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解压</span></span><br><span class="line">tar -zxvf hadoop-2.5.2-src.tar.gz</span><br><span class="line">ln -s hadoop-2.5.2-src hadoop-src</span><br><span class="line">echo "export HADOOP_SRC_HOME=$HOME/package/hadoop-src/" &gt;&gt; .bashrc &amp;&amp; source .bashrc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译</span></span><br><span class="line">cd hadoop-2.5.2-src</span><br><span class="line">mvn package -Drequire.fuse=true -DskipTests -Dmaven.javadoc.skip=true -Dtar</span><br></pre></td></tr></table></figure>
+<h6 id="PS-编译Hadoop之前需提前安装好fuse，否则fuse-dfs无法编译成功"><a href="#PS-编译Hadoop之前需提前安装好fuse，否则fuse-dfs无法编译成功" class="headerlink" title="PS: 编译Hadoop之前需提前安装好fuse，否则fuse_dfs无法编译成功"></a>PS: 编译Hadoop之前需提前安装好fuse，否则fuse_dfs无法编译成功</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编译后的fuse_dfs位于：</span></span><br><span class="line"><span class="meta">$</span><span class="bash">HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs-native-client/target/main/native/fuse-dfs/fuse_dfs</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 完整的Hadoop包则位于：</span></span><br><span class="line"><span class="meta">$</span><span class="bash">HADOOP_SRC_HOME/hadoop-dist/target/hadoop-2.5.2.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 一个用于挂载hdfs的脚本：</span></span><br><span class="line"><span class="meta">$</span><span class="bash">HADOOP_SRC_HOME/hadoop-hdfs-project/hadoop-hdfs-native-client/src/main/native/fuse-dfs/fuse_dfs_wrapper.sh</span></span><br></pre></td></tr></table></figure>
 <h4 id="部署Hadoop（略）"><a href="#部署Hadoop（略）" class="headerlink" title="部署Hadoop（略）"></a>部署Hadoop（略）</h4><h4 id="配置、fuse-dfs-wrapper-sh"><a href="#配置、fuse-dfs-wrapper-sh" class="headerlink" title="配置、fuse_dfs_wrapper.sh"></a>配置、fuse_dfs_wrapper.sh</h4><p>HDFS挂载主要依赖源码的两个模块，一个是hadoop-hdfs-project，另一个是hadoop-client，可将依赖的jar包单独提炼出来。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/usr/bin/env bash</span><br><span class="line">export HADOOP_HOME=$&#123;HADOOP_HOME:-/usr/local/share/hadoop&#125;</span><br><span class="line">export HADOOP_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoop</span><br><span class="line">export HADOOP_PREFIX=$HOME/package/hadoop-src</span><br><span class="line">export JAVA_HOME=$HOME/opt/jdk</span><br><span class="line"></span><br><span class="line">export FUSEDFS_PATH="$HADOOP_PREFIX/hadoop-hdfs-project/hadoop-hdfs/target/native/main/native/fuse-dfs"</span><br><span class="line">export LIBHDFS_PATH="$HADOOP_PREFIX/hadoop-hdfs-project/hadoop-hdfs/target/native/target/usr/local/lib"</span><br><span class="line"></span><br><span class="line">if [ "$OS_ARCH" = "" ]; then</span><br><span class="line">    export OS_ARCH=amd64</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ "$JAVA_HOME" = "" ]; then</span><br><span class="line">    export  JAVA_HOME=/usr/local/java</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ "$LD_LIBRARY_PATH" = "" ]; then</span><br><span class="line">export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/$OS_ARCH/server:/usr/local/lib</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">JARS=`find "$HADOOP_PREFIX/hadoop-hdfs-project" -name "*.jar" | xargs`</span><br><span class="line">for jar in $JARS; do</span><br><span class="line">  CLASSPATH=$jar:$CLASSPATH</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">JARS=`find "$HADOOP_PREFIX/hadoop-client" -name "*.jar" | xargs`</span><br><span class="line">for jar in $JARS; do</span><br><span class="line">  CLASSPATH=$jar:$CLASSPATH</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">export CLASSPATH=$HADOOP_CONF_DIR:$CLASSPATH</span><br><span class="line">export PATH=$FUSEDFS_PATH:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$LIBHDFS_PATH:$JAVA_HOME/jre/lib/$OS_ARCH/server:$LD_LIBRARY_PATH</span><br><span class="line"></span><br><span class="line">fuse_dfs $@</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/env bash</span></span><br><span class="line">export HADOOP_HOME=$&#123;HADOOP_HOME:-/usr/local/share/hadoop&#125;</span><br><span class="line">export HADOOP_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoop</span><br><span class="line">export HADOOP_PREFIX=$HOME/package/hadoop-src</span><br><span class="line">export JAVA_HOME=$HOME/opt/jdk</span><br><span class="line"></span><br><span class="line">export FUSEDFS_PATH="$HADOOP_PREFIX/hadoop-hdfs-project/hadoop-hdfs/target/native/main/native/fuse-dfs"</span><br><span class="line">export LIBHDFS_PATH="$HADOOP_PREFIX/hadoop-hdfs-project/hadoop-hdfs/target/native/target/usr/local/lib"</span><br><span class="line"></span><br><span class="line">if [ "$OS_ARCH" = "" ]; then</span><br><span class="line">    export OS_ARCH=amd64</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ "$JAVA_HOME" = "" ]; then</span><br><span class="line">    export  JAVA_HOME=/usr/local/java</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ "$LD_LIBRARY_PATH" = "" ]; then</span><br><span class="line">export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/$OS_ARCH/server:/usr/local/lib</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">JARS=`find "$HADOOP_PREFIX/hadoop-hdfs-project" -name "*.jar" | xargs`</span><br><span class="line">for jar in $JARS; do</span><br><span class="line">  CLASSPATH=$jar:$CLASSPATH</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">JARS=`find "$HADOOP_PREFIX/hadoop-client" -name "*.jar" | xargs`</span><br><span class="line">for jar in $JARS; do</span><br><span class="line">  CLASSPATH=$jar:$CLASSPATH</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">export CLASSPATH=$HADOOP_CONF_DIR:$CLASSPATH</span><br><span class="line">export PATH=$FUSEDFS_PATH:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$LIBHDFS_PATH:$JAVA_HOME/jre/lib/$OS_ARCH/server:$LD_LIBRARY_PATH</span><br><span class="line"></span><br><span class="line">fuse_dfs $@</span><br></pre></td></tr></table></figure>
 <p>利用命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> sudo bash ./fuse-dfs/fuse_dfs_wrapper.sh hdfs://$&#123;nn&#125;:$&#123;port&#125; /mnt/hdfs</span><br><span class="line">INFO /home/hzxijingjing/package/hadoop-2.5.2-src/hadoop-hdfs-project/hadoop-hdfs/src/main/native/fuse-dfs/fuse_options.c:164 Adding FUSE arg /mnt/hdfs</span><br><span class="line"><span class="meta">#</span> 挂载信息</span><br><span class="line"></span><br><span class="line"> df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">rootfs           50G  8.2G   39G  18% /</span><br><span class="line">udev             10M     0   10M   0% /dev</span><br><span class="line">tmpfs           1.6G  216K  1.6G   1% /run</span><br><span class="line">/dev/vda1        50G  8.2G   39G  18% /</span><br><span class="line">tmpfs           5.0M  4.0K  5.0M   1% /run/lock</span><br><span class="line">tmpfs           3.2G     0  3.2G   0% /run/shm</span><br><span class="line">/dev/vdb1        99G   75M   94G   1% /data</span><br><span class="line">fuse_dfs         49G     0   49G   0% /mnt/hdfs  # HDFS挂载成功</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> sudo bash ./fuse-dfs/fuse_dfs_wrapper.sh hdfs://$&#123;nn&#125;:$&#123;port&#125; /mnt/hdfs</span><br><span class="line">INFO /home/hzxijingjing/package/hadoop-2.5.2-src/hadoop-hdfs-project/hadoop-hdfs/src/main/native/fuse-dfs/fuse_options.c:164 Adding FUSE arg /mnt/hdfs</span><br><span class="line"><span class="meta">#</span><span class="bash"> 挂载信息</span></span><br><span class="line"></span><br><span class="line"> df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">rootfs           50G  8.2G   39G  18% /</span><br><span class="line">udev             10M     0   10M   0% /dev</span><br><span class="line">tmpfs           1.6G  216K  1.6G   1% /run</span><br><span class="line">/dev/vda1        50G  8.2G   39G  18% /</span><br><span class="line">tmpfs           5.0M  4.0K  5.0M   1% /run/lock</span><br><span class="line">tmpfs           3.2G     0  3.2G   0% /run/shm</span><br><span class="line">/dev/vdb1        99G   75M   94G   1% /data</span><br><span class="line">fuse_dfs         49G     0   49G   0% /mnt/hdfs  # HDFS挂载成功</span><br></pre></td></tr></table></figure>
 <p>​ 至此为止，已实现无简单认证的Hadoop挂载，然而对于配置了kerberos认证的Hadoop，实施挂载会出现如下情况：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt &amp;&amp; ls -lh</span><br><span class="line">ls: cannot access hdfs: Transport endpoint is not connected</span><br><span class="line">d????????? ? ?      ?          ?            ? hdfs</span><br></pre></td></tr></table></figure></p>
 <p>后置参数 -d，进入debug模式， 查看运行信息</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /bin/sh ./fuse-dfs/fuse_dfs_wrapper.sh hdfs://$&#123;nn&#125;:$&#123;port&#125; /mnt/dfs -d</span><br></pre></td></tr></table></figure>
@@ -713,122 +713,6 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
                     <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -841,8 +725,6 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
                     
                       
                     
@@ -1194,326 +1076,6 @@
 
 
   
-
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
