@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="deletee">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上文中已经介绍了Scala语言中的基本类型，本文着重介绍下字符串的用法，字符串在我们日常开发中经常用到，字符串在Scala中的类型String，那么Scala中的String和Java中的String有什么关系呢？ 1234scala&amp;gt; &quot;Scala&quot;.getClass.getNameres0: String = java.lang">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-12T14:39:21.000Z">
+<meta property="og:updated_time" content="2019-01-12T14:52:16.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起来学Scala(3)-字符串">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上文中已经介绍了Scala语言中的基本类型，本文着重介绍下字符串的用法，字符串在我们日常开发中经常用到，字符串在Scala中的类型String，那么Scala中的String和Java中的String有什么关系呢？ 1234scala&amp;gt; &quot;Scala&quot;.getClass.getNameres0: String = java.lang">
@@ -467,7 +467,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-12 22:39:21" itemprop="dateModified" datetime="2019-01-12T22:39:21+08:00">2019-01-12</time>
+                <time title="修改时间：2019-01-12 22:52:16" itemprop="dateModified" datetime="2019-01-12T22:52:16+08:00">2019-01-12</time>
               
             
           </span>
@@ -564,7 +564,7 @@
 <h5 id="0x30-s是一个方法"><a href="#0x30-s是一个方法" class="headerlink" title="0x30 s是一个方法"></a>0x30 s是一个方法</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> name = <span class="string">"deleee"</span></span><br><span class="line">name: <span class="type">String</span> = deleee</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> setence = <span class="string">s"My name is <span class="subst">$name</span>"</span></span><br><span class="line">setence: <span class="type">String</span> = <span class="type">My</span> name is deleee</span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;整形变量可以做计算，例如：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">var</span> age = <span class="number">2</span></span><br><span class="line">age: <span class="type">Int</span> = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> setence1 = <span class="string">s"My age is <span class="subst">$&#123;age + 1&#125;</span>"</span></span><br><span class="line">setence1: <span class="type">String</span> = <span class="type">My</span> age is <span class="number">3</span></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="0x31-字符串差值-printf"><a href="#0x31-字符串差值-printf" class="headerlink" title="0x31 字符串差值(printf)"></a>0x31 字符串差值(printf)</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 即我们常在C语言或者Python中的数值格式化</p>
+<h5 id="0x31-字符串差值-printf"><a href="#0x31-字符串差值-printf" class="headerlink" title="0x31 字符串差值(printf)"></a>0x31 字符串差值(printf)</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 即我们常在C语言或者Python中的数值格式化，需要在字符串前使用<code>f</code>标识</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> setence2 = <span class="string">f"My age is <span class="subst">$&#123;age + 1&#125;</span>%.2f"</span></span><br><span class="line">setence2: <span class="type">String</span> = <span class="type">My</span> age is <span class="number">3.00</span></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
 <p><code>%.2f</code>表示将数值进行小数点后2位精度</p>
 <div class="table-container">
