@@ -138,10 +138,12 @@
 <meta property="og:site_name" content="deletee">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上文中已经介绍了Scala语言中的基本类型，本文着重介绍下字符串的用法，字符串在我们日常开发中经常用到，字符串在Scala中的类型String，那么Scala中的String和Java中的String有什么关系呢？ 1234scala&amp;gt; &quot;Scala&quot;.getClass.getNameres0: String = java.lang">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-12T14:55:00.313Z">
+<meta property="og:image" content="https://deletee.github.io/images/a311e33c02d299ee621f10649459ac73.png">
+<meta property="og:updated_time" content="2019-01-13T12:13:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起来学Scala(3)-字符串">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上文中已经介绍了Scala语言中的基本类型，本文着重介绍下字符串的用法，字符串在我们日常开发中经常用到，字符串在Scala中的类型String，那么Scala中的String和Java中的String有什么关系呢？ 1234scala&amp;gt; &quot;Scala&quot;.getClass.getNameres0: String = java.lang">
+<meta name="twitter:image" content="https://deletee.github.io/images/a311e33c02d299ee621f10649459ac73.png">
 
 
 
@@ -467,7 +469,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-12 22:55:00" itemprop="dateModified" datetime="2019-01-12T22:55:00+08:00">2019-01-12</time>
+                <time title="修改时间：2019-01-13 20:13:52" itemprop="dateModified" datetime="2019-01-13T20:13:52+08:00">2019-01-13</time>
               
             
           </span>
@@ -535,8 +537,7 @@
       
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上文中已经介绍了Scala语言中的基本类型，本文着重介绍下字符串的用法，字符串在我们日常开发中经常用到，字符串在Scala中的类型<code>String</code>，那么Scala中的String和Java中的String有什么关系呢？</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="string">"Scala"</span>.getClass.getName</span><br><span class="line">res0: <span class="type">String</span> = java.lang.<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本以为Scala是怎样实现了String，上述代码中告诉我们Scala中的<code>String</code>竟就是Java中的<code>String</code>。我们接下更深层次的学习<code>String</code>。</p>
-<a id="more"></a>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本以为Scala是怎样实现了String，上述代码中告诉我们Scala中的<code>String</code>竟就是Java中的<code>String</code>。我们接下更深层次的学习<code>String</code>。<br><img src="/images/a311e33c02d299ee621f10649459ac73.png" alt="a311e33c02d299ee621f10649459ac73"><br><a id="more"></a></p>
 <h4 id="0x0-基本用法"><a href="#0x0-基本用法" class="headerlink" title="0x0 基本用法"></a>0x0 基本用法</h4><h5 id="0x00-长度-length"><a href="#0x00-长度-length" class="headerlink" title="0x00 长度 .length"></a>0x00 长度 .length</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> str = <span class="string">"Scala"</span></span><br><span class="line">str: <span class="type">String</span> = <span class="type">Scala</span></span><br><span class="line"></span><br><span class="line">scala&gt; str.length</span><br><span class="line">res3: <span class="type">Int</span> = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过 .length的方式可获取变量str的长度</p>
 <h5 id="0x01-遍历"><a href="#0x01-遍历" class="headerlink" title="0x01 遍历"></a>0x01 遍历</h5><p><strong>第一种方式:</strong> 通过遍历字符串的每一个字符</p>
