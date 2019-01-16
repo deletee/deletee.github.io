@@ -130,23 +130,18 @@
 
 
 
-  <meta name="description" content="​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。">
-<meta name="keywords" content="数据仓库">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;众所周知，使用ftp命令是不能够直接上传文件夹的，然后工作中有很多需要上传目录的场景，通常大家想到的就是先创建文件夹，然后再通过遍历的方式上传文件，其中比较繁琐的是，ftp里不支持，多层级目录直接创建，1deletee:$ mkdir -p $&amp;#123;dir&amp;#125;/$&amp;#123;subdir&amp;#125; 这样的方式，只能逐级创建">
+<meta name="keywords" content="shell,awk,ftp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据仓库ETL之数据交换">
-<meta property="og:url" content="https://deletee.github.io/2017/06/05/edw-data-exchange/index.html">
+<meta property="og:title" content="ftp上传目录的方法">
+<meta property="og:url" content="https://deletee.github.io/2019/01/16/ftp-upload-folder/index.html">
 <meta property="og:site_name" content="Pig House">
-<meta property="og:description" content="​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;众所周知，使用ftp命令是不能够直接上传文件夹的，然后工作中有很多需要上传目录的场景，通常大家想到的就是先创建文件夹，然后再通过遍历的方式上传文件，其中比较繁琐的是，ftp里不支持，多层级目录直接创建，1deletee:$ mkdir -p $&amp;#123;dir&amp;#125;/$&amp;#123;subdir&amp;#125; 这样的方式，只能逐级创建">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://deletee.github.io/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png">
-<meta property="og:image" content="https://deletee.github.io/knowledge/17d126f8-829b-4698-a332-6eef1cb1ce2b.png">
-<meta property="og:image" content="https://deletee.github.io/knowledge/ad06504b-d047-4671-aa24-94aabaaa3a00.png">
-<meta property="og:image" content="https://deletee.github.io/knowledge/8fe41e06-28d7-4405-85f9-7ceffad1f0a1.png">
-<meta property="og:updated_time" content="2019-01-08T04:25:20.885Z">
+<meta property="og:updated_time" content="2019-01-16T13:18:48.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据仓库ETL之数据交换">
-<meta name="twitter:description" content="​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。">
-<meta name="twitter:image" content="https://deletee.github.io/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png">
+<meta name="twitter:title" content="ftp上传目录的方法">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;众所周知，使用ftp命令是不能够直接上传文件夹的，然后工作中有很多需要上传目录的场景，通常大家想到的就是先创建文件夹，然后再通过遍历的方式上传文件，其中比较繁琐的是，ftp里不支持，多层级目录直接创建，1deletee:$ mkdir -p $&amp;#123;dir&amp;#125;/$&amp;#123;subdir&amp;#125; 这样的方式，只能逐级创建">
 
 
 
@@ -155,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="https://deletee.github.io/2017/06/05/edw-data-exchange/"/>
+  <link rel="canonical" href="https://deletee.github.io/2019/01/16/ftp-upload-folder/"/>
 
 
 
@@ -165,7 +160,7 @@
   };
 </script>
 
-  <title>数据仓库ETL之数据交换 | Pig House</title>
+  <title>ftp上传目录的方法 | Pig House</title>
   
 
 
@@ -412,7 +407,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://deletee.github.io/2017/06/05/edw-data-exchange/">
+    <link itemprop="mainEntityOfPage" href="https://deletee.github.io/2019/01/16/ftp-upload-folder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="deletee">
@@ -429,7 +424,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据仓库ETL之数据交换
+          <h1 class="post-title" itemprop="name headline">ftp上传目录的方法
 
               
             
@@ -455,24 +450,12 @@
                 
               
 
-              <time title="创建时间：2017-06-05 15:46:30" itemprop="dateCreated datePublished" datetime="2017-06-05T15:46:30+08:00">2017-06-05</time>
+              <time title="创建时间：2019-01-16 20:41:30 / 修改时间：21:18:48" itemprop="dateCreated datePublished" datetime="2019-01-16T20:41:30+08:00">2019-01-16</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-08 12:25:20" itemprop="dateModified" datetime="2019-01-08T12:25:20+08:00">2019-01-08</time>
               
             
           </span>
@@ -489,14 +472,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x1-数据仓库/" itemprop="url" rel="index"><span itemprop="name">0x1 数据仓库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x0-开发语言/" itemprop="url" rel="index"><span itemprop="name">0x0 开发语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x1-数据仓库/0x10-数仓概论/" itemprop="url" rel="index"><span itemprop="name">0x10 数仓概论</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x0-开发语言/0x00-一起来学Awk/" itemprop="url" rel="index"><span itemprop="name">0x00 一起来学Awk</span></a></span>
 
                 
                 
@@ -538,28 +521,16 @@
       
 
       
-        <p>​          从1990年数据仓库之父比尔·恩门（Bill Inmon）提出数据仓库的概念，ETL作为数据仓库的核心组件，在传统的数据仓库中是服务于数据采集，数据处理，大数据时代来临，对ETL的理解也由【抽取、转换、加载】升级到【交换】这个层面。如果你也考虑建设企业级数据仓库可以作为参考。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;众所周知，使用ftp命令是不能够直接上传文件夹的，然后工作中有很多需要上传目录的场景，通常大家想到的就是先创建文件夹，然后再通过遍历的方式上传文件，其中比较繁琐的是，ftp里不支持，多层级目录直接创建，<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deletee:$ mkdir -p $&#123;dir&#125;/$&#123;subdir&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的方式，只能逐级创建，将造成很多工作量。下面将分享下如何快速有效的实现上传ftp文件夹</p>
 <a id="more"></a>
-<h3 id="0x0-ETL之定位"><a href="#0x0-ETL之定位" class="headerlink" title="0x0 ETL之定位"></a>0x0 ETL之定位</h3><p>业内多数知名数据仓库解决方案提供方利用公司的自我研发的ETL工具及数据平台从生产系统接入数据源，在库内进行数据转换工作，与其他三方厂家（乙方）一样，自顾一亩三分地，完成了端对端的数据支撑，然而对于甲方而言，各个厂家的端的数据采集无疑是对生产系统的增加多倍压力，另外厂家之间的数据交换也是常态。</p>
-<p>建设数据仓库的模式有由上而下以及由下而上两种模式，对于大企业而言，各个部门的运营模式、业务方向均有千差万别，部门大多建设自己的数据仓库，公司从各个部门建设的数据仓库之上建立总的数据仓库。在我们公司，部门之间数据ETL，一方面因业务模式，另一方面各部门数据平台产品多样化，ETL大多采用ftp、rsync这种文件数据传输方式，日志采集则使用DataStream或flume等。我们通常面临企业之间的数据交互，政府部门的数据推送，即便是一个部门内部数据的交换也是常态，数据共享有利于大数据生态发展，离线平台需要生产系统的数据进行计算，生产系统也需要离线平台的数据支撑。数据交换作为ETL一个升级模式成为企业级数据仓库建设的必然。</p>
-<h3 id="0x1-交换平台的产生"><a href="#0x1-交换平台的产生" class="headerlink" title="0x1 交换平台的产生"></a>0x1 交换平台的产生</h3><p>大多大数据从业人士也认识到数据交换，很多厂家也认识到了ETL模式的与时俱进，阿里的数据工场，亚信的云化交换平台，华为的云化交换平台以及我们的猛犸大数据平台应运而生，大数据交换平台服务于企业（部门、系统）数据交换，数据交换对于用户而言都是透明的，不仅满足传统的ETL功能，同时需要满足动态扩展。<br>大数据形势下，互联网数据仓库较之传统的数据仓库平台有如下特点：</p>
-<p><img src="/knowledge/ea0c5fdb-950f-43ae-86f5-a6201eeaa97f.png" alt="ea0c5fdb-950f-43ae-86f5-a6201eeaa97f"></p>
-<p>为适应数据仓库的发展，那么数据交换平台应该具备哪些能力呢？小编认为可从如下几个方面进行阐述，数据采集能力，数据存储能力，数据管理能力，数据计算能力，平台开放能力，作业调度能力。<br><img src="/knowledge/17d126f8-829b-4698-a332-6eef1cb1ce2b.png" alt="17d126f8-829b-4698-a332-6eef1cb1ce2b"></p>
-<p>(1)    数据采集能力<br>交换平台应支持对表（关系表，k-v表）、文件（结构化、非结构化）、消息、数据流等多种数据形式的支持，同时需支持多样化的采集方式：实时增量流式（flume、DataStream等），消息队列（nsq、Kafaka）等主流技术。由于技术繁杂，种类繁多，选取适合自己业务模式的工具形成组件化利于跨平台部署，这是数据采集应考虑的。（PS：实际上对于日志流式收集的形式通常是效率高，高响应，但也处于不稳定的，易丢失数据等现状。）</p>
-<p>(2)    数据存储能力<br>互联网的数据【大】是毋庸置疑的事实，传统RDBMS的核心设计思想基本上是30年前形成的，在数据仓库领域有相当权威的公司有Teradata、IBM、Oracle、SAP等这里公司均拥有自身数据存储系统以及软硬一体化的大数据解决方案，支持动态扩展的能力，Teradata、Aster Data、GreenPlum都是MPP存储架构，支持PB级别存储（前两者属于商业数据库，GreenPlum开源），这些均是关系型数据库，我们最熟悉的Hadoop是属于SMP架构，支持非结构化、半结构化、结构化数据存储，数据存储平台的选型根据企业的业务模式选定。</p>
-<p>(3)    平台管理能力<br>数据管理：数据的交换忌讳数据冗余，浙江移动大数据中心使用亚信云化交换平台出现了这样的一个场景，厂家A需要生产系统中数据表T1部分字段,，厂家B需要生产系统中数据表T1的所有字段，另有特殊情景长家C需要表中的字段与厂家A有交叉字段现象，生产系统为给三个厂家同时供数，造成了大量数据冗余，空间有效利用率60%不到。</p>
-<p>多租户管理：数据交换本身的一个概念就是交换，意味着多租户，平台是开放的，面向多个部门甚至多个企业，租户可以灵活创建自己的作业体系，提出相应的数据需求，进行自主管理和配置，跨系统或者跨部门的数据请求开放给用户，开启有效的需求管理体系。</p>
-<p>作业管理：ETL平台所需维护的细节繁多，如果交互的接口管理一塌糊涂，比如繁多的FTP、散乱的Shell脚本、crontab定时任务搞晕了运维人员，一旦人员迭代，付出的管理成本很大，建立一套完善的元数据管理体系是保障系统正常运作必需的工具。</p>
-<p>(4)    数据计算能力</p>
-<p>互联网的数据“大”是不争的事实，现在分析一下数据处理技术面临的挑战，近几年见过形形色色的数据仓库，大多使用的自下而上的方式建设，生态数仓中所使用的平台产品多样性，然而传统行业电信也好，银行也好，互联网产品数仓也罢，鲜有PB级别的数仓，面对的用户量几千万，对应的数据是几百TB，数据量少怎么样的建设方案都是无所谓的，当面对10亿级别的用户，PB级别的数据时，如何满足数据计算？如何适应多种数据平台的接入？</p>
-<p>数据交换平台需具备强大的数据计算能力，支持常见的分布式计算模型，以实现数据的预处理（格式转换【例如lzo转换成HFile】，空值处理、数据压缩等）以及常见的计算函数（窗口函数，中位数计算、时序计算、图计算等）。</p>
-<p>(5)    平台开放能力<br>能够对外输出数据，这是企业级的交换平台所应具备的基本能力，数据开放并不意味着谁都可以随意获取数据，放弃数据安全，数据开放表示数据共享，满足企业的各项业务需求，根据部门的具体需求，申请已开放的数据，数据安全保障。</p>
-<p>数据交换平台所应支持的不仅是传统的数据开放，更应具有元数据开放、计算能力的开放，丰富的API提供，既然无法满足所有的个性化需求，那就应有开放的API为其他系统无缝衔接，单纯的数据导出已无法满足业务的发展。</p>
-<p>(6)    作业调度能力<br>调度功能是从ETL工具形成初便拥有的，ETL调度工具发展也从最初的crontab衍生到现在的调度平台，业内企业级的调度工具例如国外的Informatica公司的Informatica、Teradata的 ETL Automation、微软的 SSIS、Control-M，国内的有自主研发阿里的Zeus，亚信的 AI-CLOUD-ETL，华为研发的云-ETL，网易的nschedule、猛犸等，开源的调度工具有Azkaban，Kettle等。</p>
-<p>调度模式是各色各样，有以工作流调度单位，有以作业为调度单位，所支持的作业形式也是多种，脚本形式(shell、python、Perl，ruby)，SQL、Java、MapReduce以及其他组件形式。调度策略也是丰富多样，有时间触发、时间触发、接口通知、手工执行。</p>
-<p>实现任务的统一调度，支持动态扩展的作业类型，丰富的调度模式是数据交换平台应具备的。以上所列举的6项能力提出一些常见的体现，构建数据交换平台所考虑的细节非常多。</p>
-<h3 id="0x3-交换平台建设最佳实践"><a href="#0x3-交换平台建设最佳实践" class="headerlink" title="0x3 交换平台建设最佳实践"></a>0x3 交换平台建设最佳实践</h3><p>很多数据平台提供的是纯粹的数据服务，较少提供Api或元数据服务以满足其他平台的嵌入，业内打造成PaaS级的ETL交换平台屈指可数，技术因素是一方面，业务需求是否需要打造这样一个平台也是其中一个原因，对业务需求的理解，是否具有持续的维护及更新能力又是另一方面。还有一句话是这么说的，规则与灵活怎么取舍？为便于维护可能将主流的需求满足，对于一些个性化的需求则被抛弃，很多公司技术也很强，但打造这样一个ETL交换平台更多的考虑是从用户需求中来，到实践去来，纯粹的为实现功能，大谈性能也未必是一个好的解决方案，业务始终为王。下面设想一个交换平台架构图供参考：<br><img src="/knowledge/ad06504b-d047-4671-aa24-94aabaaa3a00.png" alt="ad06504b-d047-4671-aa24-94aabaaa3a00"></p>
-<p><strong>稍作拓展：</strong><br><img src="/knowledge/8fe41e06-28d7-4405-85f9-7ceffad1f0a1.png" alt="8fe41e06-28d7-4405-85f9-7ceffad1f0a1"></p>
+<h4 id="0x0-生成创建多级文件夹命令"><a href="#0x0-生成创建多级文件夹命令" class="headerlink" title="0x0 生成创建多级文件夹命令"></a>0x0 生成创建多级文件夹命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export mkdir_cmds=`find $&#123;upload_folder&#125; -type d -printf '%P\n' \</span><br><span class="line">          |awk '&#123; \</span><br><span class="line">               split($0,a,"/");            \</span><br><span class="line">               for (i in a) &#123;              \</span><br><span class="line">                  cmds ="mkdir ";          \</span><br><span class="line">                  for (j=1;j&lt;=i;j++) &#123;     \</span><br><span class="line">                      cmds = cmds"/"a[j]   \</span><br><span class="line">                  &#125; print cmds             \</span><br><span class="line">              &#125;                            \</span><br><span class="line">          &#125;'                               \</span><br><span class="line">          |sort|uniq`</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">deletee@pig_house:~/logon_log/bin$ ls -lh</span><br><span class="line">total 48K</span><br><span class="line">-rwxr-xr-x 1 delete pig_house  324 Jan  9 14:59 clearftpfile.sh</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 2.2K Jan 11 12:19 contact_send.sh</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 5.7K Jan  9 14:59 handle_file_repair.sh</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 7.9K Jan 10 10:29 handle_file.sh</span><br><span class="line">drwxr-xr-x 3 delete pig_house 4.0K Jan 14 15:59 logon</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 2.2K Jan 11 12:18 mail_send.sh</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 2.2K Jan 11 12:18 news_send.sh</span><br><span class="line">drwxr-xr-x 3 delete pig_house 4.0K Jan 11 12:19 reg</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 1.4K Jan  9 14:59 repair_login.sh</span><br><span class="line">-rwxr-xr-x 1 delete pig_house 2.8K Jan 16 14:50 send_news.sh</span><br><span class="line"></span><br><span class="line">deletee@pig_house:~/logon_log/bin$ upload_folder="bin"</span><br><span class="line">deletee@pig_house:~/logon_log/bin$ find $&#123;upload_folder&#125; -type d -printf '%P\n' \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">           |awk <span class="string">'&#123; \</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                split(<span class="variable">$0</span>,a,<span class="string">"/"</span>);            \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                <span class="keyword">for</span> (i <span class="keyword">in</span> a) &#123;              \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                   cmds =<span class="string">"mkdir /<span class="variable">$&#123;upload_folder&#125;</span>"</span>;          \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                   <span class="keyword">for</span> (j=1;j&lt;=i;j++) &#123;     \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                       cmds = cmds<span class="string">"/"</span>a[j]   \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">                   &#125; <span class="built_in">print</span> cmds             \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">               &#125;                            \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">           &#125;<span class="string">'                               \</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">           |sort|uniq</span></span><br><span class="line">mkdir /bin/logon</span><br><span class="line">mkdir /bin/logon/bak</span><br><span class="line">mkdir /bin/reg</span><br><span class="line">mkdir /bin/reg/bak</span><br></pre></td></tr></table></figure>
+<h4 id="0x1-生成put文件命令"><a href="#0x1-生成put文件命令" class="headerlink" title="0x1 生成put文件命令"></a>0x1 生成put文件命令</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原理与创建文件夹命令类似<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export put_cmds=`find $&#123;upload_folder&#125; -type f -printf 'put %p $&#123;ftp_target_folder&#125;/%P\n'`</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">deletee@pig_house:upload_path='~/logon_log/bin'</span><br><span class="line">deletee@pig_house:upload_folder='bin'</span><br><span class="line">deletee@pig_house:ftp_target_path='/ftp'</span><br><span class="line"></span><br><span class="line">deletee@pig_house:find $&#123;upload_path&#125; -type f -printf 'put %p $&#123;ftp_target_path&#125;/%P\n'</span><br><span class="line">put ./bin/logon/bak/police-logon.jar.bak /ftp/bin/logon/bak/police-logon.jar.bak</span><br><span class="line">put ./bin/logon/bak/run.sh /ftp/bin/logon/bak/run.sh</span><br><span class="line">put ./bin/logon/bak/stop.sh /ftp/bin/logon/bak/stop.sh</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h4 id="0x2-一个栗子"><a href="#0x2-一个栗子" class="headerlink" title="0x2 一个栗子"></a>0x2 一个栗子</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">upload_path=$1        # 待上传目录</span><br><span class="line">ftp_target_path=$2    # ftp目标目录</span><br><span class="line"></span><br><span class="line">upload_folder=`basename $&#123;upload_path&#125;`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export mkdir_cmds=`find $&#123;upload_path&#125; -type d -printf '%P\n' \</span><br><span class="line">          |awk '&#123; \</span><br><span class="line">               split($0,a,"/");            \</span><br><span class="line">               for (i in a) &#123;              \</span><br><span class="line">                  cmds ="mkdir $&#123;upload_folder&#125;";          \</span><br><span class="line">                  for (j=1;j&lt;=i;j++) &#123;     \</span><br><span class="line">                      cmds = cmds"/"a[j]   \</span><br><span class="line">                  &#125; print cmds             \</span><br><span class="line">              &#125;                            \</span><br><span class="line">          &#125;'                               \</span><br><span class="line">          |sort|uniq`</span><br><span class="line"></span><br><span class="line">export put_cmds=`find $&#123;upload_path&#125; -type f -printf 'put %p $&#123;ftp_target_folder&#125;/%P\n'`</span><br><span class="line"></span><br><span class="line">ftp_host=</span><br><span class="line">ftp_port=</span><br><span class="line">ftp_username=</span><br><span class="line">ftp_password=</span><br><span class="line">ftp -i -n &lt;&lt; EOF</span><br><span class="line">open $ftp_host $ftp_port</span><br><span class="line">user $ftp_username $ftp_password</span><br><span class="line">bi</span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;mkdir_cmds&#125;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;put_cmds&#125;</span></span><br><span class="line">bye</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h4 id="0XF-总结"><a href="#0XF-总结" class="headerlink" title="0XF 总结"></a>0XF 总结</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;利用生成ftp命令的方式，避免多层级及不定层级目录的创建ftp目录的繁琐。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大家觉得怎么样？或是有更好的方法！</p>
 
       
     </div>
@@ -587,7 +558,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据仓库/" rel="tag"># 数据仓库</a>
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+            <a href="/tags/awk/" rel="tag"># awk</a>
+          
+            <a href="/tags/ftp/" rel="tag"># ftp</a>
           
         </div>
       
@@ -600,15 +575,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/10/scala-programing-string/" rel="next" title="一起来学Scala(3)-字符串">
+                <i class="fa fa-chevron-left"></i> 一起来学Scala(3)-字符串
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/16/fuse-hdfs/" rel="prev" title="利用fuse_dfs快速建立hdfs云存储">
-                利用fuse_dfs快速建立hdfs云存储 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -874,7 +849,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0-ETL之定位"><span class="nav-number">1.</span> <span class="nav-text">0x0 ETL之定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x1-交换平台的产生"><span class="nav-number">2.</span> <span class="nav-text">0x1 交换平台的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-交换平台建设最佳实践"><span class="nav-number">3.</span> <span class="nav-text">0x3 交换平台建设最佳实践</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x0-生成创建多级文件夹命令"><span class="nav-number">1.</span> <span class="nav-text">0x0 生成创建多级文件夹命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x1-生成put文件命令"><span class="nav-number">2.</span> <span class="nav-text">0x1 生成put文件命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x2-一个栗子"><span class="nav-number">3.</span> <span class="nav-text">0x2 一个栗子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0XF-总结"><span class="nav-number">4.</span> <span class="nav-text">0XF 总结</span></a></li></ol></div>
             
 
           </div>
