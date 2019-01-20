@@ -1647,7 +1647,7 @@ pre .javascript .function {
   display: none;
 }
 .posts-collapse .post-title {
-  margin-left: 60px;
+  margin-left: 100px;
   font-size: 16px;
   font-weight: normal;
   line-height: inherit;
@@ -2055,7 +2055,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1753ff;
+  background: #fbd539;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2652,7 +2652,7 @@ ul.popular-posts .popular-posts-item .popular-posts-title {
   text-align: center;
 }
 .category-all-page .category-all {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .category-all-page .category-list {
   margin: 0;
@@ -2660,7 +2660,7 @@ ul.popular-posts .popular-posts-item .popular-posts-title {
   list-style: none;
 }
 .category-all-page .category-list-item {
-  margin: 5px 10px;
+  margin: 5px 30px;
 }
 .category-all-page .category-list-count {
   color: #bbb;
