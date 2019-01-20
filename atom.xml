@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://deletee.github.io/"/>
-  <updated>2019-01-16T13:18:48.110Z</updated>
+  <updated>2019-01-20T14:40:12.032Z</updated>
   <id>https://deletee.github.io/</id>
   
   <author>
@@ -15,6 +15,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何使用Hive窗口函数</title>
+    <link href="https://deletee.github.io/2019/01/20/how-to-use-window-func/"/>
+    <id>https://deletee.github.io/2019/01/20/how-to-use-window-func/</id>
+    <published>2019-01-20T13:48:30.000Z</published>
+    <updated>2019-01-20T14:40:12.032Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;窗口函数常常用于我们业务中的复杂计算，本文介绍Hive中几个常用的窗口函数，并用案例讲述如何使用。那么我们常用的窗口函数有哪些？</p><div class="table-container"><table><thead><tr><th>函数名</th><th>备注</th></tr></thead><tbody><tr><td>row_number</td><td>分组内根据排列条件从1开始的排序，没有相同的序号</td></tr><tr><td>rank</td><td>分组内根据排列条件从1开始的排序，排名相等会在名次中留下空位，例如：1，2，2，4</td></tr><tr><td>dense_rank</td><td>分组内根据排列条件从1开始的排序，排名相等会在名次中不会留下空位，例如：1，2，2，3</td></tr><tr><td>lag</td><td>分组内根据排列条件取前第n个值</td></tr><tr><td>lead</td><td>分组内根据排列条件取后第n个值，与 lag相反</td></tr><tr><td>first_value</td><td>分组内根据排列条件去分组第一个值</td></tr><tr><td>last_value</td><td>分组内根据排列条件去分组最后一个值</td></tr><tr><td>min</td><td>分组内取最小值</td></tr><tr><td>max</td><td>分组内取最大值</td></tr><tr><td>sum</td><td>分组内取分组值的和</td></tr><tr><td>…</td><td>…</td></tr></tbody></table></div><a id="more"></a><p>PS: 所有的窗口函数都将是生成的一个新列，并不会对原有数据列造成影响</p><p>下面将一一这些函数的使用。</p><h4 id="0x0-row-number"><a href="#0x0-row-number" class="headerlink" title="0x0 row_number"></a>0x0 row_number</h4><p>row_number 可以说是最常用的一个窗口函数。</p><p>举个栗子「🌰」：我们有一组数据，是一个班级一学期4次数学月考的成绩表 <code>score</code></p><div class="table-container"><table><thead><tr><th>学生ID(sid)</th><th>第几次月考（exam_time）</th><th>成绩(score)</th></tr></thead><tbody><tr><td>s001</td><td>1</td><td>83</td></tr><tr><td>s001</td><td>2</td><td>87</td></tr><tr><td>s001</td><td>3</td><td>84</td></tr><tr><td>s001</td><td>4</td><td>89</td></tr><tr><td>s002</td><td>1</td><td>90</td></tr><tr><td>s002</td><td>2</td><td>75</td></tr><tr><td>s002</td><td>3</td><td>89</td></tr><tr><td>s002</td><td>4</td><td>82</td></tr></tbody></table></div><p><strong>那么Question：请问每个学生4次月考成绩中最好的一次是哪一次月考？</strong></p><p>此时，max的手法是不能够使用了，如果解决上述问题？实际上是将根据每个学生进行分组，即每个学生的4次月考为一组，那么计算这个分组成绩中的最大值即可</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">      <span class="keyword">sid</span></span><br><span class="line">     ,exam_time</span><br><span class="line">     ,score</span><br><span class="line"><span class="keyword">from</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">sid</span></span><br><span class="line">          ,exam_time</span><br><span class="line">          ,score</span><br><span class="line">          ,row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> <span class="keyword">sid</span> <span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>) <span class="keyword">as</span> r_idx</span><br><span class="line">    <span class="keyword">from</span> score</span><br><span class="line">)t </span><br><span class="line"><span class="keyword">where</span> t.r_idx = <span class="number">1</span></span><br></pre></td></tr></table></figure><p><strong>说明：</strong></p><p>我们称 row_number 为窗口函数，over为从句，窗口函数与over配合使用</p><p>1、使用PARTITION BY语句，使用一个或者多个原始数据类型的列进行分组<br>2、使用ORDER BY语句，使用一个或者多个数据类型的排序列 </p><p>反过来over 中若不指定 partition by 的数据列，那么整个表作为一个默认分组，同理不指定 order by 那么默认当前顺序，<strong>大家先只需了解这两点，熟练之后可以学习第三点</strong>。</p><p>3、使用窗口规范，窗口规范支持以下格式：</p><p>(ROWS | RANGE) BETWEEN (UNBOUNDED | [num]) PRECEDING AND ([num] PRECEDING | CURRENT ROW | (UNBOUNDED | [num]) FOLLOWING)<br>(ROWS | RANGE) BETWEEN CURRENT ROW AND (CURRENT ROW | (UNBOUNDED | [num]) FOLLOWING)<br>(ROWS | RANGE) BETWEEN [num] FOLLOWING AND (UNBOUNDED | [num]) FOLLOWING</p><p>详细参考文档：<a href="https://cwiki.apache.org/confluence/display/ASTERIXDB/Window+Functions" target="_blank" rel="noopener">Hive官方参考文档</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;窗口函数常常用于我们业务中的复杂计算，本文介绍Hive中几个常用的窗口函数，并用案例讲述如何使用。那么我们常用的窗口函数有哪些？&lt;/p&gt;
+&lt;div class=&quot;table-container&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;函数名&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;row_number&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件从1开始的排序，没有相同的序号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rank&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件从1开始的排序，排名相等会在名次中留下空位，例如：1，2，2，4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dense_rank&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件从1开始的排序，排名相等会在名次中不会留下空位，例如：1，2，2，3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lag&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件取前第n个值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lead&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件取后第n个值，与 lag相反&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;first_value&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件去分组第一个值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;last_value&lt;/td&gt;
+&lt;td&gt;分组内根据排列条件去分组最后一个值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;min&lt;/td&gt;
+&lt;td&gt;分组内取最小值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;max&lt;/td&gt;
+&lt;td&gt;分组内取最大值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;sum&lt;/td&gt;
+&lt;td&gt;分组内取分组值的和&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="0x2 技术平台" scheme="https://deletee.github.io/categories/0x2-%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0/"/>
+    
+      <category term="0x21 Hive" scheme="https://deletee.github.io/categories/0x2-%E6%8A%80%E6%9C%AF%E5%B9%B3%E5%8F%B0/0x21-Hive/"/>
+    
+    
+      <category term="Hive" scheme="https://deletee.github.io/tags/Hive/"/>
+    
+      <category term="SQL" scheme="https://deletee.github.io/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>ftp上传目录的方法</title>
@@ -491,7 +573,7 @@
     <link href="https://deletee.github.io/2016/07/01/hbase-bulk-load/"/>
     <id>https://deletee.github.io/2016/07/01/hbase-bulk-load/</id>
     <published>2016-07-01T07:46:30.000Z</published>
-    <updated>2019-01-16T14:00:18.283Z</updated>
+    <updated>2019-01-17T10:44:45.397Z</updated>
     
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在数据仓库开发过程中，我们可能将HBase作为我们数据即服务的持久化存储介质，由此大量的数据模型从数据仓库计算后写入至HBase。通常我们使用HBase提供的API方法，实现了接口调用，但对于海量的数据，接口的调用引起HBase cpu、内存占用过高，影响正常业务使用。于是我们着手研究HFile BulkLoad的方式进行离线数据加载。</p><a id="more"></a><h4 id="0x0-HBase的存储文件格式：HFile"><a href="#0x0-HBase的存储文件格式：HFile" class="headerlink" title="0x0 HBase的存储文件格式：HFile"></a>0x0 HBase的存储文件格式：HFile</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HBase实际的存储文件功能是由HFile类实现的，它被专门创建以达到一个目的：有效地存储HBase的数据。它们基于Hadoop的TFile类，并模仿-Google的BigTable架构使用的SSTable格式。曾在HBase中使用过的Hadoop的MapFile类被证明性能不够好。<br><img src="/knowledge/image-20190116214700183.png" alt="image-20190116214700183"></p><h4 id="0x1-BulkLoad原理"><a href="#0x1-BulkLoad原理" class="headerlink" title="0x1 BulkLoad原理"></a>0x1 BulkLoad原理</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用 Bulk Load 方式由于利用了 HBase 的数据信息是按照特定格式存储在 HDFS 里的这一特性，直接在 HDFS 中生成持久化的 HFile 数据格式文件，然后完成巨量数据快速入库的操作，配合 MapReduce 完成这样的操作，不占用 Region 资源，不会产生巨量的写入 I/O，所以需要较少的 CPU 和网络资源。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bulk Load 的实现原理是通过一个 MapReduce Job 来实现的，通过 Job 直接生成一个 HBase 的内部 HFile 格式文件，用来形成一个特殊的 HBase 数据表，然后直接将数据文件加载到运行的集群中。使用 Bulk Load 功能最简单的方式就是使用ImportTsv 工具，ImportTsv 是 HBase 的一个内置工具，目的是从 TSV 文件直接加载内容至 HBase。它通过运行一个 MapReduce Job, 将数据从 TSV 文件中直接写入 HBase 的表或者写入一个 HBase 的自有格式数据文件。</p><h4 id="0x2-结合MapReduce生成HFile"><a href="#0x2-结合MapReduce生成HFile" class="headerlink" title="0x2 结合MapReduce生成HFile"></a>0x2 结合MapReduce生成HFile</h4><h5 id="0x20-作业的配置"><a href="#0x20-作业的配置" class="headerlink" title="0x20 作业的配置"></a>0x20 作业的配置</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Job Configure</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Job job = Job.getInstance(conf,<span class="string">"HFileProducerETL"</span>);</span><br><span class="line">        job.setJarByClass(HFileProducerETL2.class);</span><br><span class="line">        TableMapReduceUtil.addDependencyJars(job);</span><br><span class="line">        job.setMapperClass(BulkLoadMapper.class);</span><br><span class="line">        job.setReducerClass(KeyValueSortReducer.class);</span><br><span class="line">        job.setMapOutputKeyClass(ImmutableBytesWritable.class);</span><br><span class="line">        job.setOutputValueClass(KeyValue.class);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fs.exists(outputPath)) &#123;</span><br><span class="line">            fs.delete(outputPath, <span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        FileInputFormat.setInputPaths(job,inputPath);</span><br><span class="line">        FileOutputFormat.setOutputPath(job,outputPath);</span><br><span class="line">        HTable htable =<span class="keyword">new</span> HTable(conf, tablename);</span><br><span class="line">        HFileOutputFormat2.configureIncrementalLoad(job,htable,htable);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> job.waitForCompletion(<span class="keyword">false</span>) ? <span class="number">0</span> : <span class="number">1</span>;</span><br></pre></td></tr></table></figure><h5 id="0x21-Map"><a href="#0x21-Map" class="headerlink" title="0x21 Map"></a>0x21 Map</h5><p>​             key 类：ImmutableBytesWritable<br>​          value 类：KeyValue</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                String line = value.toString();</span><br><span class="line">                String[] all_column_values = line.split(context.getConfiguration().get(FILE_DELIMITER_STR),-<span class="number">1</span>);</span><br><span class="line">                String rowKeyString = all_column_values[rowKeyIndex];</span><br><span class="line">                <span class="keyword">byte</span>[] rowKey=Bytes.toBytes(rowKeyString);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// rowKey 赋值</span></span><br><span class="line">                ImmutableBytesWritable rowKeyWritable=<span class="keyword">new</span> ImmutableBytesWritable(rowKey);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (all_column_name.length!=all_column_values.length)&#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; all_column_name.length; i++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (export_column_index[i] == EXPORT_FLAG</span><br><span class="line">                            &amp;&amp; !all_column_values[i].trim().equals(HBaseConstant.HiveNULL)</span><br><span class="line">                            &amp;&amp; !all_column_values[i].trim().equals(HBaseConstant.HBaseNull)</span><br><span class="line">                            &amp;&amp; !all_column_values[i].trim().equals(HBaseConstant.HEmpty)</span><br><span class="line">                    )&#123;</span><br><span class="line">                        KeyValue kv ;</span><br><span class="line">                        <span class="comment">// 如果是 HFILE_CLEAR_FLAG 则 清空</span></span><br><span class="line">                        <span class="keyword">if</span> (all_column_values[i].equals(HBaseConstant.HFILE_CLEAR_FLAG))&#123;</span><br><span class="line">                            all_column_values[i]=HBaseConstant.HEmpty;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (timestampIndex == TIMESTAMP_COLUMN_DEFAULT_INDEX)&#123;</span><br><span class="line">                            kv = <span class="keyword">new</span> KeyValue(rowKey, CF, Bytes.toBytes(all_column_name[i]),Bytes.toBytes(all_column_values[i]));</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span>&#123;</span><br><span class="line">                            Long timestamp_value = Long.parseLong(all_column_values[timestampIndex]);</span><br><span class="line">                            kv = <span class="keyword">new</span> KeyValue(rowKey, CF, Bytes.toBytes(all_column_name[i]),timestamp_value,Bytes.toBytes(all_column_values[i]));</span><br><span class="line">                        &#125;</span><br><span class="line">                        context.write(rowKeyWritable,kv);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><h5 id="0x22-BulkLoad"><a href="#0x22-BulkLoad" class="headerlink" title="0x22 BulkLoad"></a>0x22 BulkLoad</h5><p>​      生成HFile之后，load相对就比较简单了，代码如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Configuration conf = DefConfiguration.GetConfiguration(hbaseEnv);</span><br><span class="line">conf.setInt(<span class="string">"hbase.mapreduce.bulkload.max.hfiles.perRegion.perFamily"</span>,<span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line">HTable htable =<span class="keyword">new</span> HTable(conf, tableName);</span><br><span class="line">LoadIncrementalHFiles loader = <span class="keyword">new</span> LoadIncrementalHFiles(conf);</span><br><span class="line">loader.doBulkLoad(hFilePath, htable);</span><br></pre></td></tr></table></figure>]]></content>
     

@@ -55,9 +55,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -67,10 +64,6 @@
 
   
 
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -391,6 +384,239 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://deletee.github.io/2019/01/20/how-to-use-window-func/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pig House">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/20/how-to-use-window-func/" class="post-title-link" itemprop="url">如何使用Hive窗口函数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-20 21:48:30 / 修改时间：22:40:12" itemprop="dateCreated datePublished" datetime="2019-01-20T21:48:30+08:00">2019-01-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x2-技术平台/" itemprop="url" rel="index"><span itemprop="name">0x2 技术平台</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x2-技术平台/0x21-Hive/" itemprop="url" rel="index"><span itemprop="name">0x21 Hive</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;窗口函数常常用于我们业务中的复杂计算，本文介绍Hive中几个常用的窗口函数，并用案例讲述如何使用。那么我们常用的窗口函数有哪些？</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>row_number</td>
+<td>分组内根据排列条件从1开始的排序，没有相同的序号</td>
+</tr>
+<tr>
+<td>rank</td>
+<td>分组内根据排列条件从1开始的排序，排名相等会在名次中留下空位，例如：1，2，2，4</td>
+</tr>
+<tr>
+<td>dense_rank</td>
+<td>分组内根据排列条件从1开始的排序，排名相等会在名次中不会留下空位，例如：1，2，2，3</td>
+</tr>
+<tr>
+<td>lag</td>
+<td>分组内根据排列条件取前第n个值</td>
+</tr>
+<tr>
+<td>lead</td>
+<td>分组内根据排列条件取后第n个值，与 lag相反</td>
+</tr>
+<tr>
+<td>first_value</td>
+<td>分组内根据排列条件去分组第一个值</td>
+</tr>
+<tr>
+<td>last_value</td>
+<td>分组内根据排列条件去分组最后一个值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>分组内取最小值</td>
+</tr>
+<tr>
+<td>max</td>
+<td>分组内取最大值</td>
+</tr>
+<tr>
+<td>sum</td>
+<td>分组内取分组值的和</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/20/how-to-use-window-func/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -2095,196 +2321,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://deletee.github.io/2018/12/28/dim-modeling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="deletee">
-      <meta itemprop="description" content="学好技术，才能吹好牛">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pig House">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/28/dim-modeling/" class="post-title-link" itemprop="url">数据仓库专题(4)-维度建模</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-28 15:46:30" itemprop="dateCreated datePublished" datetime="2018-12-28T15:46:30+08:00">2018-12-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-16 21:20:01" itemprop="dateModified" datetime="2019-01-16T21:20:01+08:00">2019-01-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x1-数据仓库/" itemprop="url" rel="index"><span itemprop="name">0x1 数据仓库</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/0x1-数据仓库/0x11-数据建模/" itemprop="url" rel="index"><span itemprop="name">0x11 数据建模</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1、什么是维度建模？"><a href="#1、什么是维度建模？" class="headerlink" title="1、什么是维度建模？"></a>1、什么是维度建模？</h3><p><strong>理解关键字：</strong>维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解</p>
-<p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/28/dim-modeling/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-      
-
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2336,7 +2372,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2716,7 +2752,7 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=6.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
 
 
 
@@ -2725,6 +2761,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 
   
 
