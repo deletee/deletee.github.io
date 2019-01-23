@@ -1547,6 +1547,7 @@ pre .javascript .function {
 }
 .posts-expand .post-body img {
   margin: 0 auto 25px;
+  border: 0;
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -2055,7 +2056,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffff04;
+  background: #bf8b17;
 }
 .links-of-blogroll {
   font-size: 13px;
