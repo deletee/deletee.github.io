@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: 'Monaco', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Ubuntu', 'Monaco', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h1,
 h2,
@@ -2056,7 +2056,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #bf8b17;
+  background: #ffffbf;
 }
 .links-of-blogroll {
   font-size: 13px;
