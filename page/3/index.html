@@ -108,7 +108,7 @@
 <meta name="keywords" content="数据仓库,机器学习,ETL,SQL,Linux">
 <meta property="og:type" content="website">
 <meta property="og:title" content="D.TopZ">
-<meta property="og:url" content="http://deletee.top/tags/awk/index.html">
+<meta property="og:url" content="http://deletee.top/page/3/index.html">
 <meta property="og:site_name" content="D.TopZ">
 <meta property="og:description" content="学好技术，才能吹好牛">
 <meta property="og:locale" content="zh-CN">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://deletee.top/tags/awk/"/>
+  <link rel="canonical" href="http://deletee.top/page/3/"/>
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>标签: awk | D.TopZ</title>
+  <title>D.TopZ</title>
   
 
 
@@ -181,7 +181,8 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -368,161 +369,214 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block tag">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>awk<small>标签</small>
-        </h2>
-      </div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2016/07/01/hbase-bulk-load/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/07/01/hbase-bulk-load/" class="post-title-link" itemprop="url">利用HFile BulkLoad实现HBase海量数据加载</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-07-01 15:46:30" itemprop="dateCreated datePublished" datetime="2016-07-01T15:46:30+08:00">2016-07-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-26 21:16:13" itemprop="dateModified" datetime="2019-01-26T21:16:13+08:00">2019-01-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x2-技术平台/" itemprop="url" rel="index"><span itemprop="name">1x2 技术平台</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x2-技术平台/1x22-HBase/" itemprop="url" rel="index"><span itemprop="name">1x22 HBase</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
 
       
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在数据仓库开发过程中，我们可能将HBase作为我们数据即服务的持久化存储介质，由此大量的数据模型从数据仓库计算后写入至HBase。通常我们使用HBase提供的API方法，实现了接口调用，但对于海量的数据，接口的调用引起HBase cpu、内存占用过高，影响正常业务使用。于是我们着手研究HFile BulkLoad的方式进行离线数据加载。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/07/01/hbase-bulk-load/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
-            <a class="post-title-link" href="/2019/01/26/2018-summary/" itemprop="url">
-              
-                <span itemprop="name">2018年，自己做了什么？</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-26T21:29:30+08:00"
-              content="2019-01-26" >
-          2019/01/26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/16/ftp-upload-folder/" itemprop="url">
-              
-                <span itemprop="name">ftp上传目录的方法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-16T20:41:30+08:00"
-              content="2019-01-16" >
-          2019/01/16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/06/awk-basic/" itemprop="url">
-              
-                <span itemprop="name">awk的基本使用方法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-06T15:46:30+08:00"
-              content="2019-01-06" >
-          2019/01/06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/31/awk-application/" itemprop="url">
-              
-                <span itemprop="name">awk的高级应用-多目录输出</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-31T15:46:30+08:00"
-              content="2018-12-31" >
-          2018/12/31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
       
     </div>
 
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -981,6 +1035,10 @@
   
 
   
+  
+    
+      
+    
   
 
   
