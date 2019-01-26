@@ -2,30 +2,149 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://deletee.top/about/index.html</loc>
+    <loc>http://deletee.top/2019/01/09/useful-sql/</loc>
     
-    <lastmod>2019-01-26T13:00:09.005Z</lastmod>
+    <lastmod>2019-01-26T13:17:04.416Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/25/sql-optimization/</loc>
+    
+    <lastmod>2019-01-26T13:16:56.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2019/01/10/scala-programing-string/</loc>
+    
+    <lastmod>2019-01-26T13:16:51.254Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2019/01/22/scala-programing-loop/</loc>
+    
+    <lastmod>2019-01-26T13:16:44.563Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2019/01/07/scala-programing-brief/</loc>
+    
+    <lastmod>2019-01-26T13:16:38.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2019/01/09/scala-programing-basictype/</loc>
+    
+    <lastmod>2019-01-26T13:16:31.779Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://deletee.top/2018/08/16/latex-math-formula/</loc>
     
-    <lastmod>2019-01-26T12:55:10.568Z</lastmod>
+    <lastmod>2019-01-26T13:16:25.588Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2019/01/20/how-to-use-window-func/</loc>
+    
+    <lastmod>2019-01-26T13:16:18.726Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2016/07/01/hbase-bulk-load/</loc>
+    
+    <lastmod>2019-01-26T13:16:13.014Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/08/16/fuse-hdfs/</loc>
+    
+    <lastmod>2019-01-26T13:16:07.062Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2019/01/16/ftp-upload-folder/</loc>
+    
+    <lastmod>2019-01-26T13:16:00.449Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/27/er-modeling/</loc>
+    
+    <lastmod>2019-01-26T13:15:39.901Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://deletee.top/2019/01/05/edw-need-learning/</loc>
     
-    <lastmod>2019-01-26T12:54:47.398Z</lastmod>
+    <lastmod>2019-01-26T13:15:35.044Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2017/06/05/edw-data-exchange/</loc>
+    
+    <lastmod>2019-01-26T13:15:13.905Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/20/edw-brief-summary/</loc>
+    
+    <lastmod>2019-01-26T13:15:04.228Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/28/dim-modeling/</loc>
+    
+    <lastmod>2019-01-26T13:14:58.978Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/29/dim-design/</loc>
+    
+    <lastmod>2019-01-26T13:14:53.475Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/26/data-modeling/</loc>
+    
+    <lastmod>2019-01-26T13:14:46.419Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://deletee.top/2019/01/06/awk-basic/</loc>
     
-    <lastmod>2019-01-26T04:33:02.316Z</lastmod>
+    <lastmod>2019-01-26T13:14:40.098Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/2018/12/31/awk-application/</loc>
+    
+    <lastmod>2019-01-26T13:14:31.891Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://deletee.top/about/index.html</loc>
+    
+    <lastmod>2019-01-26T13:13:33.940Z</lastmod>
     
   </url>
   
@@ -33,125 +152,6 @@
     <loc>http://deletee.top/schedule/index.html</loc>
     
     <lastmod>2019-01-24T05:35:32.939Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/22/scala-programing-loop/</loc>
-    
-    <lastmod>2019-01-23T01:38:07.713Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/16/ftp-upload-folder/</loc>
-    
-    <lastmod>2019-01-22T13:50:26.094Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/31/awk-application/</loc>
-    
-    <lastmod>2019-01-22T13:50:00.265Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/20/how-to-use-window-func/</loc>
-    
-    <lastmod>2019-01-20T14:40:12.032Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2016/07/01/hbase-bulk-load/</loc>
-    
-    <lastmod>2019-01-17T10:44:45.397Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/10/scala-programing-string/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.582Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/08/16/fuse-hdfs/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.581Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2017/06/05/edw-data-exchange/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.580Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/09/useful-sql/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.579Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/29/dim-design/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.579Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/25/sql-optimization/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.577Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/07/scala-programing-brief/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.576Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2019/01/09/scala-programing-basictype/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.575Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/27/er-modeling/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.572Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/20/edw-brief-summary/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.569Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/28/dim-modeling/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.568Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/2018/12/26/data-modeling/</loc>
-    
-    <lastmod>2019-01-16T13:20:01.567Z</lastmod>
     
   </url>
   
