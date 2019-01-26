@@ -1728,7 +1728,7 @@ pre .javascript .function {
 }
 .posts-expand .post-meta time {
   border-bottom: 1px dashed #999;
-  cursor: help;
+  cursor: default;
 }
 .post-meta-divider {
   margin: 0 0.5em;
@@ -2051,7 +2051,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0b1f1f;
+  background: #83a1ff;
 }
 .links-of-blogroll {
   font-size: 13px;
