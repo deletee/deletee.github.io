@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://deletee.top/about/index.html</loc>
+    
+    <lastmod>2019-01-26T13:20:56.675Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://deletee.top/2019/01/09/useful-sql/</loc>
     
     <lastmod>2019-01-26T13:17:04.416Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>http://deletee.top/2018/12/31/awk-application/</loc>
     
     <lastmod>2019-01-26T13:14:31.891Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://deletee.top/about/index.html</loc>
-    
-    <lastmod>2019-01-26T13:13:33.940Z</lastmod>
     
   </url>
   
