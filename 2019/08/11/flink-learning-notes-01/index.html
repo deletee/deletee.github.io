@@ -114,8 +114,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://deletee.top/knowledge/flink-install-check.jpg">
 <meta property="og:image" content="http://deletee.top/knowledge/flink-maven-java-create.jpg">
-<meta property="og:image" content="http://deletee.top/Users/deletee/blog/themes/next/source/knowledge/flink-run-result.jpg">
-<meta property="og:updated_time" content="2019-08-11T09:43:27.155Z">
+<meta property="og:image" content="http://deletee.top/knowledge/flink-run-result.jpg">
+<meta property="og:updated_time" content="2019-08-11T09:56:03.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink学习笔记01-&gt;Mac下部署flink并构建简单程序">
 <meta name="twitter:description" content="说在前面的话 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;随着Flink大数据平台快速发展及日益成熟，公司也逐步利用Flink来解决业务问题，之前也学过Scala，Spark，由于本人在实际工作中应用场景较少，基本上又忘了。本次利用一个月的时间，每天更新一篇自学笔记用以记录及知识分享。">
@@ -541,7 +541,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 开启输入流 端口监听</span></span><br><span class="line">nc -kl 9000</span><br></pre></td></tr></table></figure>
 <p>运行程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flink run -c org.hz.detelee.x01.SocketTextStreamWordCount flink-learning-1.0-SNAPSHOT.jar 127.0.0.1 9000</span><br></pre></td></tr></table></figure></p>
 <p>查看结果日志<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd $FLINK_HOME/libexec/log/</span><br><span class="line">tail -f flink-deletee-taskexecutor-0-localhost.out</span><br></pre></td></tr></table></figure></p>
-<p><img src="/Users/deletee/blog/themes/next/source/knowledge/flink-run-result.jpg" alt=""></p>
+<p><img src="/knowledge/flink-run-result.jpg" alt=""></p>
 
       
     </div>
