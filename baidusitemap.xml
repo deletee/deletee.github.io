@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://deletee.top/2019/08/11/flink-learning-notes-02/</loc>
+    <lastmod>2019-08-13</lastmod>
+  </url>  <url>
     <loc>http://deletee.top/2019/08/11/flink-learning-notes-01/</loc>
-    <lastmod>2019-08-11</lastmod>
+    <lastmod>2019-08-13</lastmod>
   </url>  <url>
     <loc>http://deletee.top/2017/06/05/edw-data-exchange/</loc>
     <lastmod>2019-08-11</lastmod>
