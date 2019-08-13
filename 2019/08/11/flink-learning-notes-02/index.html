@@ -112,15 +112,15 @@
 <meta property="og:site_name" content="D.TopZ">
 <meta property="og:description" content="说在前面的话&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;随着Flink大数据平台快速发展及日益成熟，公司也逐步利用Flink来解决业务问题，之前也学过Scala，Spark，由于本人在实际工作中应用场景较少，基本上又忘了。本次利用一个月的时间，每天更新一篇自学笔记用以记录及知识分享。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://deletee.top/knowledge/flink-logo.jpeg%20=601x361">
+<meta property="og:image" content="http://deletee.top/knowledge/flink-logo.jpeg">
 <meta property="og:image" content="http://deletee.top/knowledge/flink-install-check.jpg">
 <meta property="og:image" content="http://deletee.top/knowledge/flink-maven-java-create.jpg">
 <meta property="og:image" content="http://deletee.top/knowledge/flink-run-result.jpg">
-<meta property="og:updated_time" content="2019-08-13T01:16:39.539Z">
+<meta property="og:updated_time" content="2019-08-13T01:20:29.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink学习笔记01-&gt;Mac下部署flink并构建简单程序">
 <meta name="twitter:description" content="说在前面的话&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;随着Flink大数据平台快速发展及日益成熟，公司也逐步利用Flink来解决业务问题，之前也学过Scala，Spark，由于本人在实际工作中应用场景较少，基本上又忘了。本次利用一个月的时间，每天更新一篇自学笔记用以记录及知识分享。">
-<meta name="twitter:image" content="http://deletee.top/knowledge/flink-logo.jpeg%20=601x361">
+<meta name="twitter:image" content="http://deletee.top/knowledge/flink-logo.jpeg">
 
 
 
@@ -510,7 +510,8 @@
       
 
       
-        <h4 id="说在前面的话"><a href="#说在前面的话" class="headerlink" title="说在前面的话"></a>说在前面的话</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着Flink大数据平台快速发展及日益成熟，公司也逐步利用Flink来解决业务问题，之前也学过Scala，Spark，由于本人在实际工作中应用场景较少，基本上又忘了。本次利用一个月的时间，每天更新一篇自学笔记用以记录及知识分享。<br><img src="/knowledge/flink-logo.jpeg =601x361" alt=""><br><a id="more"></a></p>
+        <h4 id="说在前面的话"><a href="#说在前面的话" class="headerlink" title="说在前面的话"></a>说在前面的话</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着Flink大数据平台快速发展及日益成熟，公司也逐步利用Flink来解决业务问题，之前也学过Scala，Spark，由于本人在实际工作中应用场景较少，基本上又忘了。本次利用一个月的时间，每天更新一篇自学笔记用以记录及知识分享。<br><img src="/knowledge/flink-logo.jpeg" width="601" height="361" alt="图片名称" align="center"></p>
+<a id="more"></a>
 <h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jdk-1.8</span><br><span class="line">flink-1.6.0</span><br></pre></td></tr></table></figure>
 <p>Mac 下安装 flink<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install apache-flink</span><br></pre></td></tr></table></figure></p>
 <p>若是网络不好的话，可能会下载非常慢（brew下载未完成的文件后缀为.incomplete）或是失败，可以把brew待下载的包通过其他渠道先下载到cache路径下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deletee [~] → brew --cache</span><br><span class="line">/Users/deletee/Library/Caches/Homebrew</span><br></pre></td></tr></table></figure></p>
