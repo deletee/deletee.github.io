@@ -255,7 +255,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">21</span></a>
 
   </li>
         
@@ -274,7 +274,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">29</span></a>
 
   </li>
         
@@ -373,6 +373,596 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2019/01/20/how-to-use-window-func/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/20/how-to-use-window-func/" class="post-title-link" itemprop="url">如何使用Hive窗口函数</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-20 21:48:30" itemprop="dateCreated datePublished" datetime="2019-01-20T21:48:30+08:00">2019-01-20</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x2-技术平台/" itemprop="url" rel="index"><span itemprop="name">1x2 技术平台</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x2-技术平台/1x21-Hive/" itemprop="url" rel="index"><span itemprop="name">1x21 Hive</span></a></span>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;窗口函数常常用于我们业务中的复杂计算，本文介绍Hive中几个常用的窗口函数，并用案例讲述如何使用。那么我们常用的窗口函数有哪些？</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>row_number</td>
+<td>分组内根据排列条件从1开始的排序，没有相同的序号</td>
+</tr>
+<tr>
+<td>rank</td>
+<td>分组内根据排列条件从1开始的排序，排名相等会在名次中留下空位，例如：1，2，2，4</td>
+</tr>
+<tr>
+<td>dense_rank</td>
+<td>分组内根据排列条件从1开始的排序，排名相等会在名次中不会留下空位，例如：1，2，2，3</td>
+</tr>
+<tr>
+<td>lag</td>
+<td>分组内根据排列条件取前第n个值</td>
+</tr>
+<tr>
+<td>lead</td>
+<td>分组内根据排列条件取后第n个值，与 lag相反</td>
+</tr>
+<tr>
+<td>first_value</td>
+<td>分组内根据排列条件去分组第一个值</td>
+</tr>
+<tr>
+<td>last_value</td>
+<td>分组内根据排列条件去分组最后一个值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>分组内取最小值</td>
+</tr>
+<tr>
+<td>max</td>
+<td>分组内取最大值</td>
+</tr>
+<tr>
+<td>sum</td>
+<td>分组内取分组值的和</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/20/how-to-use-window-func/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2019/01/16/ftp-upload-folder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/16/ftp-upload-folder/" class="post-title-link" itemprop="url">ftp上传目录的方法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-16 20:41:30" itemprop="dateCreated datePublished" datetime="2019-01-16T20:41:30+08:00">2019-01-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x0-开发语言/" itemprop="url" rel="index"><span itemprop="name">1x0 开发语言</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x0-开发语言/1x00-一起来学Shell/" itemprop="url" rel="index"><span itemprop="name">1x00 一起来学Shell</span></a></span>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;众所周知，使用ftp命令是不能够直接上传文件夹的，然后工作中有很多需要上传目录的场景，通常大家想到的就是先创建文件夹，然后再通过遍历的方式上传文件，其中比较繁琐的是，ftp里不支持，多层级目录直接创建，<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deletee:$ mkdir -p $&#123;dir&#125;/$&#123;subdir&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的方式，只能逐级创建，将造成很多工作量。下面将分享下如何快速有效的实现上传ftp文件夹</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/16/ftp-upload-folder/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2019/01/10/scala-programing-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/10/scala-programing-string/" class="post-title-link" itemprop="url">一起来学Scala(3)-字符串</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-10 23:30:50" itemprop="dateCreated datePublished" datetime="2019-01-10T23:30:50+08:00">2019-01-10</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x0-开发语言/" itemprop="url" rel="index"><span itemprop="name">1x0 开发语言</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x0-开发语言/1x01-一起来学Scala/" itemprop="url" rel="index"><span itemprop="name">1x01 一起来学Scala</span></a></span>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上文中已经介绍了Scala语言中的基本类型，本文着重介绍下字符串的用法，字符串在我们日常开发中经常用到，字符串在Scala中的类型<code>String</code>，那么Scala中的String和Java中的String有什么关系呢？</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="string">"Scala"</span>.getClass.getName</span><br><span class="line">res0: <span class="type">String</span> = java.lang.<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本以为Scala是怎样实现了String，上述代码中告诉我们Scala中的<code>String</code>竟就是Java中的<code>String</code>。我们接下更深层次的学习<code>String</code>。<br><img src="/images/a311e33c02d299ee621f10649459ac73.png" alt="a311e33c02d299ee621f10649459ac73"><br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/10/scala-programing-string/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1623,540 +2213,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://deletee.top/2018/12/28/dim-modeling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="deletee">
-      <meta itemprop="description" content="学好技术，才能吹好牛">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="D.TopZ">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/28/dim-modeling/" class="post-title-link" itemprop="url">数据仓库专题(4)-维度建模</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-28 15:46:30" itemprop="dateCreated datePublished" datetime="2018-12-28T15:46:30+08:00">2018-12-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
-                
-                
-                  ,
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/" itemprop="url" rel="index"><span itemprop="name">1x1 数据仓库</span></a></span>
-                
-                
-                  ,
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/1x11-数据建模/" itemprop="url" rel="index"><span itemprop="name">1x11 数据建模</span></a></span>
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1、什么是维度建模？"><a href="#1、什么是维度建模？" class="headerlink" title="1、什么是维度建模？"></a>1、什么是维度建模？</h3><p><strong>理解关键字：</strong>维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解</p>
-<p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/28/dim-modeling/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-      
-
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://deletee.top/2018/12/27/er-modeling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="deletee">
-      <meta itemprop="description" content="学好技术，才能吹好牛">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="D.TopZ">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/27/er-modeling/" class="post-title-link" itemprop="url">数据仓库专题(3)-ER建模</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-27 15:46:30" itemprop="dateCreated datePublished" datetime="2018-12-27T15:46:30+08:00">2018-12-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
-                
-                
-                  ,
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/" itemprop="url" rel="index"><span itemprop="name">1x1 数据仓库</span></a></span>
-                
-                
-                  ,
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/1x11-数据建模/" itemprop="url" rel="index"><span itemprop="name">1x11 数据建模</span></a></span>
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1、什么是ER建模？"><a href="#1、什么是ER建模？" class="headerlink" title="1、什么是ER建模？"></a>1、什么是ER建模？</h3><p><strong>理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控</strong></p>
-<p>例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/27/er-modeling/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-      
-
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://deletee.top/2018/12/26/data-modeling/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="deletee">
-      <meta itemprop="description" content="学好技术，才能吹好牛">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="D.TopZ">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/26/data-modeling/" class="post-title-link" itemprop="url">数据仓库专题(2)-数据建模</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-26 15:46:30" itemprop="dateCreated datePublished" datetime="2018-12-26T15:46:30+08:00">2018-12-26</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
-                
-                
-                  ,
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/" itemprop="url" rel="index"><span itemprop="name">1x1 数据仓库</span></a></span>
-                
-                
-                  ,
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/1x11-数据建模/" itemprop="url" rel="index"><span itemprop="name">1x11 数据建模</span></a></span>
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="1、为什么需要数据建模？"><a href="#1、为什么需要数据建模？" class="headerlink" title="1、为什么需要数据建模？"></a>1、为什么需要数据建模？</h2><p>理解关键字：数据建模就是数据组织和存储的方法<br>数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。<br>数据模型强调从业务、数据存取和使用角度合理规划数据</p>
-<p>那么为什么需要数据建模呢？我们可以从建模有哪些好处理解</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/26/data-modeling/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-      
-
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2208,7 +2264,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2261,7 +2317,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

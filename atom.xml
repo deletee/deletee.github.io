@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://deletee.top/"/>
-  <updated>2019-08-27T01:42:30.640Z</updated>
+  <updated>2019-11-23T15:01:01.337Z</updated>
   <id>http://deletee.top/</id>
   
   <author>
@@ -15,6 +15,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据仓库-50问</title>
+    <link href="http://deletee.top/2019/11/23/edw-50FAQ/"/>
+    <id>http://deletee.top/2019/11/23/edw-50FAQ/</id>
+    <published>2019-11-23T14:59:30.000Z</published>
+    <updated>2019-11-23T15:01:01.337Z</updated>
+    
+    <content type="html"><![CDATA[<p>​        很长一段时间没有写博客了，由于一些想法暗暗发芽，一直以来工作上的事情太多，也将很多学习内容搁置，今天新增一篇博客，用于</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;​        很长一段时间没有写博客了，由于一些想法暗暗发芽，一直以来工作上的事情太多，也将很多学习内容搁置，今天新增一篇博客，用于&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="3x 职场篇" scheme="http://deletee.top/categories/3x-%E8%81%8C%E5%9C%BA%E7%AF%87/"/>
+    
+      <category term="3x2 面试宝典" scheme="http://deletee.top/categories/3x-%E8%81%8C%E5%9C%BA%E7%AF%87/3x2-%E9%9D%A2%E8%AF%95%E5%AE%9D%E5%85%B8/"/>
+    
+    
+      <category term="职场" scheme="http://deletee.top/tags/%E8%81%8C%E5%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://deletee.top/2019/10/28/%E5%B8%AD%E8%80%81%E5%B8%88%E7%9A%84Mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <id>http://deletee.top/2019/10/28/席老师的Mac使用技巧/</id>
+    <published>2019-10-28T06:00:37.495Z</published>
+    <updated>2019-10-30T01:03:01.079Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="席老师的Mac使用技巧"><a href="#席老师的Mac使用技巧" class="headerlink" title="席老师的Mac使用技巧"></a>席老师的Mac使用技巧</h1><p>标签（空格分隔）： Mac 软件 技巧</p><hr><h1 id="系统篇"><a href="#系统篇" class="headerlink" title="系统篇"></a>系统篇</h1><p> 教程/ 系统偏好设置 -&gt; 触摸板</p><p> 推荐/ 轻点代替点按, 三指取词</p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191028135038066.png" alt="image-20191028135038066" style="zoom: 67%;"><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191028135124139.png" alt="image-20191028135124139"></p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191028135038066.png" alt="image-20191028135038066" style="zoom: 67%;"><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191028135124139.png" alt="image-20191028135124139"></p><h1 id="App-篇"><a href="#App-篇" class="headerlink" title="App 篇"></a>App 篇</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;席老师的Mac使用技巧&quot;&gt;&lt;a href=&quot;#席老师的Mac使用技巧&quot; class=&quot;headerlink&quot; title=&quot;席老师的Mac使用技巧&quot;&gt;&lt;/a&gt;席老师的Mac使用技巧&lt;/h1&gt;&lt;p&gt;标签（空格分隔）： Mac 软件 技巧&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 i
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://deletee.top/2019/10/24/aiops/"/>
+    <id>http://deletee.top/2019/10/24/aiops/</id>
+    <published>2019-10-24T03:19:24.097Z</published>
+    <updated>2019-11-23T13:37:59.192Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="从自动化到智能化，OP-amp-URS-在AIOps探索与实战"><a href="#从自动化到智能化，OP-amp-URS-在AIOps探索与实战" class="headerlink" title="从自动化到智能化，OP&amp;URS 在AIOps探索与实战"></a>从自动化到智能化，OP&amp;URS 在AIOps探索与实战</h3><h4 id="一、运维面临问题与挑战"><a href="#一、运维面临问题与挑战" class="headerlink" title="一、运维面临问题与挑战"></a>一、运维面临问题与挑战</h4><p>​        眼下，随着信息化、数字化的深入发展，技术飞速迭代，应用服务也不断升级，企业面临的运维压力也越来越大，传统运维受到了前所未有的挑战。</p><p>​        （1）运维内容：传统的互联网运维的内容仅是关注软硬件、网络、应用系统及基础设备的运维，而当前将面临数十万台主机、容器，复杂的网络环境，以及复杂的部署环境：私有云、公有云、跨IDC混合部署</p><p>​        （2）运维工具：传统的互联网运维尽管也利用了工具实现了部分工作的自动化，但主要依赖人力，工作量较大，并效率低下，业务快速增长，技术飞速迭代，意味着工具也要顺势升级。</p><p>​        （3）运维模式：7*24小时服务模式，PE\SA\DBA 成为了“救火式”英雄，成千上万的监控指标，一旦故障出现，SA、PE、DBA、开发童鞋齐上阵，被故障牵着走，被动性强且风险高。</p><p>​    <img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027162216325.png" alt="image-20191027162216325" style="zoom:50%;"></p><p>​        OP&amp;URS作为网易运维服务团队，面对新的挑战，这就要求我们打造信息化、数字化的综合管理体系，为企业带来全方位IT运维服务的同时，又可提供定制化、专业化、全链路、无死角的运维解决方案。在大数据时代下，借助机器学习、数据仓库、大数据平台等大数据技术手段，将运维产生的数据进行分析、处理，得出最佳运维策略，以期实现对故障的事先干预，将风险降低到最低，从而降低运维成本，提升运维效率，最终实现运维智能化。</p><h4 id="二、AIOps-现状、定位以及我们的理解"><a href="#二、AIOps-现状、定位以及我们的理解" class="headerlink" title="二、AIOps 现状、定位以及我们的理解"></a>二、AIOps 现状、定位以及我们的理解</h4><p>​        AIOps即智能运维，是 Gartner 在2016年提出的概念，真正火起来是在这两年，这个概念提出后，各大厂都已经先后利用AIOps理念培养智能运维人才梯队，建设智能运维平台、打造智能运维体系。腾讯在2018年推出织云平台（Metis已开源）、百度Noah智能运维平台面向商用，Gartner预测到2020年，将近50%的企业将会在他们的业务和 IT 运维方面采用 AIOps 。高效运维发起人萧田国在《AIOps实施之路》中指出了AIOps在效率提升、质量保障、成本优化提出了系列可应用方向以及实施AIOps需要具备的能力。</p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027160601941.png" alt="image-20191027160601941" style="zoom:50%;"></p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025111136655.png" alt="image-20191025111136655"></p><p>​        OP&amp;URS 于2018年加入智能运维大营，拥抱变化，以实现全链路、无死角智能运维体系为目标，旨在利用AI的能力解决运维行业的问题（1）解决重复造轮子的问题（2）解决运维效率仍然低下的问题（3）运维的数据没有得到合理应用的问题。</p><p>​            <img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025110041310.png" alt="image-20191025110041310"></p><p>​        此图为故障管理全场景图，该图从服务部署、故障发生、故障发现、故障止损、根因诊断、故障恢复、故障关闭，完整的阐述应用监控的故障管理生命周期。</p><p>​        <strong>OP&amp;URS 实施中的智能运维产品形态</strong></p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025110501460.png" alt="image-20191025110501460"></p><p>​        故障预警：通过算法计算KPI曲线变化趋势，故障前发出故障预警；<br>​        故障告警：能对周期性变化指标进行预测和异常检测，且有告警分级；<br>​        告警合并：支持按照合适的维度对告警进行合并，展现概况信息；<br>​        根因分析：智能对故障根因进行分析，给出最可能的原因，辅助人做决策；<br>​        故障自愈：可以根据故障原因选择合适的故障自愈策略并执行，自动解决故障。</p><p>​        <strong>OP&amp;URS 运维产品生态</strong></p><h4 id="三、OP-amp-URS-在AIOps中实战场景-智能监控"><a href="#三、OP-amp-URS-在AIOps中实战场景-智能监控" class="headerlink" title="三、OP&amp;URS 在AIOps中实战场景-智能监控"></a>三、OP&amp;URS 在AIOps中实战场景-智能监控</h4><p>​        笔者自接触智能运维以来，也是三千烦劳丝，如何让运维“智能”起来？如何让AIOps结合网易现有运维体系实施落地? 又如何推进AIOps发展? 种种挑战考验着我们的团队。经过1年来不断探索、研究、试错，我们首先在监控方面突破，下面介绍如何从0到1建设AIOps应用-智能监控系统心路历程。</p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025214253645.png" alt="image-20191025214253645"></p><h5 id="3-1-运维监控现状"><a href="#3-1-运维监控现状" class="headerlink" title="3.1 运维监控现状"></a>3.1 运维监控现状</h5><p>​        随着互联网，特别是移动互联网的高速发展，web服务已经深入到社会的各个领域，人们使用互联网搜索，购物，付款，娱乐等等。因此，保障web服务的稳定已经变的越来越重要。运维人员通过监控各种各样的关键性能指标（KPI）来判断服务、系统是否稳定，因为KPI如果发生异常，往往意味着与其相关的应用发生了问题。这些KPI可能包括：基础KPI及服务KPI，服务KPI是指能够反映Web服务的规模、质量的性能指标，例如，网页响应时间，网页访问量，连接错误数量等。基础KPI是指能够反映机器（服务器、路由器、交换机）健康状态的性能指标，例如，磁盘使用率，CPU使用率，内存使用率，磁盘IO，网卡吞吐率等。</p><p>​        这些KPI数据表现为时序序列，即一条指标曲线（后文统一称KPI曲线）。由此问题转化为对曲线的异常判断，KPI曲线可以简单分类下面三种类型：</p><p>​        周期型：</p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025143935232.png" alt="image-20191025143935232"></p><p>​        随机型：</p><p>​        <img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025143952950.png" alt="image-20191025143952950"></p><pre><code>   平稳型：</code></pre><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027102314080.png" alt="image-20191027102314080"></p><p>​        在OP&amp;URS基于基础设施管理的CMDB系统：哨兵系统，通过哨兵 Agent将数据实时/采样的传输至哨兵服务端进行可视化及报警监控。监控系统主要采用规则判定的报警方式，设定上限、下限阈值，触发规则则发出报警，随着业务集成越来越多，体量也越来越大，规则报警也到了其瓶颈，主要有以下痛点：</p><p>​        （1）需要频繁调整阈值</p><p>​                case1:随着业务变化，已有的阈值适用性变差，当业务发生变动时，报警规则也需要及时调整</p><pre><code>            case2:夜间与白天范围不一样，工作日与周末不一样，统一的阈值适用性较差</code></pre><p>​        （2）覆盖范围有限</p><p>​                传统的方式，需要针对指标的每一项进行设定报警规则，比如在DubboProviderCollector，每个方法对应的调用集群的量不一，需要独立配置报警规则，那么配置将会相当耗时且繁琐，并且很多Dubbo服务接口都是随业务随时新增或下线，很容易被忽视。</p><p>​        （3）无效报警过多</p><p>​                阈值规则报警的方式，往往会出现这样的情况，当阈值设定的太高，异常很难被发现，当阈值设定的太低，则会造成大量报警，造成报警风暴，真正有用的报警消息淹没在风暴中。</p><h5 id="3-2-算法引入"><a href="#3-2-算法引入" class="headerlink" title="3.2 算法引入"></a>3.2 算法引入</h5><p><strong>通用异常检测流程：</strong></p><p>​        <img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025165642930.png" alt="image-20191025165642930"></p><p>​        针对上述痛点，我们思考如何利用算法来突破传统的阈值报警局限性。于是调研了业界使用的各种异常检测算法，较为常见的算法包括逻辑回归、关联关系挖掘、聚类、决策树、随机森林、支持向量机、蒙特卡洛树搜索、隐式马尔科夫、多示例学习、迁移学习、卷积神经网络等 ,数学算法类：k-sigma，Grubbs，Turkey，MeanPercent，Value，AR，MR，ARIMA。    </p><p>​        曾想使用一种或一类算法来解决所有KPI曲线的预测，而碰到业务情况远比我们想象要复杂，例如：首先面临各种不同曲线表现特征不一，同一类型的算法很难做到召回率整体提升；其二，在同样类型dubbo调用异常 KPI曲线波动情况，在URS是可以接受的，但是在其他产品可能是不能接受的异常，可能在URS在意的指标，在其他产品无需在意；第三，尽管想做到一个模型泛华兼容所有场景，但是所需特征工程工作量巨大，特征也很多。</p><p>​        有人说采用投票的方法，用一大堆算法同时预测，对于结果进行投票，少数服从多数，对于这种方式也是存在一定的缺陷，本身每个算法适用性不一样，那么势必在影响投票结果。在OP&amp;URS采用的是分类算法，即在不同的场景下采用一类算法进行预测，以减少误判率，下面调研和使用了上述部分算法：</p><p>​        机器学习类：</p><div class="table-container"><table><thead><tr><th>算法</th><th>优点</th><th>缺点</th></tr></thead><tbody><tr><td>rnn</td><td>适合序列变化</td><td>存在梯度消失现象</td></tr><tr><td>lstm</td><td>解决RNN梯度消息问题</td><td>单指标、单模型</td></tr><tr><td>dnn</td><td>单模型覆盖所有场景，泛华能力比rf更优</td><td>特征工程复杂，需要大量标注数据</td></tr><tr><td>xgboost</td><td>考虑训练数据为稀疏值，分布式并行</td><td>特征工程复杂，需要大量标注数据</td></tr><tr><td>rf</td><td>支持高维度，不用做特征选择、模型泛化能力强</td><td>某些噪音较大的分类或回归问题上会过拟合</td></tr></tbody></table></div><p>​        特征工程是机器学习中一块重要的环节，针对单一KPI表现的数据形态将逐一转换为数据特征，如下将数据特征归类如下5个方面</p><p>​        1、统计特征 ：描述样本内相关的数学表现，例如：方差、均值、中位数、斜率、偏度、峰度等重要指标</p><p>​        2、拟合特征 ：获取曲线的动态特征，根据曲线平稳或不平稳，采用不同模型获取预测值与实际值的差</p><p>​        3、周期特征：利用滑动窗口，傅里叶转换，获取曲线中可能存在的季节性、周期性特征</p><p>​        4、分类特征：基于曲线变换、小波变换、主成分分析等方式 获取曲线分类特征</p><p>​        5、业务特征：KPI具有业务集群效应，工作日邮箱访问量，周末游戏访问量等业务特征</p><p>​        PS：由于篇幅有限，这里就不枚举所有特征，有兴趣的同学可以私下沟通交流。</p><p>​        数学算法类：</p><p>​        （1）恒定阈值类算法<br>​                恒定阈值的含义是表示均值基本恒定，标准差与均值比约等于0（即KPI曲线近似一条直线）</p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025144015477.png" alt="image-20191025144015477"></p><p>​        （2）突升突降类算法</p><p>​                突变的含义是发生了均值漂移</p><p>​                空间转换:𝑟(𝑡)= </p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027174334902.png" alt="image-20191027174334902"></p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027174249030.png" alt="image-20191027174249030"></p><p>​        （3）同比算法<br>​                适用于周期性数据表现，每天同时刻的数据分布相似<br>​                参数估计:求正态分布的均值、方差<br><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027174137205.png" alt="image-20191027174137205">        <img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027174204005.png" alt="image-20191027174204005">                        </p><h5 id="3-3-功能设计"><a href="#3-3-功能设计" class="headerlink" title="3.3 功能设计"></a>3.3 功能设计</h5><p><strong>（1）KPI 管理</strong><br>        标注打标：提供标注打标的功能，标记/取消标记为正负样本，标记后样本自动转存样本库<br>        样本管理：提供样本管理功能，检索、图示、编辑、删除等功能<br>        异常查询：经API检测后的时间序列（仅异常）入库存储，提供管理功能，分页查询、检索、放缩等</p><p><strong>（2）模型管理</strong><br>​        模型管理：提供模型管理功能<br>​        模型训练：支持自定义模型训练<br>       （通过PE或开发标注的异常KPI，正常KPI训练符合自己业务的模型，或使用开放的通用模型）</p><p><strong>（3）KPI异常检测</strong><br>        基于数学统计算法集成<br>        基于机器学习算法集成</p><p><strong>（4）多维度报警聚合</strong><br>        按产品维度合并<br>        按应用维度合并<br>        按集群维度合并<br>        按单机维度合并<br>        按业务类型合并<br>        按报警接收人维度合并</p><p><strong>（5）反馈系统</strong><br>        用户标记、报警关闭</p><h5 id="3-4-架构设计"><a href="#3-4-架构设计" class="headerlink" title="3.4 架构设计"></a>3.4 架构设计</h5><p>​        我们将整个智能监控系统分为7个核心功能模块，每个模块承担异常检测流程中相应功能，整体架构上做到模块之间相互独立，通过数据流信号、RPC进行模块通信。</p><div class="table-container"><table><thead><tr><th>序号</th><th>模块名称</th><th></th></tr></thead><tbody><tr><td>1</td><td>配置管理中心</td><td>配置库、模型库、标注库 相关配置与管理（含UI）</td></tr><tr><td>2</td><td>流式计算中心</td><td>KPI预处理、KPI聚合、KPI分发</td></tr><tr><td>3</td><td>数据存储&amp;读取中心</td><td>用于读写KPI时序数据</td></tr><tr><td>4</td><td>消息中心</td><td>数据→ 消息 用于触发模型计算、插值计算</td></tr><tr><td>5</td><td>算法中心</td><td>异常检测、模型训练</td></tr><tr><td>6</td><td>报警处理中心</td><td>用于解析异常KPI及发送报警内容至哨兵报警中心</td></tr><tr><td>7</td><td>反馈系统</td><td>用于反馈报警是否有效，反馈于模型提升</td></tr></tbody></table></div><p>​        <strong>系统架构如下：</strong></p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191025162947408.png" alt="image-20191025162947408"></p><p>​        <strong>数据架构如下</strong>：</p><p><img src="/Users/deletee/Library/Application Support/typora-user-images/image-20191027164834069.png" alt="image-20191027160601941" style="zoom:60%;"></p><h5 id="3-5-难题"><a href="#3-5-难题" class="headerlink" title="3.5 难题"></a>3.5 难题</h5><p>​        前面介绍了OP&amp;URS 智能监控系统的在智能监控系统中整体功能及架构设计，下面简单聊聊我们碰到一些问题以及解决思路：</p><p>（1）实时计算问题</p><p>​            问题描述：1期采用的是Spark Streaming实时计算框架，通过直连Kafka获取数据源，但是在实际生产中，由于数据源是采样收集（有1分钟采样，有2分钟采样），发现每1分钟会有流量尖刺现象，随着KPI数量增多，尖刺更明显。</p><p>​            分析：经分析，发现Spark Streaming 并非是实时的数据抽取Kafka的数据。然而在Spark Streaming在实时计算中不能支持实时读取数据，而是在窗口结束时一次性抽取，造成了一次抽取大量数据，造成网络波动异常，流量尖刺。</p><p>​            解决方案：由于Spark流式计算本质上是微批处理，尽管使用各种手段（限制抽取数据大小、减少窗口大小），仍然指标不治本，由此尝试找Spark的替代方案，我们调研了Flink，经测试Flink能够完美的解决实时抽取的问题，并在数据延时方面处理有一项不到的效果，显著提高了数据准确度。</p><p>（2）性能问题</p><p>​            问题描述：系统在1期时，为了实时计算历史特征（周期性，同比等），算法计算的输入是360个数据点（当前时间区间的120个点，前一天同区间的120个点，7天前同区间的120个点），历史数据存储在HBase（作为TSDB存在）中，但是随着KPI数量增长（当前已有10万级），三个时间段分布在不同的HBase Key（Key 设计：keyId + DayHour， Column设计：minute）中，意味着每次计算需要查询3次HBase，当KPI到达20万级时，需要查询60万次，由于前期采用的还是Spark Steaming模式计算，QPS超过20w，HBase出现明显延迟。</p><p>​            分析：由于算法所需数据点甚大，实时计算抽取历史数据成为瓶颈，团队的攻城狮们自然想到的是减少算法数据需求，最好是用实时的1个数据点进行计算，但对于算法来说是完全不可能实现的，其一，一个点的输入完全构建不了任何特征，算法无从获知曲线形态，不知道同环比等，只会退化到传统的阈值计算；其二，1期所有特征工程基于360个计算，计算点过度减少相当于1期的算法工作全部推翻重做。经过大量讨论论证，得出如下解决方案：</p><p>​            解决方案：</p><p>​        （1）算法输入精简，由360个数据点更改为当前时间区间的60个点，部分实时特征转为离线计算特征，通过内存加载，无需实时进行计算，既保留当前曲线的数据特征，又能减少实时计算模块的需求。</p><p>​        （2）去HBase改为Redis，将60个缓存至Redis中，采用pipeline方法，进行头尾操作（新数据点插入头部，旧的数据点从尾部剔除）</p><p>​            <strong>AIOps前行的路上荆棘丛生，类似的难题还有很多，很多方法也不一定是最优方案，好在大家愿意尝试，愿意推翻重来。</strong></p><h4 id="四、总结与展望"><a href="#四、总结与展望" class="headerlink" title="四、总结与展望"></a>四、总结与展望</h4><p>​        OP&amp;URS 智能监控系统经历了2期的开发，当前智能监控系统2.0已上线，算法召回率在70%左右，报警覆盖度100%，报警配置成本节省90%，当前传媒、考拉、URS、云阅读、网易金融等产品先后接入智能监控报警（排名不分先后），也多次及时的探测到异常事故及时止损，为客户减少损失。</p><p>​        当前系统也存在很多不足：</p><p>​        （1）算法召回率不高，仍需要专家经验与算法的结合</p><p>​        （2）当前智能监控系统只能基于单KPI计算，不满足多KPI计算</p><p>​        （3）依赖数据源的丰富，缺乏全链路监控</p><p>​        智能监控是AIOps中冰山一角，除了解决当前不足以外，我们还有很多工作要做，例如根因分析，场景监控，故障诊断、故障自愈等等，AIOps之路任重而道远，期待广大志同道合的operator加入AIOps阵营，一起努力。</p><p>​        </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;从自动化到智能化，OP-amp-URS-在AIOps探索与实战&quot;&gt;&lt;a href=&quot;#从自动化到智能化，OP-amp-URS-在AIOps探索与实战&quot; class=&quot;headerlink&quot; title=&quot;从自动化到智能化，OP&amp;amp;URS 在AIOps探索与实
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Flink学习笔记02-&gt;Flink配置文件详解</title>
@@ -542,97 +614,6 @@
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;都说维度设计是维度建模的灵魂，在维度建模中，我们将度量成为「事实」，将环境描述为「维度」，但是如何设计一个好的维度模型，我们需要遵循一定的技巧和方法。&lt;/p&gt;
 &lt;h3 id=&quot;如何标识维度？&quot;&gt;&lt;a href=&quot;#如何标识维度？&quot; class=&quot;headerlink&quot; title=&quot;如何标识维度？&quot;&gt;&lt;/a&gt;如何标识维度？&lt;/h3&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;通常我们都会问「谁、何时、何地、为何、如何」来描述一个事件过程，同样维度可以理解为一个事件或者业务过程的角度，比如商品购买&lt;br&gt;购买人、购买事件、购买产品、购买使用的设备、购买使用的IP等均为维度范畴&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="1x 技术综合篇" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/"/>
-    
-      <category term="1x1 数据仓库" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/1x1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="1x11 数据建模" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/1x1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/1x11-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/"/>
-    
-    
-      <category term="建模" scheme="http://deletee.top/tags/%E5%BB%BA%E6%A8%A1/"/>
-    
-      <category term="数据仓库" scheme="http://deletee.top/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据仓库专题(4)-维度建模</title>
-    <link href="http://deletee.top/2018/12/28/dim-modeling/"/>
-    <id>http://deletee.top/2018/12/28/dim-modeling/</id>
-    <published>2018-12-28T07:46:30.000Z</published>
-    <updated>2019-01-26T13:14:58.978Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、什么是维度建模？"><a href="#1、什么是维度建模？" class="headerlink" title="1、什么是维度建模？"></a>1、什么是维度建模？</h3><p><strong>理解关键字：</strong>维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解</p><p>维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模<br><a id="more"></a></p><h3 id="2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）"><a href="#2、维度建模一般过程（摘自《大数据之路》-amp-《离线和实时大数据之战》）" class="headerlink" title="2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）"></a>2、维度建模一般过程（摘自《大数据之路》 &amp; 《离线和实时大数据之战》）</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kimball四步建模流程适合上述数据仓库系统建设流程中模型设计环节，重点解决数据粒度、维度设计和事实表设计问题。</p><p>（1）选择业务过程</p><p>​          业务过程描述的是企业的业务活动，例如电商系统用户下单，账号系统用户注册了一个账号</p><p>（2）选择粒度</p><p>​           那么什么是粒度呢？粒度是描述的是活动细节的每一个子项，例如，用户注册一个账号，包含了用户名、时间、IP、终端类型、手机号码，帐号类型等</p><p>（3）确定维度</p><p>​           确定维度之前，需要先明确什么是维度？维度是表示业务活动在不同角度的表现方式，例如：注册账号的活动中，从时间、IP、终端类型等角度进行描述</p><p>​           比如：用户名、注册时间、注册IP、注册终端、注册手机号码、注册账号类型（手机账号、邮箱账号、三方账号）</p><p>（4）确定事实</p><p>​          确定维度之后，事实则变的清晰，比如：我们需要计算某终端、某天的注册量</p><p>那么问题来了？</p><hr><p>1、如何确定粒度？</p><p>​             最细粒度和聚合粒度之争？ 到底是选择最细粒度，还是聚合粒度？</p><p>2、如何确定维度？</p><p>​             标识维度解决的是业务人员如何描述来自业务过程的数据，维度用来表示“谁、什么、何时、何处、为何、如何”的问题。以竞价广告检索流程而言就是客户通过什么渠道、什么样的客户端（OS、IP）、检索了什么样的内容、请求最终有谁受理等。</p><p>3、如何确定事实？</p><p>​             标识事实其实是在确定业务过程的度量指标，指标何来？哪些指标必须保留，那些指标必须删除，待定指标如何处理？<strong>必须综合考虑业务用户需求和现实数据的实际情况</strong>。事实表的设计完全依赖于物理活动，不受可能产生的最终报表的影响，报表只是事实表设计的参考视角。</p><p>​            <strong>指标必需要考虑业务的需求和数据的实际情况</strong></p><h3 id="3、雪花模型-与-星形模型"><a href="#3、雪花模型-与-星形模型" class="headerlink" title="3、雪花模型 与 星形模型"></a>3、雪花模型 与 星形模型</h3><p><strong>理解关键字：时间与空间交换</strong></p><p><strong>（1）雪花模型是充分展开维度，当出现维度层次时，例如：某商品分大类、种类、小类，使用雪花模型建模时，通常将维度表中记录小类的ID，额外设计一张类别的维度表</strong></p><p><strong>雪花模型去除了数据冗余，节省了部分存储，但也带来了一定的不变，使得业务人员分析查询时需要关联多张维度表。</strong></p><p><strong>（2）星系模型则是允许一定的冗余，将维度层次扁平化，通过牺牲一小部分空间换取查询时快捷</strong></p><p>PS:某些情况下可以需要用到雪花模型</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1、什么是维度建模？&quot;&gt;&lt;a href=&quot;#1、什么是维度建模？&quot; class=&quot;headerlink&quot; title=&quot;1、什么是维度建模？&quot;&gt;&lt;/a&gt;1、什么是维度建模？&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;理解关键字：&lt;/strong&gt;维度建模的出发点是实现快速的数据分析与决策，维度建模通常面向业务人员、分析人员使用，相对ER建模来说会更加开放，更容易理解&lt;/p&gt;
-&lt;p&gt;维度建模是从业务过程中提炼而来，典型维度建表代表星形建模和雪花建模&lt;br&gt;
-    
-    </summary>
-    
-      <category term="1x 技术综合篇" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/"/>
-    
-      <category term="1x1 数据仓库" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/1x1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="1x11 数据建模" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/1x1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/1x11-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/"/>
-    
-    
-      <category term="建模" scheme="http://deletee.top/tags/%E5%BB%BA%E6%A8%A1/"/>
-    
-      <category term="数据仓库" scheme="http://deletee.top/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="维度" scheme="http://deletee.top/tags/%E7%BB%B4%E5%BA%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据仓库专题(3)-ER建模</title>
-    <link href="http://deletee.top/2018/12/27/er-modeling/"/>
-    <id>http://deletee.top/2018/12/27/er-modeling/</id>
-    <published>2018-12-27T07:46:30.000Z</published>
-    <updated>2019-01-26T13:15:39.901Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、什么是ER建模？"><a href="#1、什么是ER建模？" class="headerlink" title="1、什么是ER建模？"></a>1、什么是ER建模？</h3><p><strong>理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控</strong></p><p>例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施<br><a id="more"></a></p><h3 id="2、ER建模的三个阶段"><a href="#2、ER建模的三个阶段" class="headerlink" title="2、ER建模的三个阶段"></a><strong>2、ER建模的三个阶段</strong></h3><p><strong>理解关键字：ER模型是自上而下的建模方式，由此建模的需要先从企业的整体框架进行高度抽象</strong></p><p><strong>（1）高层模型</strong><br>​         一个高度抽象的模型，描述主要的主题及主体间的关系，用于描述企业的总体情况<br><strong>（2）中层模型</strong><br>​         在高层模型的基础上，细化主题域的实体、关系等数据项<br><strong>（3）物理模型</strong><br>​        在中层模型的基础上，通常会根据平台的特性进行物理属性设计，例如：分表、分区、分区索引等设计<br><strong>理解关键字2：先通过整合整个企业的业务关系，划分相应主题域及对应的主题之间的关系，再细化每个主题域中的内容，最后是根据平台的特点进行物理设计</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1、什么是ER建模？&quot;&gt;&lt;a href=&quot;#1、什么是ER建模？&quot; class=&quot;headerlink&quot; title=&quot;1、什么是ER建模？&quot;&gt;&lt;/a&gt;1、什么是ER建模？&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;理解关键字：ER模型又称实体-关系模型，遵循3NF建模，采用ER进行数据仓库建模需要从整个企业的角度理清各业务之间的关系，建模的出发点是基于企业数据的整合，建设EDW需要建模人员对企业整体业务有精深的把控&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;例如：Teradata的 FS-LDM模型，将金融业务分为10大主题，通常是对整体行业发展的沉淀，将成熟的模型做适当的调整即可快速落地实施&lt;br&gt;
-    
-    </summary>
-    
-      <category term="1x 技术综合篇" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/"/>
-    
-      <category term="1x1 数据仓库" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/1x1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="1x11 数据建模" scheme="http://deletee.top/categories/1x-%E6%8A%80%E6%9C%AF%E7%BB%BC%E5%90%88%E7%AF%87/1x1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/1x11-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/"/>
-    
-    
-      <category term="建模" scheme="http://deletee.top/tags/%E5%BB%BA%E6%A8%A1/"/>
-    
-      <category term="数据仓库" scheme="http://deletee.top/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="ER" scheme="http://deletee.top/tags/ER/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据仓库专题(2)-数据建模</title>
-    <link href="http://deletee.top/2018/12/26/data-modeling/"/>
-    <id>http://deletee.top/2018/12/26/data-modeling/</id>
-    <published>2018-12-26T07:46:30.000Z</published>
-    <updated>2019-01-26T13:14:46.419Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1、为什么需要数据建模？"><a href="#1、为什么需要数据建模？" class="headerlink" title="1、为什么需要数据建模？"></a>1、为什么需要数据建模？</h2><p>理解关键字：数据建模就是数据组织和存储的方法<br>数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。<br>数据模型强调从业务、数据存取和使用角度合理规划数据</p><p>那么为什么需要数据建模呢？我们可以从建模有哪些好处理解</p><a id="more"></a><p>（1）性能 良好的模型能帮助我们快速查询所需要的数据，减少不必要的数据查询I/O<br>（2）成本 良好的数据模型能够极大地减少不必要的数据存储，也能实现计算结果的复用，极大地降低大数据系统中的存储和计算成本<br>（3）效率 良好的数据模型能够极大地提高用户体验，用户可通过业务沉淀后的模型尽可能减少不必要的查询，从而提高效率<br>（4）质量 良好的数据模型将遵循一定的数据规范（例如：口径约束，字段约束等）从而减少数据计算的失误，保障数据质量</p><h2 id="2、OLTP与OLAP的区别"><a href="#2、OLTP与OLAP的区别" class="headerlink" title="2、OLTP与OLAP的区别"></a>2、OLTP与OLAP的区别</h2><p>理解关键字：</p><p> OLTP 是讲究事务，在OLAP中事务不是所关注的，主要是批量的读写，致力于联机分析<br> 一个是讲究快速响应，一个是讲究大吞吐<br>OLTP通常使用ER模型，采用三范式消除数据中的冗余，而OLAP采用的模型则比较丰富</p><h2 id="3、有哪些建模方法论？"><a href="#3、有哪些建模方法论？" class="headerlink" title="3、有哪些建模方法论？"></a>3、有哪些建模方法论？</h2><p>（1）ER建模<br>（2）维度建模<br>（3）Data vault建模<br>（4）Anchor建模</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1、为什么需要数据建模？&quot;&gt;&lt;a href=&quot;#1、为什么需要数据建模？&quot; class=&quot;headerlink&quot; title=&quot;1、为什么需要数据建模？&quot;&gt;&lt;/a&gt;1、为什么需要数据建模？&lt;/h2&gt;&lt;p&gt;理解关键字：数据建模就是数据组织和存储的方法&lt;br&gt;数据模型是数据组织和存储方法，正如我们希望图书馆的书分门别类的放置。&lt;br&gt;数据模型强调从业务、数据存取和使用角度合理规划数据&lt;/p&gt;
-&lt;p&gt;那么为什么需要数据建模呢？我们可以从建模有哪些好处理解&lt;/p&gt;
     
     </summary>
     
