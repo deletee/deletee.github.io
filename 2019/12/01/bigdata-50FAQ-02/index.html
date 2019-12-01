@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6ZL1TE1FHJ',
+      apiKey: '067d46804148abc96e3093bd81bfdf79',
+      indexName: 'deletee',
+      hits: {"per_page":8},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Q2:如何理解数据中台？  ​        突然火爆了概念词”数据中台“，说实话，一听到这词以为某些互联网大佬又在吹概念了， 中台的概念一热，很多似是而非的东西都在往中台的概念上凑，一下子出现很多中台，如业务中台、数据中台、技术中台、算法中台、移动中台等等。特别是很多原来称作平台的，现在也都摇身一变成了中台，赶时髦。那么我们如何理解数据中台？我们提出如下几个问题：   什么是数据中台？ 数据中">
+<meta name="keywords" content="学习,大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据50问-第2问：如何理解数据中台">
+<meta property="og:url" content="http://deletee.top/2019/12/01/bigdata-50FAQ-02/index.html">
+<meta property="og:site_name" content="D.TopZ">
+<meta property="og:description" content="Q2:如何理解数据中台？  ​        突然火爆了概念词”数据中台“，说实话，一听到这词以为某些互联网大佬又在吹概念了， 中台的概念一热，很多似是而非的东西都在往中台的概念上凑，一下子出现很多中台，如业务中台、数据中台、技术中台、算法中台、移动中台等等。特别是很多原来称作平台的，现在也都摇身一变成了中台，赶时髦。那么我们如何理解数据中台？我们提出如下几个问题：   什么是数据中台？ 数据中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_jpg/sqibwUCydDhz1vatAUOJXP2Sx9R4zkMZhUcFAYDCibicaqibYqCVmKhapyP6iasjY6C23C0ibzaD4ws6pb0XDMEw0KJg/640?mprfK=https%3A%2F%2Fmp.weixin.qq.com%2F">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_jpg/sqibwUCydDhz1vatAUOJXP2Sx9R4zkMZhG9LRawUEcCJvrZGicUZ1AyWAiblLVpd4OPNHPIACZ833yX11Cqn6ArOA/640?mprfK=https%3A%2F%2Fmp.weixin.qq.com%2F">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-1e6a5946311b2697f76ecc913f45b638_hd.jpg">
+<meta property="og:updated_time" content="2019-12-01T13:26:40.746Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据50问-第2问：如何理解数据中台">
+<meta name="twitter:description" content="Q2:如何理解数据中台？  ​        突然火爆了概念词”数据中台“，说实话，一听到这词以为某些互联网大佬又在吹概念了， 中台的概念一热，很多似是而非的东西都在往中台的概念上凑，一下子出现很多中台，如业务中台、数据中台、技术中台、算法中台、移动中台等等。特别是很多原来称作平台的，现在也都摇身一变成了中台，赶时髦。那么我们如何理解数据中台？我们提出如下几个问题：   什么是数据中台？ 数据中">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_jpg/sqibwUCydDhz1vatAUOJXP2Sx9R4zkMZhUcFAYDCibicaqibYqCVmKhapyP6iasjY6C23C0ibzaD4ws6pb0XDMEw0KJg/640?mprfK=https%3A%2F%2Fmp.weixin.qq.com%2F">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="D.TopZ" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://deletee.top/2019/12/01/bigdata-50FAQ-02/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>大数据50问-第2问：如何理解数据中台 | D.TopZ</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.TopZ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">青春猪头好少年</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">31</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">31</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/deletee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2019/12/01/bigdata-50FAQ-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">大数据50问-第2问：如何理解数据中台
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-01 15:05:30" itemprop="dateCreated datePublished" datetime="2019-12-01T15:05:30+08:00">2019-12-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/" itemprop="url" rel="index"><span itemprop="name">1x1 数据仓库</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x1-数据仓库/1x12-综合/" itemprop="url" rel="index"><span itemprop="name">1x12 综合</span></a></span>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             热度： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Q2:如何理解数据中台？</p>
+</blockquote>
+<p>​        突然火爆了概念词”数据中台“，说实话，一听到这词以为某些互联网大佬又在吹概念了， 中台的概念一热，很多似是而非的东西都在往中台的概念上凑，一下子出现很多中台，如业务中台、数据中台、技术中台、算法中台、移动中台等等。特别是很多原来称作平台的，现在也都摇身一变成了中台，赶时髦。那么我们如何理解数据中台？我们提出如下几个问题：</p>
+<blockquote>
+<ul>
+<li>什么是数据中台？</li>
+<li>数据中台与数据仓库有什么不一样？</li>
+<li>数据中台的价值是什么？</li>
+<li>如何建设数据中台？</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<p>​        为了回答上述问题，我们先看看业界各互联网公司是如何定义数据中台以及如何实施业务中台的。</p>
+<h4 id="0x1-数据中台建设实践"><a href="#0x1-数据中台建设实践" class="headerlink" title="0x1 数据中台建设实践"></a>0x1 数据中台建设实践</h4><h5 id="0x11-小米数据中台建设实践"><a href="#0x11-小米数据中台建设实践" class="headerlink" title="0x11 小米数据中台建设实践"></a>0x11 小米数据中台建设实践</h5><p><strong>小米的三大中台建设：</strong> <strong>业务+数据+技术</strong></p>
+<p>​        小米参考了业界优秀的案例包括移动中台、数据中台、业务中台、技术中台等，再结合其业务发展历程及业务现状，整理了中台架构的核心方法论，一是企业如何共享服务，二是如何为业务提供便利。</p>
+<p>​        小米认为数据中台是数字化转型的核心，在建设数据中台之前，小米面对的三大难题：</p>
+<ul>
+<li><p><strong>数据极度分散：</strong>数据分散在各个业务系统中，没有统一的数据共享池，也就是没有数据仓库（数据湖），业务分析，数据应用通常从数据底层进行数据抽取。</p>
+</li>
+<li><p><strong>数据指标混乱：</strong>没有良好的数据治理，从而也会造成指标混乱，业务系统各自为战形成数据孤岛，指标口径自然是很难做到统一。</p>
+</li>
+<li><p><strong>数据工具量少：</strong>需要一站式的访问入口、可视化和交互性更强的数据展示方式、支持移动端访问。</p>
+</li>
+</ul>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_jpg/sqibwUCydDhz1vatAUOJXP2Sx9R4zkMZhUcFAYDCibicaqibYqCVmKhapyP6iasjY6C23C0ibzaD4ws6pb0XDMEw0KJg/640?mprfK=https%3A%2F%2Fmp.weixin.qq.com%2F" alt="img"></p>
+<p>​        小米建设数据中台旨在建立数据精细化管理体系，<strong>小米想从业务端沉淀数据，在共享到X DATA大数据分析，然后发现问题在反馈到业务系统中解决问题。</strong></p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_jpg/sqibwUCydDhz1vatAUOJXP2Sx9R4zkMZhG9LRawUEcCJvrZGicUZ1AyWAiblLVpd4OPNHPIACZ833yX11Cqn6ArOA/640?mprfK=https%3A%2F%2Fmp.weixin.qq.com%2F" alt="img"></p>
+<p>在数据中台上还需要运用一些关键技术，包括：大数据离线计算、趋势预测、实时计算、自然语言处理、可视化分析、图像识别等。<strong>小米数据中台对业务运营产生的价值，主要体现在生产监控、日常运营、经营管理、战略管控等方面。</strong></p>
+<h5 id="0x12-京东数据中台建设"><a href="#0x12-京东数据中台建设" class="headerlink" title="0x12 京东数据中台建设"></a>0x12 京东数据中台建设</h5><p><strong>数据中台：破除企业数据孤岛</strong></p>
+<p>​        在企业业务发展过程中所累积的大量数据，往往分散在各个业务单元和组织内部，形成一个个”数据孤岛”、”数据烟囱”。而数据中台是着眼于企业数据资产汇集、数据算法迭代、数据能力输出的根基平台，以数据指引业务决策并驱动业务增长，是破除数据孤岛的关键策略。</p>
+<p>​        京东数据中台负责人—黎科峰介绍，目前京东集团已形成零售、数科、物流、保险、健康等多元化的业务格局，各业务都进入到精细化运营阶段，对于数据精细化运营提出了更高的需求。京东过往十多年业务发展沉淀下来的海量数据，需要通过数据中台的建设形成宝贵的数据资产，以打造强有力的数据智能能力。这也是京东自去年就开始推动数据中台建设的重要原因。</p>
+<p>​        黎科峰认为，数据中台的核心包括数据基础层、数据服务层、数据应用层。除了技术之外，数据中台建设更重要的是一种协作意识和组织能力。因此京东在建设数据中台的过程中提出了共建、共享、标准化三个关键理念。京东数据中台的共建理念，就是要联合各个业务单元，共同打造沉淀一套大数据中台。共享则是要避免数据孤岛，<strong>打破组织界限</strong>，<strong>实现数据的共通、能力共享</strong>。而标准则是指统一的数据标准，从底层的数据治理标准、数据口径标准，到统一的数据标签体系和数据模型服务，确保数据在集团内部流转和应用是基于同样的标准和基础。</p>
+<p>​        首先在数据底层的建设方面，京东建立了统一的采存算大数据平台，有节奏地合并数据集市，形成统一的大集市。</p>
+<p>​        在数据服务层，京东正在搭建一套公共的数据标签体系，汇聚前台业务部门、运营部门以及广告、搜索等各个垂直场景的标签数据，不断迭代，为各个数据应用场景赋能。同时，数据中台向各数据应用层提供数据模型能力，通过商品数据治理形成更准确的商品画像。</p>
+<p>​        在数据应用层，京东数据中台推动前台统一了数十个数据产品，建立了统一的数据口径和数据看板。前台部门统一通过黄金眼和商智来提供对采销和商家的数据报表服务，底层通过数据中台使用同一套数据。</p>
+<p>​        经过多年的积累，京东的亿万消费者和商家在平台上沉淀了海量的数据，数据的深入挖掘对于提升用户体验和商家营销能力都至关重要。京东数据中台着眼于数据驱动业务精细化运营的能力建设，持续夯实数据基础，形成数据与业务正向自循环促进的关系，不仅全面推动京东内部蓬勃的业务创新，也可以更好地对外服务，带动整个产业的数字化转型。</p>
+<h4 id="0x2-中台的定义"><a href="#0x2-中台的定义" class="headerlink" title="0x2 中台的定义"></a>0x2 中台的定义</h4><p> 中台的定义还要求以下两点：</p>
+<ul>
+<li><p>中台是一种共性能力组织，支持了多个业务。</p>
+</li>
+<li><p>中台支持的是多个前台业务。</p>
+</li>
+</ul>
+<p>要定义中台，重要的是要能比较明确的区分中台和平台。中台和平台都是某种共性能力，区分两者的重点一是看是否具备业务属性，二是看是否是一种组织。中台是支持多个前台业务且具备业务属性的共性能力组织，平台是支持多个前台或中台业务且不具备业务属性的共性能力。</p>
+<ol>
+<li><p>（狭义的）业务中台：一般指在线业务为典型特征的中台。在OLDI（Online Data-Intensive）时代，越来越多的企业的核心业务都是在线业务，因此把在线业务中台简称为业务中台。但对那些不是以在线业务为主的企业，它需要的业务中台可能就不是在线业务中台了，而是数据中台或别的什么中台。</p>
+</li>
+<li><p>数据中台：一般指以数据采集、数据集成、数据治理，指标体系和数据仓库统一建设等数据管理活动为典型特征的中台。同样，在OLDI时代，数据中台越来越重要。狭义的业务中台也就是在线业务中台负责OLDI中的OL（Online），数据中台负责OLDI中的DI（Data-Intensive）。</p>
+</li>
+<li><p>用户中台：用户中台可以认为是一种特殊的数据中台，一般以用户ID统一、全域用户画像建设、全域会员体系建设等为典型特征。用户中台很通用，比更广义的数据中台往往更常见。很多企业没能力建设更全面的数据中台，但建设了会员中心等用户中台。</p>
+</li>
+<li><p>内容中台：内容中台往往也可以认为是一种特殊的数据中台，一般以内容的采买、内容爬取、内容的加工处理、内容安全保障等为典型特征。</p>
+</li>
+<li><p>搜索推荐中台：这两个中台比较像，因为搜索和推荐的技术比较相似。这两个中台一般是为推荐和搜索系统提供一套相对标准的工作流程，同时支持流程各环节的可定制能力，从而支持多个前端推荐搜索业务的快速开发。</p>
+</li>
+</ol>
+<p>​        广义的中台都是业务中台，只不过是不同场景的细分而已，一切没有业务属性的”中台“都不能称之为中台，只是标上”中台“的概念而已。</p>
+<h4 id="0x3-数据中台与数据仓库有什么不一样？"><a href="#0x3-数据中台与数据仓库有什么不一样？" class="headerlink" title="0x3 数据中台与数据仓库有什么不一样？"></a>0x3 数据中台与数据仓库有什么不一样？</h4><p>​        在笔者理解看来，数据中台包含了数据仓库的概念，数据中台不仅包含了数据采集，数据继承，数据计算，还包含了数据服务，数据应用。数据中台<strong>负责全域数据采集</strong>、<strong>数据资产加工和管理</strong>、并<strong>向前台业务部门和决策部门提供数据服务</strong>的，所以数据中台的核<strong>心应该是数据资产管理和数据赋能</strong>。通俗的讲就是数据弹药库。</p>
+<p>​        数据中台是一个数据集成平台，它不仅仅是为数据分析挖掘而建，它更重要的功能是作为各个业务的数据源，为业务系统提供数据和计算服务。数据中台的本质就是“数据仓库+数据服务中间件”</p>
+<p><img src="https://pic1.zhimg.com/80/v2-1e6a5946311b2697f76ecc913f45b638_hd.jpg" alt="img"></p>
+<h4 id="0x4-数据中台的价值"><a href="#0x4-数据中台的价值" class="headerlink" title="0x4 数据中台的价值"></a>0x4 数据中台的价值</h4><p>​        一般提到中台，那么势必会有前台，后台的概念，前台是面向用户的终端系统，比如门户网站，手机App，微信公众号等，那么后台则是对应的账号系统，数据库系统，财务系统，供应链系统等等。准确的来说，后台是解决企业效率的问题，而中台是为了解决业务创新问题。中台链接了前台用户与后台核心资源，既可以将早已臃肿不堪的前台系统中的稳定通用业务能力“沉降”到中台层，为前台减肥，实施“大中台，小前台”战略，恢复前台的响应力。前台可以快速生成各种微应用；又可以将后台系统中需要频繁变化或是需要被前台直接使用的业务能力“提取”到中台层，赋予这些业务能力更强的灵活度和更低的变更成本，从而为前台提供更强大的“能力炮火”⽀援。</p>
+<p>​        中台就像是在前台与后台之间添加的一组“变速齿轮”，将前台与后台的速率进行匹配，是前台与后台的桥梁。它为前台而生，易于前台使用，将后台资源顺滑流向用户，响应用户。</p>
+<h4 id="0x5-如何建设中台"><a href="#0x5-如何建设中台" class="headerlink" title="0x5 如何建设中台"></a>0x5 如何建设中台</h4>
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"><i class="fa fa-tags"></i> 学习</a>
+          
+            <a href="/tags/大数据/" rel="tag"><i class="fa fa-tags"></i> 大数据</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/26/question-ana/" rel="next" title="每周一本书-《问题分析与解决》">
+                <i class="fa fa-chevron-left"></i> 每周一本书-《问题分析与解决》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="deletee" />
+            
+              <p class="site-author-name" itemprop="name">deletee</p>
+              <p class="site-description motion-element" itemprop="description">学好技术，才能吹好牛</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/deletee" title="GitHub &rarr; https://github.com/deletee" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:delete@126.com" title="E-Mail &rarr; mailto:delete@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2459770764" title="Weibo &rarr; https://weibo.com/2459770764" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com/yourname" title="FB Page &rarr; https://www.facebook.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://36kr.com/" title="https://36kr.com/" rel="noopener" target="_blank">36kr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.woshipm.com/" title="http://www.woshipm.com/" rel="noopener" target="_blank">人人都是产品经理</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ppt.geekbang.org/" title="https://ppt.geekbang.org/" rel="noopener" target="_blank">极客时间</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://open.163.com/" title="https://open.163.com/" rel="noopener" target="_blank">网易公开课</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x1-数据中台建设实践"><span class="nav-number">1.</span> <span class="nav-text">0x1 数据中台建设实践</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0x11-小米数据中台建设实践"><span class="nav-number">1.1.</span> <span class="nav-text">0x11 小米数据中台建设实践</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0x12-京东数据中台建设"><span class="nav-number">1.2.</span> <span class="nav-text">0x12 京东数据中台建设</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x2-中台的定义"><span class="nav-number">2.</span> <span class="nav-text">0x2 中台的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x3-数据中台与数据仓库有什么不一样？"><span class="nav-number">3.</span> <span class="nav-text">0x3 数据中台与数据仓库有什么不一样？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x4-数据中台的价值"><span class="nav-number">4.</span> <span class="nav-text">0x4 数据中台的价值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x5-如何建设中台"><span class="nav-number">5.</span> <span class="nav-text">0x5 如何建设中台</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank"> </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">deletee</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '530c61cf555a76d5bce7',
+          clientSecret: '34f2daf8f6584cda7aa238440a4c8420a1ad10b6',
+          repo: 'deletee',
+          owner: 'deletee',
+          admin: ['deletee'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
