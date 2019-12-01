@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6ZL1TE1FHJ',
+      apiKey: '067d46804148abc96e3093bd81bfdf79',
+      indexName: 'deletee',
+      hits: {"per_page":8},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本周学习的一本书是《麦肯锡-问题分析与解决技巧》，恰逢今天又学习了王萃老师的《问题分析与解决》课程，这本书很好的教给我们如何提升发现和分析问题以及解决问题的能力，无论你是一般职员或是高层管理人员，无论在你在组织中担任什么职务，分析与解决问题的技术已是置身职场中不可或缺的核心能力之一。这里想把两门知识融合分享一下学习笔记。​">
+<meta name="keywords" content="职场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每周一本书-《问题分析与解决》">
+<meta property="og:url" content="http://deletee.top/2019/11/26/question-ana/index.html">
+<meta property="og:site_name" content="D.TopZ">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本周学习的一本书是《麦肯锡-问题分析与解决技巧》，恰逢今天又学习了王萃老师的《问题分析与解决》课程，这本书很好的教给我们如何提升发现和分析问题以及解决问题的能力，无论你是一般职员或是高层管理人员，无论在你在组织中担任什么职务，分析与解决问题的技术已是置身职场中不可或缺的核心能力之一。这里想把两门知识融合分享一下学习笔记。​">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126215709489.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126222453477.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126223707135.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126224055750.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126230307346.png">
+<meta property="og:image" content="http://deletee.top/knowledge/F9783FD044E44F1BB428AD500300D0B3.jpg">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126235341882.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191126235909514.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191127000731873.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191127001001151.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191127001153054.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191127002435810.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191127003648164.png">
+<meta property="og:updated_time" content="2019-11-26T17:08:43.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每周一本书-《问题分析与解决》">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本周学习的一本书是《麦肯锡-问题分析与解决技巧》，恰逢今天又学习了王萃老师的《问题分析与解决》课程，这本书很好的教给我们如何提升发现和分析问题以及解决问题的能力，无论你是一般职员或是高层管理人员，无论在你在组织中担任什么职务，分析与解决问题的技术已是置身职场中不可或缺的核心能力之一。这里想把两门知识融合分享一下学习笔记。​">
+<meta name="twitter:image" content="http://deletee.top/knowledge/image-20191126215709489.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="D.TopZ" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://deletee.top/2019/11/26/question-ana/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>每周一本书-《问题分析与解决》 | D.TopZ</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.TopZ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">青春猪头好少年</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">31</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">30</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/deletee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2019/11/26/question-ana/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">每周一本书-《问题分析与解决》
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-26 21:15:30" itemprop="dateCreated datePublished" datetime="2019-11-26T21:15:30+08:00">2019-11-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/3x-职场篇/" itemprop="url" rel="index"><span itemprop="name">3x 职场篇</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/3x-职场篇/3x2-每周一本书/" itemprop="url" rel="index"><span itemprop="name">3x2 每周一本书</span></a></span>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             热度： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本周学习的一本书是《麦肯锡-问题分析与解决技巧》，恰逢今天又学习了王萃老师的《问题分析与解决》课程，这本书很好的教给我们如何提升发现和分析问题以及解决问题的能力，无论你是一般职员或是高层管理人员，无论在你在组织中担任什么职务，分析与解决问题的技术已是置身职场中不可或缺的核心能力之一。这里想把两门知识融合分享一下学习笔记。<br>​        <a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在我们的生活或工作中，总会遇到这样或那样的问题，也会经常抱怨问题很难解决或是解决成本太高，尽管事情的紧急程度、重要程度不同，但我们身边确实存在无数的问题，例如：</p>
+<blockquote>
+<ul>
+<li>公司电梯很慢</li>
+<li>食堂的菜很难吃</li>
+<li>A产品的形象越来越差</li>
+<li>B酒店的空房率居高不下</li>
+<li>如何抢回失去的市场</li>
+<li>如何提升下季度的销售额</li>
+<li>算法的召回率很低</li>
+</ul>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所谓“问题”就是需要“被解决的课题”，在无数的“问题”中，有一个共通点，那就是我们必须决定如何拟定解决策略并付诸解决。</p>
+<h4 id="0x1-问题的本质是期望与现状出现了落差"><a href="#0x1-问题的本质是期望与现状出现了落差" class="headerlink" title="0x1 问题的本质是期望与现状出现了落差"></a>0x1 问题的本质是期望与现状出现了落差</h4><p>​      如何理解这句话？比如：“公司的电梯很慢”，现状是公司的电梯从1楼到9楼需要5分钟，而期望电梯能够在1分钟内到达9楼，那么落差是：电梯运行速度比预期慢了4分钟；再说“食堂的菜很难吃？”，现状是：公司的菜色单一，油腻，期望的是：公司能增加菜品，减少菜品的油量，那么落差就是：菜品丰富度不够，口味油腻。</p>
+<p><img src="/knowledge/image-20191126215709489.png" alt="image-20191027160601941" style="zoom:60%;align:center"></p>
+<p>​        那么我们可以用现状(Current)、期待(Expect)、落差(Gap)来描述一个问题。大家可以用这个方法进行剩余问题的锻炼。</p>
+<h4 id="0x2-问题的划分"><a href="#0x2-问题的划分" class="headerlink" title="0x2 问题的划分"></a>0x2 问题的划分</h4><p>​        通过问题的本质，我们需要将问题进行划分，根据不同类型的问题选择合适的解决策略，一般而言，问题可以区分为两种类型：（1）恢复原状型；（2）达成理想型；（3）防范潜在型。“恢复原状型”，顾名思义是指恢复成原本的状态，遇到这种类型的问题时，要将原本的状况视为期待的状态。“恢复原状型”的思考方式是，现状与过去的状况之间出现了落差，例如：</p>
+<blockquote>
+<ul>
+<li>服务错误率高达80%</li>
+<li>手表电池没电，因此不动了</li>
+<li>采购成本最近几个月逐渐攀升</li>
+</ul>
+</blockquote>
+<p>​        “达成理想型”是现状并无大碍，但是期待事情有更好的结果，解决办法为：达成理想。</p>
+<blockquote>
+<ul>
+<li>明年的目标是：希望营业额有7%的增长</li>
+<li>希望孩子能够考上重点大学</li>
+<li>处理事务工作上，希望能够再减少3个小时</li>
+</ul>
+</blockquote>
+<p>​        “防范潜在型”，这句话的意思是讲，搁置不管会发生不良状态，或是指已经出现不良状态端倪，解决思路是：如何维持现状，若以目的区分，可以视为恢复（维持）原状型问题。</p>
+<blockquote>
+<ul>
+<li>已经出现了离职率上升</li>
+<li>营业额较上个月出现了减少</li>
+<li>服务器的水位已到达90%，并持续增长</li>
+</ul>
+</blockquote>
+<p><img src="/knowledge/image-20191126222453477.png" alt="image-20191027160601941" style="zoom:60%;align:center"></p>
+<h4 id="0x3-分析问题"><a href="#0x3-分析问题" class="headerlink" title="0x3 分析问题"></a>0x3 分析问题</h4><p>​        当我们发现和定位问题之后，很多同学的思路就是想找解决方案，由此非常容易走入一个误区，以为是找到了方法，殊不知只是发现解决的是问题表面，因为没有深刻分析问题，往往得出的解决方案耗费代价很大，由或是临时解决了问题仍然会复发。</p>
+<p>​        分析问题的方式往往由三个因素决定了：经验+专业知识+思维模式，经验表示你可能经历过或者遇到相似的事情，能够从经验中去分析解决问题；因为专业知识不同，也会造成分析问题的思路不一，例如前面提到的“公司电梯很慢”，普通同学：错开高峰期，电梯单双限制；程序员同学：通过提升电梯的调度算法来实现优化；电梯维护人员：某个固件出现问题，需要维修，前面两个因素由个人所决定，然后思维模式是可以进行学习来提升。</p>
+<p>​        那么，又如何进行问题分析？第一步，就是确定事情的优先级。</p>
+<h5 id="0x31-确定事情优先级"><a href="#0x31-确定事情优先级" class="headerlink" title="0x31 确定事情优先级"></a>0x31 确定事情优先级</h5><p>​        如果我们锁定的问题或者课题很多，那么该从哪一个问题开始着手呢？很多同学“想到哪个做哪个，先行动起来比较重要”，这样的做法往往效率很差。一般而言，在分辨事情的优先级时，比较有效的方法是从“紧急性”和“重要性”两个标准下手，我们可以看下优先顺序矩阵：</p>
+<p><img src="/knowledge/image-20191126223707135.png" alt="image-20191027160601941" style="zoom:60%;align:center"></p>
+<p>也可以从解决事情的成本与产出的价值考虑优先级：</p>
+<p><img src="/knowledge/image-20191126224055750.png" alt="image-20191027160601941" style="zoom:60%;align:center"></p>
+<h5 id="0x32-收集信息，掌握事实"><a href="#0x32-收集信息，掌握事实" class="headerlink" title="0x32 收集信息，掌握事实"></a>0x32 收集信息，掌握事实</h5><p>​        如果没有掌握问题的根本原因，就会变成只对问题的表象进行处理。例如：感冒吃感冒药，但说不定是病毒感染，吃药并不能根治；公司的营业额减少，因此投入大量资金进行广告，实际情况是产品满意度差，退货率高，广告的投入可能会带来一些改善，反会造成投入产出比下降。</p>
+<p><img src="/knowledge/image-20191126230307346.png" alt="image-20191027160601941" style="zoom:45%;align:center"></p>
+<p>​        掌握现状与分析原因息息相关，其基础建立在对事实的掌握程度上，信息收集有很多方式：</p>
+<blockquote>
+<ul>
+<li><p>现场调查/市场调研</p>
+</li>
+<li><p>线上系统数据收集</p>
+</li>
+<li><p>专家经验</p>
+</li>
+<li>……</li>
+</ul>
+</blockquote>
+<p>​        下面分享一个实际案例：</p>
+<p>​        杰斐逊纪念堂是一座高96英尺的白色大理石建筑，是为纪念美国第三任总统而建，在美国是极为著名的旅游景点。该纪念堂曾经遇到一个重大问题：建筑物顶部经常积满鸟粪，白色大理石墙体发生了严重脱落，严重影响了整座建筑物的安全，更不用提及对建筑物美观的影响了，如何解决这一重大问题，美国政府曾斥巨资试图解决但却未能奏效。后来请专家来对这一问题进行研究，以找到解决问题的答案。</p>
+<p><img src="/knowledge/F9783FD044E44F1BB428AD500300D0B3.jpg" alt="image-20191027160601941" style="zoom:45%;align:center"></p>
+<p>​        那么我们如何收集信息？当然我们无法真实的去现场进行调查，但可以设想从哪些角度去收集信息：</p>
+<blockquote>
+<p>四季气候</p>
+<p>都是什么鸟类</p>
+<p>鸟粪是否具有腐蚀性</p>
+<p>周边是否树林较多</p>
+<p>常规的维护工作有哪些？</p>
+<p>是否存在恶意破坏？</p>
+</blockquote>
+<p>看到这里，你能想到的数据收集有哪些呢？有兴趣的同学，可以进行头脑风暴。</p>
+<p>​        专家经过初步研究给出结论：清洁剂对墙体是有害的，清洗大理石墙体的频率与大理石墙体脱落的程度正相关，清理大理石墙体的频率越高，脱落的程度也就是越大。因此建议，减少大理石墙体的清理次数，这样就可以确保建筑物的安全了。</p>
+<p>​        但这一结论的指导性却并不好，因为当减少或停止对大理石墙体的清理时，带来的结果是白色大理石变得非常脏，严重影响了杰斐逊纪念堂的景观。</p>
+<h5 id="0x33-分析方法"><a href="#0x33-分析方法" class="headerlink" title="0x33 分析方法"></a>0x33 分析方法</h5><p>​        当你获取了大量事实数据后，那我们要怎样进行分析呢？王萃老师分享了三套方法，分别是：5-why、MECE以及鱼骨分析法。下面逐一进行介绍：</p>
+<p>​        <strong>（1）5-why分析法</strong></p>
+<p>​        5-why分析法又称5问法，也就是对一个问题点连续以5个“为什么”来自问，以追究其根本原因。虽为5个为什么，但使用时不限定只做“5次为什么的探讨”，主要是必须找到根本原因为止，有时可能只要3次，有时也许要10次。如古话所言：打破砂锅问到底。</p>
+<p>​        例如：杰斐逊纪念堂白色大理石墙体发生了严重脱落的5why分析法如下:</p>
+<blockquote>
+<ul>
+<li><p>1.为什么会频频清洗墙体？</p>
+<p>—-建筑物顶部经常积满鸟粪。</p>
+</li>
+<li><p>2.为什么同处于华盛顿广场的林肯纪念堂没有鸟粪而偏偏杰斐逊纪念堂有？</p>
+<p>—-杰斐逊纪念堂顶部有大量的蜘蛛，蜘蛛吸引大量的燕子前来觅食筑巢，从而留下了鸟粪。</p>
+</li>
+<li><p>3.为什么会有这些大量的蜘蛛？</p>
+<p>—-因为建筑物顶部有某种非常多的小虫子，而这种小虫子恰恰是蜘蛛最喜欢的食物。</p>
+</li>
+<li><p>4.为什么会有如此多的这种虫子爬到纪念堂顶部？</p>
+<p>——上面开着一些窗子，阳光容易从窗口射入，这些小虫子除了喜欢灰垢外，更喜欢阳光，因此它们集居顶部，并在阳光之下极速繁衍，形成了厚厚的虫子层。</p>
+</li>
+</ul>
+</blockquote>
+<p>​        当问题解答至此时，专家给出了有效的解决方案：把顶层的窗户关上。一个用巨资都无法解决的问题就这样解决了。归结起来就是这样的一个解决思路，值得管理者关注了，最终以最小的成本，有效的解决了问题。</p>
+<p>​        <strong>但注意，</strong>大家可能陷入5why分析法理解误区，就是随意提5个问题，没有往解决问题的方向上进行提问，结果就是问题无穷无尽，然而问题仍未分析到根本原因。例如：某商场遭客人投诉</p>
+<blockquote>
+<ul>
+<li><p>1.为什么商场遭客人投诉？</p>
+<p>—-因为客人在商场滑到。</p>
+</li>
+<li><p>2.为什么客人会滑到？</p>
+<p>—-商场地面有水。</p>
+</li>
+<li><p>3.为什么地面有水？</p>
+<p>——因为有其他客人不小心水洒了。</p>
+</li>
+<li><p>4.为什么客人会不小心将水洒了</p>
+<p>——因为客人的水杯没有杯托。</p>
+</li>
+<li><p>5.为什么水杯没有杯托？</p>
+<p>因为负责提供杯托的人员请假了</p>
+<p>….</p>
+</li>
+</ul>
+</blockquote>
+<p>​        大家从上面的问题分析的思路可以看出，问题无穷无尽但仍无法分析问题的根本原因，大家可能已经注意到，在第三个why时，就开始远离根本原因，正确的分析方法应该是：</p>
+<blockquote>
+<ul>
+<li><p>1.为什么商场遭客人投诉？</p>
+<p>  —-因为客人在商场滑到。</p>
+</li>
+<li><p>2.为什么客人会滑到？</p>
+<p>  —-商场地面有水。</p>
+</li>
+<li><p>3.为什么地面没有人及时清理？</p>
+<p>  ——因为负责地面清理的当值员工请假了。</p>
+</li>
+<li><p>4.为什么没有互备的人员？  —根因所在，因为没有互备的人员，当值人员请假，无法及时清理地面</p>
+<hr>
+</li>
+</ul>
+</blockquote>
+<p>大家可以尝试利用<strong>5why分析法</strong>找一个问题进行分析看是否能发现问题的根本原因</p>
+<p>​    <strong>（2）MECE分析法</strong></p>
+<p>​        MECE的全称是“Mutually Exclusive,Collectively Exhaustive”，也就是不重复、不遗漏，通过四个步骤，面对复杂的情况和问题，也能有逻辑地、系统地分析问题、解决问题。这包括：1）定问题目的；2）寻找切入点；3）继续再细分；4）确认无遗漏<br><img src="/knowledge/image-20191126235341882.png" alt="image-20191027160601941" style="zoom:45%;align:center"></p>
+<p>​            实际案例：基于麦肯锡MECE分析法的案例<br><img src="/knowledge/image-20191126235909514.png" alt="image-20191027160601941" style="zoom:55%;align:center"></p>
+<p>王萃老师课程中又提供了常见的分析框架：</p>
+<ul>
+<li>PEST</li>
+<li>SWOT</li>
+<li>思考事业战略的“3C”</li>
+</ul>
+<p><img src="/knowledge/image-20191127000731873.png" alt="image-20191127000731873"></p>
+<ul>
+<li>适合业务分析的“五力”</li>
+<li>思考组织策略的“7S”</li>
+</ul>
+<p><img src="/knowledge/image-20191127001001151.png" alt="image-20191027160601941" style="zoom:75%;align:center"></p>
+<ul>
+<li>拟定营销策略的“4P”<br><img src="/knowledge/image-20191127001153054.png" alt="image-20191127001153054"></li>
+</ul>
+<p>​    <strong>（3）鱼骨分析法</strong></p>
+<p>​        鱼骨分析法，又名<a href="https://baike.baidu.com/item/因果分析法/4587680" target="_blank" rel="noopener">因果分析法</a>，是一种发现问题“根本原因”的分析方法，分析结构如下：</p>
+<ul>
+<li>A、针对问题点，选择层别方法；</li>
+<li>B、按头脑风暴分别对各层别类别找出所有可能原因（因素）；</li>
+<li>C、将找出的各要素进行归类、整理，明确其从属关系；</li>
+<li>D、分析选取重要因素；</li>
+<li>E、检查各要素的描述方法，确保语法简明、意思明确。</li>
+</ul>
+<p>如下实际为针对某电商满意度下降调查分析：</p>
+<p><img src="/knowledge/image-20191127002435810.png" alt="image-20191027160601941" style="zoom:55%;align:center"></p>
+<h4 id="0x4-解决问题"><a href="#0x4-解决问题" class="headerlink" title="0x4 解决问题"></a>0x4 解决问题</h4><p>​        有人曾对爱因斯坦说：“如果有人对你说：‘60分钟内如果想不出下面将要提出的问题的答案，你就会没命的。’那么你会怎么办？”爱因斯坦回答道：“前55分钟我会用来提恰当的问题。”也就是说，没有什么能比恰当的问题更能导出正确答案了。 </p>
+<p>​        前面我们使用了大量篇幅用来解释什么是问题，怎么分析问题，可见问题发现与分析问题的重要性，书中针对不同类型的问题给出了思路：</p>
+<p><img src="/knowledge/image-20191127003648164.png" alt="image-20191027160601941" style="zoom:55%;align:center"></p>
+<p>​        </p>
+<h4 id="0x5-最后的总结"><a href="#0x5-最后的总结" class="headerlink" title="0x5 最后的总结"></a>0x5 最后的总结</h4><p>​        王萃老师教给我们解决问题的一般流程：发现问题-&gt;分析原因-&gt;确定方案及可替代方案-&gt;执行方案并效果评估，我们碰到的问题都可以使用这样一套方法进行解决，当然理论是理论，实践是实践，重点是从这套方法中学习发现问题、分析原因的思维才是关键。希望这套方法能够帮助到大家能解决工作上碰到的问题。</p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/职场/" rel="tag"><i class="fa fa-tags"></i> 职场</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/23/edw-50FAQ/" rel="next" title="数据仓库-50问">
+                <i class="fa fa-chevron-left"></i> 数据仓库-50问
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="deletee" />
+            
+              <p class="site-author-name" itemprop="name">deletee</p>
+              <p class="site-description motion-element" itemprop="description">学好技术，才能吹好牛</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/deletee" title="GitHub &rarr; https://github.com/deletee" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:delete@126.com" title="E-Mail &rarr; mailto:delete@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2459770764" title="Weibo &rarr; https://weibo.com/2459770764" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com/yourname" title="FB Page &rarr; https://www.facebook.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://36kr.com/" title="https://36kr.com/" rel="noopener" target="_blank">36kr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.woshipm.com/" title="http://www.woshipm.com/" rel="noopener" target="_blank">人人都是产品经理</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ppt.geekbang.org/" title="https://ppt.geekbang.org/" rel="noopener" target="_blank">极客时间</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://open.163.com/" title="https://open.163.com/" rel="noopener" target="_blank">网易公开课</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x1-问题的本质是期望与现状出现了落差"><span class="nav-number">1.</span> <span class="nav-text">0x1 问题的本质是期望与现状出现了落差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x2-问题的划分"><span class="nav-number">2.</span> <span class="nav-text">0x2 问题的划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x3-分析问题"><span class="nav-number">3.</span> <span class="nav-text">0x3 分析问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0x31-确定事情优先级"><span class="nav-number">3.1.</span> <span class="nav-text">0x31 确定事情优先级</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0x32-收集信息，掌握事实"><span class="nav-number">3.2.</span> <span class="nav-text">0x32 收集信息，掌握事实</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0x33-分析方法"><span class="nav-number">3.3.</span> <span class="nav-text">0x33 分析方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x4-解决问题"><span class="nav-number">4.</span> <span class="nav-text">0x4 解决问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x5-最后的总结"><span class="nav-number">5.</span> <span class="nav-text">0x5 最后的总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank"> </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">deletee</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '530c61cf555a76d5bce7',
+          clientSecret: '34f2daf8f6584cda7aa238440a4c8420a1ad10b6',
+          repo: 'deletee',
+          owner: 'deletee',
+          admin: ['deletee'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

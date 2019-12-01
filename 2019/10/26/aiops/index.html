@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6ZL1TE1FHJ',
+      apiKey: '067d46804148abc96e3093bd81bfdf79',
+      indexName: 'deletee',
+      hits: {"per_page":8},
+      labels: {"input_placeholder":"搜索...","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、运维面临问题与挑战​        眼下，随着信息化、数字化的深入发展，技术飞速迭代，应用服务也不断升级，企业面临的运维压力也越来越大，传统运维受到了前所未有的挑战。 ​        （1）运维内容：传统的互联网运维的内容仅是关注软硬件、网络、应用系统及基础设备的运维，而当前将面临数十万台主机、容器，复杂的网络环境，以及复杂的部署环境：私有云、公有云、跨IDC混合部署 ​        （2">
+<meta name="keywords" content="aiops,机器学习,智能运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从自动化到智能化，OP&amp;URS 在AIOps探索与实战">
+<meta property="og:url" content="http://deletee.top/2019/10/26/aiops/index.html">
+<meta property="og:site_name" content="D.TopZ">
+<meta property="og:description" content="一、运维面临问题与挑战​        眼下，随着信息化、数字化的深入发展，技术飞速迭代，应用服务也不断升级，企业面临的运维压力也越来越大，传统运维受到了前所未有的挑战。 ​        （1）运维内容：传统的互联网运维的内容仅是关注软硬件、网络、应用系统及基础设备的运维，而当前将面临数十万台主机、容器，复杂的网络环境，以及复杂的部署环境：私有云、公有云、跨IDC混合部署 ​        （2">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027162216325.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027160601941.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025111136655.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025110041310.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025110501460.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025214253645.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025143935232.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025143952950.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027102314080.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025165642930.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025144015477.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027174334902.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027174249030.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027174137205.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027174204005.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191025162947408.png">
+<meta property="og:image" content="http://deletee.top/knowledge/image-20191027164834069.png">
+<meta property="og:updated_time" content="2019-11-25T01:46:00.092Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从自动化到智能化，OP&amp;URS 在AIOps探索与实战">
+<meta name="twitter:description" content="一、运维面临问题与挑战​        眼下，随着信息化、数字化的深入发展，技术飞速迭代，应用服务也不断升级，企业面临的运维压力也越来越大，传统运维受到了前所未有的挑战。 ​        （1）运维内容：传统的互联网运维的内容仅是关注软硬件、网络、应用系统及基础设备的运维，而当前将面临数十万台主机、容器，复杂的网络环境，以及复杂的部署环境：私有云、公有云、跨IDC混合部署 ​        （2">
+<meta name="twitter:image" content="http://deletee.top/knowledge/image-20191027162216325.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="D.TopZ" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://deletee.top/2019/10/26/aiops/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>从自动化到智能化，OP&URS 在AIOps探索与实战 | D.TopZ</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.TopZ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">青春猪头好少年</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">31</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">30</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/deletee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://deletee.top/2019/10/26/aiops/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="deletee">
+      <meta itemprop="description" content="学好技术，才能吹好牛">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.TopZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">从自动化到智能化，OP&URS 在AIOps探索与实战
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-26 15:46:30" itemprop="dateCreated datePublished" datetime="2019-10-26T15:46:30+08:00">2019-10-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/" itemprop="url" rel="index"><span itemprop="name">1x 技术综合篇</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x3-机器学习/" itemprop="url" rel="index"><span itemprop="name">1x3 机器学习</span></a></span>
+                
+                
+                  ,
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/1x-技术综合篇/1x3-机器学习/1x30-智能运维/" itemprop="url" rel="index"><span itemprop="name">1x30 智能运维</span></a></span>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             热度： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、运维面临问题与挑战"><a href="#一、运维面临问题与挑战" class="headerlink" title="一、运维面临问题与挑战"></a>一、运维面临问题与挑战</h4><p>​        眼下，随着信息化、数字化的深入发展，技术飞速迭代，应用服务也不断升级，企业面临的运维压力也越来越大，传统运维受到了前所未有的挑战。</p>
+<p>​        （1）运维内容：传统的互联网运维的内容仅是关注软硬件、网络、应用系统及基础设备的运维，而当前将面临数十万台主机、容器，复杂的网络环境，以及复杂的部署环境：私有云、公有云、跨IDC混合部署</p>
+<p>​        （2）运维工具：传统的互联网运维尽管也利用了工具实现了部分工作的自动化，但主要依赖人力，工作量较大，并效率低下，业务快速增长，技术飞速迭代，意味着工具也要顺势升级。</p>
+<p>​        （3）运维模式：7*24小时服务模式，PE\SA\DBA 成为了“救火式”英雄，成千上万的监控指标，一旦故障出现，SA、PE、DBA、开发童鞋齐上阵，被故障牵着走，被动性强且风险高。</p>
+<p>​    <img src="/knowledge/image-20191027162216325.png" alt="image-20191027162216325" style="zoom:50%;"></p>
+<p>​        OP&amp;URS作为网易运维服务团队，面对新的挑战，这就要求我们打造信息化、数字化的综合管理体系，为企业带来全方位IT运维服务的同时，又可提供定制化、专业化、全链路、无死角的运维解决方案。在大数据时代下，借助机器学习、数据仓库、大数据平台等大数据技术手段，将运维产生的数据进行分析、处理，得出最佳运维策略，以期实现对故障的事先干预，将风险降低到最低，从而降低运维成本，提升运维效率，最终实现运维智能化。</p>
+<a id="more"></a>
+<h4 id="二、AIOps-现状、定位以及我们的理解"><a href="#二、AIOps-现状、定位以及我们的理解" class="headerlink" title="二、AIOps 现状、定位以及我们的理解"></a>二、AIOps 现状、定位以及我们的理解</h4><p>​        AIOps即智能运维，是 Gartner 在2016年提出的概念，真正火起来是在这两年，这个概念提出后，各大厂都已经先后利用AIOps理念培养智能运维人才梯队，建设智能运维平台、打造智能运维体系。腾讯在2018年推出织云平台（Metis已开源）、百度Noah智能运维平台面向商用，Gartner预测到2020年，将近50%的企业将会在他们的业务和 IT 运维方面采用 AIOps 。高效运维发起人萧田国在《AIOps实施之路》中指出了AIOps在效率提升、质量保障、成本优化提出了系列可应用方向以及实施AIOps需要具备的能力。</p>
+<p><img src="/knowledge/image-20191027160601941.png" alt="image-20191027160601941" style="zoom:50%;"></p>
+<p><img src="/knowledge/image-20191025111136655.png" alt="image-20191025111136655"></p>
+<p>​        OP&amp;URS 于2018年加入智能运维大营，拥抱变化，以实现全链路、无死角智能运维体系为目标，旨在利用AI的能力解决运维行业的问题（1）解决重复造轮子的问题（2）解决运维效率仍然低下的问题（3）运维的数据没有得到合理应用的问题。</p>
+<p>​            <img src="/knowledge/image-20191025110041310.png" alt="image-20191025110041310"></p>
+<p>​        此图为故障管理全场景图，该图从服务部署、故障发生、故障发现、故障止损、根因诊断、故障恢复、故障关闭，完整的阐述应用监控的故障管理生命周期。</p>
+<p>​        <strong>OP&amp;URS 实施中的智能运维产品形态</strong></p>
+<p><img src="/knowledge/image-20191025110501460.png" alt="image-20191025110501460"></p>
+<p>​        故障预警：通过算法计算KPI曲线变化趋势，故障前发出故障预警；<br>​        故障告警：能对周期性变化指标进行预测和异常检测，且有告警分级；<br>​        告警合并：支持按照合适的维度对告警进行合并，展现概况信息；<br>​        根因分析：智能对故障根因进行分析，给出最可能的原因，辅助人做决策；<br>​        故障自愈：可以根据故障原因选择合适的故障自愈策略并执行，自动解决故障。</p>
+<p>​        <strong>OP&amp;URS 运维产品生态</strong></p>
+<h4 id="三、OP-amp-URS-在AIOps中实战场景-智能监控"><a href="#三、OP-amp-URS-在AIOps中实战场景-智能监控" class="headerlink" title="三、OP&amp;URS 在AIOps中实战场景-智能监控"></a>三、OP&amp;URS 在AIOps中实战场景-智能监控</h4><p>​        笔者自接触智能运维以来，也是三千烦劳丝，如何让运维“智能”起来？如何让AIOps结合网易现有运维体系实施落地? 又如何推进AIOps发展? 种种挑战考验着我们的团队。经过1年来不断探索、研究、试错，我们首先在监控方面突破，下面介绍如何从0到1建设AIOps应用-智能监控系统心路历程。</p>
+<p><img src="/knowledge/image-20191025214253645.png" alt="image-20191025214253645"></p>
+<h5 id="3-1-运维监控现状"><a href="#3-1-运维监控现状" class="headerlink" title="3.1 运维监控现状"></a>3.1 运维监控现状</h5><p>​        随着互联网，特别是移动互联网的高速发展，web服务已经深入到社会的各个领域，人们使用互联网搜索，购物，付款，娱乐等等。因此，保障web服务的稳定已经变的越来越重要。运维人员通过监控各种各样的关键性能指标（KPI）来判断服务、系统是否稳定，因为KPI如果发生异常，往往意味着与其相关的应用发生了问题。这些KPI可能包括：基础KPI及服务KPI，服务KPI是指能够反映Web服务的规模、质量的性能指标，例如，网页响应时间，网页访问量，连接错误数量等。基础KPI是指能够反映机器（服务器、路由器、交换机）健康状态的性能指标，例如，磁盘使用率，CPU使用率，内存使用率，磁盘IO，网卡吞吐率等。</p>
+<p>​        这些KPI数据表现为时序序列，即一条指标曲线（后文统一称KPI曲线）。由此问题转化为对曲线的异常判断，KPI曲线可以简单分类下面三种类型：</p>
+<p>​        周期型：</p>
+<p><img src="/knowledge/image-20191025143935232.png" alt="image-20191025143935232"></p>
+<p>​        随机型：</p>
+<p>​        <img src="/knowledge/image-20191025143952950.png" alt="image-20191025143952950"></p>
+<pre><code>   平稳型：
+</code></pre><p><img src="/knowledge/image-20191027102314080.png" alt="image-20191027102314080"></p>
+<p>​        在OP&amp;URS基于基础设施管理的CMDB系统：哨兵系统，通过哨兵 Agent将数据实时/采样的传输至哨兵服务端进行可视化及报警监控。监控系统主要采用规则判定的报警方式，设定上限、下限阈值，触发规则则发出报警，随着业务集成越来越多，体量也越来越大，规则报警也到了其瓶颈，主要有以下痛点：</p>
+<p>​        （1）需要频繁调整阈值</p>
+<p>​                case1:随着业务变化，已有的阈值适用性变差，当业务发生变动时，报警规则也需要及时调整</p>
+<pre><code>            case2:夜间与白天范围不一样，工作日与周末不一样，统一的阈值适用性较差
+</code></pre><p>​        （2）覆盖范围有限</p>
+<p>​                传统的方式，需要针对指标的每一项进行设定报警规则，比如在DubboProviderCollector，每个方法对应的调用集群的量不一，需要独立配置报警规则，那么配置将会相当耗时且繁琐，并且很多Dubbo服务接口都是随业务随时新增或下线，很容易被忽视。</p>
+<p>​        （3）无效报警过多</p>
+<p>​                阈值规则报警的方式，往往会出现这样的情况，当阈值设定的太高，异常很难被发现，当阈值设定的太低，则会造成大量报警，造成报警风暴，真正有用的报警消息淹没在风暴中。</p>
+<h5 id="3-2-算法引入"><a href="#3-2-算法引入" class="headerlink" title="3.2 算法引入"></a>3.2 算法引入</h5><p><strong>通用异常检测流程：</strong></p>
+<p>​        <img src="/knowledge/image-20191025165642930.png" alt="image-20191025165642930"></p>
+<p>​        针对上述痛点，我们思考如何利用算法来突破传统的阈值报警局限性。于是调研了业界使用的各种异常检测算法，较为常见的算法包括逻辑回归、关联关系挖掘、聚类、决策树、随机森林、支持向量机、蒙特卡洛树搜索、隐式马尔科夫、多示例学习、迁移学习、卷积神经网络等 ,数学算法类：k-sigma，Grubbs，Turkey，MeanPercent，Value，AR，MR，ARIMA。    </p>
+<p>​        曾想使用一种或一类算法来解决所有KPI曲线的预测，而碰到业务情况远比我们想象要复杂，例如：首先面临各种不同曲线表现特征不一，同一类型的算法很难做到召回率整体提升；其二，在同样类型dubbo调用异常 KPI曲线波动情况，在URS是可以接受的，但是在其他产品可能是不能接受的异常，可能在URS在意的指标，在其他产品无需在意；第三，尽管想做到一个模型泛华兼容所有场景，但是所需特征工程工作量巨大，特征也很多。</p>
+<p>​        有人说采用投票的方法，用一大堆算法同时预测，对于结果进行投票，少数服从多数，对于这种方式也是存在一定的缺陷，本身每个算法适用性不一样，那么势必在影响投票结果。在OP&amp;URS采用的是分类算法，即在不同的场景下采用一类算法进行预测，以减少误判率，下面调研和使用了上述部分算法：</p>
+<p>​        机器学习类：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rnn</td>
+<td>适合序列变化</td>
+<td>存在梯度消失现象</td>
+</tr>
+<tr>
+<td>lstm</td>
+<td>解决RNN梯度消息问题</td>
+<td>单指标、单模型</td>
+</tr>
+<tr>
+<td>dnn</td>
+<td>单模型覆盖所有场景，泛华能力比rf更优</td>
+<td>特征工程复杂，需要大量标注数据</td>
+</tr>
+<tr>
+<td>xgboost</td>
+<td>考虑训练数据为稀疏值，分布式并行</td>
+<td>特征工程复杂，需要大量标注数据</td>
+</tr>
+<tr>
+<td>rf</td>
+<td>支持高维度，不用做特征选择、模型泛化能力强</td>
+<td>某些噪音较大的分类或回归问题上会过拟合</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>​        特征工程是机器学习中一块重要的环节，针对单一KPI表现的数据形态将逐一转换为数据特征，如下将数据特征归类如下5个方面</p>
+<p>​        1、统计特征 ：描述样本内相关的数学表现，例如：方差、均值、中位数、斜率、偏度、峰度等重要指标</p>
+<p>​        2、拟合特征 ：获取曲线的动态特征，根据曲线平稳或不平稳，采用不同模型获取预测值与实际值的差</p>
+<p>​        3、周期特征：利用滑动窗口，傅里叶转换，获取曲线中可能存在的季节性、周期性特征</p>
+<p>​        4、分类特征：基于曲线变换、小波变换、主成分分析等方式 获取曲线分类特征</p>
+<p>​        5、业务特征：KPI具有业务集群效应，工作日邮箱访问量，周末游戏访问量等业务特征</p>
+<p>​        PS：由于篇幅有限，这里就不枚举所有特征，有兴趣的同学可以私下沟通交流。</p>
+<p>​        数学算法类：</p>
+<p>​        （1）恒定阈值类算法<br>​                恒定阈值的含义是表示均值基本恒定，标准差与均值比约等于0（即KPI曲线近似一条直线）</p>
+<p><img src="/knowledge/image-20191025144015477.png" alt="image-20191025144015477"></p>
+<p>​        （2）突升突降类算法</p>
+<p>​                突变的含义是发生了均值漂移</p>
+<p>​                空间转换:𝑟(𝑡)= </p>
+<p><img src="/knowledge/image-20191027174334902.png" alt="image-20191027174334902"></p>
+<p><img src="/knowledge/image-20191027174249030.png" alt="image-20191027174249030"></p>
+<p>​        （3）同比算法<br>​                适用于周期性数据表现，每天同时刻的数据分布相似<br>​                参数估计:求正态分布的均值、方差<br><img src="/knowledge/image-20191027174137205.png" alt="image-20191027174137205">        <img src="/knowledge/image-20191027174204005.png" alt="image-20191027174204005">                        </p>
+<h5 id="3-3-功能设计"><a href="#3-3-功能设计" class="headerlink" title="3.3 功能设计"></a>3.3 功能设计</h5><p><strong>（1）KPI 管理</strong><br>        标注打标：提供标注打标的功能，标记/取消标记为正负样本，标记后样本自动转存样本库<br>        样本管理：提供样本管理功能，检索、图示、编辑、删除等功能<br>        异常查询：经API检测后的时间序列（仅异常）入库存储，提供管理功能，分页查询、检索、放缩等</p>
+<p><strong>（2）模型管理</strong><br>​        模型管理：提供模型管理功能<br>​        模型训练：支持自定义模型训练<br>       （通过PE或开发标注的异常KPI，正常KPI训练符合自己业务的模型，或使用开放的通用模型）</p>
+<p><strong>（3）KPI异常检测</strong><br>        基于数学统计算法集成<br>        基于机器学习算法集成</p>
+<p><strong>（4）多维度报警聚合</strong><br>        按产品维度合并<br>        按应用维度合并<br>        按集群维度合并<br>        按单机维度合并<br>        按业务类型合并<br>        按报警接收人维度合并</p>
+<p><strong>（5）反馈系统</strong><br>        用户标记、报警关闭</p>
+<h5 id="3-4-架构设计"><a href="#3-4-架构设计" class="headerlink" title="3.4 架构设计"></a>3.4 架构设计</h5><p>​        我们将整个智能监控系统分为7个核心功能模块，每个模块承担异常检测流程中相应功能，整体架构上做到模块之间相互独立，通过数据流信号、RPC进行模块通信。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>模块名称</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>配置管理中心</td>
+<td>配置库、模型库、标注库 相关配置与管理（含UI）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>流式计算中心</td>
+<td>KPI预处理、KPI聚合、KPI分发</td>
+</tr>
+<tr>
+<td>3</td>
+<td>数据存储&amp;读取中心</td>
+<td>用于读写KPI时序数据</td>
+</tr>
+<tr>
+<td>4</td>
+<td>消息中心</td>
+<td>数据→ 消息 用于触发模型计算、插值计算</td>
+</tr>
+<tr>
+<td>5</td>
+<td>算法中心</td>
+<td>异常检测、模型训练</td>
+</tr>
+<tr>
+<td>6</td>
+<td>报警处理中心</td>
+<td>用于解析异常KPI及发送报警内容至哨兵报警中心</td>
+</tr>
+<tr>
+<td>7</td>
+<td>反馈系统</td>
+<td>用于反馈报警是否有效，反馈于模型提升</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>​        <strong>系统架构如下：</strong></p>
+<p><img src="/knowledge/image-20191025162947408.png" alt="image-20191025162947408"></p>
+<p>​        <strong>数据架构如下</strong>：</p>
+<p><img src="/knowledge/image-20191027164834069.png" alt="image-20191027160601941" style="zoom:60%;"></p>
+<h5 id="3-5-难题"><a href="#3-5-难题" class="headerlink" title="3.5 难题"></a>3.5 难题</h5><p>​        前面介绍了OP&amp;URS 智能监控系统的在智能监控系统中整体功能及架构设计，下面简单聊聊我们碰到一些问题以及解决思路：</p>
+<p>（1）实时计算问题</p>
+<p>​            问题描述：1期采用的是Spark Streaming实时计算框架，通过直连Kafka获取数据源，但是在实际生产中，由于数据源是采样收集（有1分钟采样，有2分钟采样），发现每1分钟会有流量尖刺现象，随着KPI数量增多，尖刺更明显。</p>
+<p>​            分析：经分析，发现Spark Streaming 并非是实时的数据抽取Kafka的数据。然而在Spark Streaming在实时计算中不能支持实时读取数据，而是在窗口结束时一次性抽取，造成了一次抽取大量数据，造成网络波动异常，流量尖刺。</p>
+<p>​            解决方案：由于Spark流式计算本质上是微批处理，尽管使用各种手段（限制抽取数据大小、减少窗口大小），仍然指标不治本，由此尝试找Spark的替代方案，我们调研了Flink，经测试Flink能够完美的解决实时抽取的问题，并在数据延时方面处理有一项不到的效果，显著提高了数据准确度。</p>
+<p>（2）性能问题</p>
+<p>​            问题描述：系统在1期时，为了实时计算历史特征（周期性，同比等），算法计算的输入是360个数据点（当前时间区间的120个点，前一天同区间的120个点，7天前同区间的120个点），历史数据存储在HBase（作为TSDB存在）中，但是随着KPI数量增长（当前已有10万级），三个时间段分布在不同的HBase Key（Key 设计：keyId + DayHour， Column设计：minute）中，意味着每次计算需要查询3次HBase，当KPI到达20万级时，需要查询60万次，由于前期采用的还是Spark Steaming模式计算，QPS超过20w，HBase出现明显延迟。</p>
+<p>​            分析：由于算法所需数据点甚大，实时计算抽取历史数据成为瓶颈，团队的攻城狮们自然想到的是减少算法数据需求，最好是用实时的1个数据点进行计算，但对于算法来说是完全不可能实现的，其一，一个点的输入完全构建不了任何特征，算法无从获知曲线形态，不知道同环比等，只会退化到传统的阈值计算；其二，1期所有特征工程基于360个计算，计算点过度减少相当于1期的算法工作全部推翻重做。经过大量讨论论证，得出如下解决方案：</p>
+<p>​            解决方案：</p>
+<p>​        （1）算法输入精简，由360个数据点更改为当前时间区间的60个点，部分实时特征转为离线计算特征，通过内存加载，无需实时进行计算，既保留当前曲线的数据特征，又能减少实时计算模块的需求。</p>
+<p>​        （2）去HBase改为Redis，将60个缓存至Redis中，采用pipeline方法，进行头尾操作（新数据点插入头部，旧的数据点从尾部剔除）</p>
+<p>​            <strong>AIOps前行的路上荆棘丛生，类似的难题还有很多，很多方法也不一定是最优方案，好在大家愿意尝试，愿意推翻重来。</strong></p>
+<h4 id="四、总结与展望"><a href="#四、总结与展望" class="headerlink" title="四、总结与展望"></a>四、总结与展望</h4><p>​        OP&amp;URS 智能监控系统经历了2期的开发，当前智能监控系统2.0已上线，算法召回率在70%左右，报警覆盖度100%，报警配置成本节省90%，当前传媒、考拉、URS、云阅读、网易金融等产品先后接入智能监控报警（排名不分先后），也多次及时的探测到异常事故及时止损，为客户减少损失。</p>
+<p>​        当前系统也存在很多不足：</p>
+<p>​        （1）算法召回率不高，仍需要专家经验与算法的结合</p>
+<p>​        （2）当前智能监控系统只能基于单KPI计算，不满足多KPI计算</p>
+<p>​        （3）依赖数据源的丰富，缺乏全链路监控</p>
+<p>​        智能监控是AIOps中冰山一角，除了解决当前不足以外，我们还有很多工作要做，例如根因分析，场景监控，故障诊断、故障自愈等等，AIOps之路任重而道远，期待广大志同道合的operator加入AIOps阵营，一起努力。</p>
+<p>​        </p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/aiops/" rel="tag"><i class="fa fa-tags"></i> aiops</a>
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tags"></i> 机器学习</a>
+          
+            <a href="/tags/智能运维/" rel="tag"><i class="fa fa-tags"></i> 智能运维</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/11/flink-learning-notes-02/" rel="next" title="Flink学习笔记02->Flink配置文件详解">
+                <i class="fa fa-chevron-left"></i> Flink学习笔记02->Flink配置文件详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/23/edw-50FAQ/" rel="prev" title="数据仓库-50问">
+                数据仓库-50问 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="deletee" />
+            
+              <p class="site-author-name" itemprop="name">deletee</p>
+              <p class="site-description motion-element" itemprop="description">学好技术，才能吹好牛</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/deletee" title="GitHub &rarr; https://github.com/deletee" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:delete@126.com" title="E-Mail &rarr; mailto:delete@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2459770764" title="Weibo &rarr; https://weibo.com/2459770764" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com/yourname" title="FB Page &rarr; https://www.facebook.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://36kr.com/" title="https://36kr.com/" rel="noopener" target="_blank">36kr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.woshipm.com/" title="http://www.woshipm.com/" rel="noopener" target="_blank">人人都是产品经理</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ppt.geekbang.org/" title="https://ppt.geekbang.org/" rel="noopener" target="_blank">极客时间</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://open.163.com/" title="https://open.163.com/" rel="noopener" target="_blank">网易公开课</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、运维面临问题与挑战"><span class="nav-number">1.</span> <span class="nav-text">一、运维面临问题与挑战</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、AIOps-现状、定位以及我们的理解"><span class="nav-number">2.</span> <span class="nav-text">二、AIOps 现状、定位以及我们的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、OP-amp-URS-在AIOps中实战场景-智能监控"><span class="nav-number">3.</span> <span class="nav-text">三、OP&amp;URS 在AIOps中实战场景-智能监控</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-运维监控现状"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 运维监控现状</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-算法引入"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 算法引入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-功能设计"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 功能设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-架构设计"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 架构设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-难题"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 难题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、总结与展望"><span class="nav-number">4.</span> <span class="nav-text">四、总结与展望</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank"> </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">deletee</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '530c61cf555a76d5bce7',
+          clientSecret: '34f2daf8f6584cda7aa238440a4c8420a1ad10b6',
+          repo: 'deletee',
+          owner: 'deletee',
+          admin: ['deletee'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
